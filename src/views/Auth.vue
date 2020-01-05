@@ -1,26 +1,26 @@
 <template>
-<v-window v-model="window">
-  <v-window-item>
-    <LoginWindow v-on:register="toggleView"/>
-  </v-window-item>
+  <v-window v-model="window">
+    <v-window-item>
+      <LoginWindow v-on:register="toggleView" />
+    </v-window-item>
 
-  <v-window-item>
-    <RegisterWindow v-on:login="toggleView" />
-  </v-window-item>
-</v-window>
+    <v-window-item>
+      <RegisterWindow v-on:login="toggleView" />
+    </v-window-item>
+  </v-window>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
 
-import LoginWindow from '@/components/Auth/LoginWindow.vue';
-import RegisterWindow from '@/components/Auth/RegisterWindow.vue';
+import LoginWindow from "@/components/Auth/LoginWindow.vue";
+import RegisterWindow from "@/components/Auth/RegisterWindow.vue";
 
 @Component({
   components: {
     LoginWindow,
-    RegisterWindow,
+    RegisterWindow
   }
 })
 export default class Auth extends Vue {
@@ -33,15 +33,20 @@ export default class Auth extends Vue {
       this.window = 0;
     }
   }
-
-
 }
 </script>
 
 <style lang="scss">
-#AuthView{
+#AuthView {
   .left-dark {
-    background-image: linear-gradient(to left top, #5e3a59, #523659, #433359, #333158, #202e55);
+    background-image: linear-gradient(
+      to left top,
+      #5e3a59,
+      #523659,
+      #433359,
+      #333158,
+      #202e55
+    );
   }
 }
 </style>
