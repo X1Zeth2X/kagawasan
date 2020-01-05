@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Auth from "@/views/Auth.vue";
 
 Vue.use(VueRouter);
 
@@ -10,6 +11,17 @@ const routes = [
     name: "home",
     // component: () => import('@/views/Home.vue'),
     component: Home
+  },
+  {
+    path: "/auth",
+    name: "auth",
+    // component: () => import('@/views/Home.vue'),
+    component: Auth,
+    meta: {
+      public: true,
+      onlyWhenLoggedOut: true,
+      showNav: false
+    }
   }
 ];
 

@@ -1,7 +1,11 @@
 <template>
   <v-app>
+    <Navbar />
+
     <v-content>
-      <router-view :key="$route.fullPath"></router-view>
+      <v-slide-y-reverse-transition mode="out-in"
+        ><router-view :key="$route.fullPath"></router-view>
+      </v-slide-y-reverse-transition>
     </v-content>
   </v-app>
 </template>
@@ -10,6 +14,26 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 
-@Component
+import Navbar from "@/components/Main/Navbar.vue";
+
+@Component({
+  components: {
+    Navbar
+  }
+})
 export default class App extends Vue {}
 </script>
+
+<style lang="scss">
+#app {
+  font-family: "Be Vietnam", sans-serif;
+
+  a {
+    text-decoration: none;
+  }
+
+  .b-card {
+    border-radius: 1em;
+  }
+}
+</style>
