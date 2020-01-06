@@ -1,7 +1,7 @@
-import axios from 'axios';
-import store from '@/store';
+import axios from "axios";
+import store from "@/store";
 
-const backendUrl: string = 'https://konishi-zimmerman.herokuapp.com';
+const backendUrl: string = "https://konishi-zimmerman.herokuapp.com";
 
 const ApiService = {
   init(baseUrl: string) {
@@ -9,7 +9,7 @@ const ApiService = {
   },
 
   setHeader() {
-    axios.defaults.headers.common.Authorization = `Bearer ${store.getters['auth/accessToken']}`;
+    axios.defaults.headers.common.Authorization = `Bearer ${store.getters["auth/accessToken"]}`;
   },
 
   removeHeader() {
@@ -45,7 +45,7 @@ const ApiService = {
 
   customRequest(data: any) {
     return axios(data);
-  },
+  }
 };
 
 export default ApiService;
