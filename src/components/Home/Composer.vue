@@ -1,7 +1,10 @@
 <template>
   <div id="composer">
     <v-card class="c-main" hover>
-      <v-textarea rows="2" auto-grow solo-inverted></v-textarea>
+      <v-textarea rows="2" auto-grow
+        :solo-inverted="$vuetify.theme.dark"
+        :solo="!$vuetify.theme.dark"
+      ></v-textarea>
 
       <v-card-actions>
         <v-btn-toggle v-model="mode" rounded>
