@@ -14,7 +14,7 @@
 
           <v-btn block x-large rounded elevation="10" color="pink" dark>
             Continue
-            <v-icon class="pt1">mdi-menu-right</v-icon>
+            <v-icon class="ml2">ion-ios-arrow-dropright</v-icon>
           </v-btn>
 
           <p class="pt3">
