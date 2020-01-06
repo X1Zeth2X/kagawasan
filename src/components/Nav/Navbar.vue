@@ -8,7 +8,9 @@
       dense
       :color="$vuetify.theme.dark ? '' : 'grey lighten-1'"
     >
-      <v-app-bar-nav-icon v-show="$vuetify.breakpoint.mdAndDown"
+      <v-app-bar-nav-icon
+        v-show="$vuetify.breakpoint.mdAndDown"
+        @click="toggleDrawer"
         ><v-icon>ion-ios-menu</v-icon>
       </v-app-bar-nav-icon>
 
@@ -39,6 +41,9 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 import Drawer from "./Drawer.vue";
+import { Action } from "vuex-class";
+
+const namespace: string = "themeLayout";
 
 @Component({
   components: {
@@ -46,6 +51,8 @@ import Drawer from "./Drawer.vue";
   }
 })
 export default class Navbar extends Vue {
+  @Action("toggleDrawer", { namespace }) private toggleDrawer!: Function;
+
   public logout() {
     this.$router.push({
       name: "auth"
