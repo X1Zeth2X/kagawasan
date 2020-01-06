@@ -1,5 +1,9 @@
 <template>
-  <v-navigation-drawer app :mini-variant="$vuetify.breakpoint.mdAndUp">
+  <v-navigation-drawer
+    app
+    :mini-variant="$vuetify.breakpoint.mdAndUp && miniDrawer"
+    :value.sync="showDrawer"
+  >
     <template v-slot:prepend>
       <v-list-item>
         <img :src="require('@/assets/logo.png')" height="30em" class="mt2" />
@@ -28,22 +32,7 @@
 
     <template v-slot:append>
       <v-divider></v-divider>
-      <v-list-item two-line>
-        <v-list-item-avatar>
-          <img src="https://randomuser.me/api/portraits/lego/6.jpg" />
-        </v-list-item-avatar>
-
-        <v-list-item-content>
-          <v-list-item-title>X1Zeth2X</v-list-item-title>
-          <v-list-item-subtitle>Logged In</v-list-item-subtitle>
-        </v-list-item-content>
-
-        <v-list-item-action>
-          <v-btn icon>
-            <v-icon>ion-md-more</v-icon>
-          </v-btn>
-        </v-list-item-action>
-      </v-list-item>
+      <CurrentUser />
     </template>
   </v-navigation-drawer>
 </template>
@@ -51,6 +40,9 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
+import { Getter, Action } from "vuex-class";
+
+import CurrentUser from "./Drawer/CurrentUser.vue";
 
 interface Page {
   label: string;
@@ -58,8 +50,17 @@ interface Page {
   routeName: string | undefined;
 }
 
-@Component
+const namespace: string = "themeLayout";
+
+@Component({
+  components: {
+    CurrentUser
+  }
+})
 export default class Drawer extends Vue {
+  @Getter("miniDrawer", { namespace }) private miniDrawer!: boolean;
+  @Getter("showDrawer", { namespace }) private showDrawer!: boolean;
+
   private pages: Page[] = [
     {
       label: "Feed",
