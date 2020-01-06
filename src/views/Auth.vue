@@ -1,5 +1,5 @@
 <template>
-  <v-window v-model="window">
+  <v-window id="authView" v-model="window">
     <v-window-item>
       <LoginWindow v-on:register="toggleView" />
     </v-window-item>
