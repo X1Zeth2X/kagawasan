@@ -13,7 +13,11 @@
           </v-list-item-content>
 
           <v-list-item-action>
-            <v-switch inset v-model="item.value"></v-switch>
+            <v-switch
+              inset
+              v-model="item.value"
+              @change="item.onChange"
+            ></v-switch>
           </v-list-item-action>
         </v-list-item>
       </v-list>
@@ -24,20 +28,47 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
+import { Getter, Action } from "vuex-class";
+
+const namespace: string = "themeLayout";
+
+interface Option {
+  title: string;
+  subtitle: string;
+  value: boolean;
+  onChange: Function;
+}
 
 @Component
 export default class Layout extends Vue {
-  private items: object[] = [
+  @Action("toggleMiniDrawer", { namespace })
+  private toggleMiniDrawer!: Function;
+  @Action("toggleMasonryLayout", { namespace })
+  private toggleMasonryLayout!: Function;
+
+  private items: Option[] = [
+    {
+      title: "Dark Mode",
+      subtitle: "The best mode ever.",
+      value: this.$vuetify.theme.dark,
+      onChange: this.toggleDarkMode
+    },
     {
       title: "Mini Drawer",
       subtitle: "Use mini navigation drawers.",
-      value: false
+      value: this.$store.getters["themeLayout/miniDrawer"],
+      onChange: this.toggleMiniDrawer
     },
     {
       title: "Masonry",
       subtitle: "Use Masonry layout instead of standard layout.",
-      value: false
+      value: this.$store.getters["themeLayout/masonryLayout"],
+      onChange: this.toggleMasonryLayout
     }
   ];
+
+  private toggleDarkMode() {
+    this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+  }
 }
 </script>

@@ -1,7 +1,9 @@
 <template>
   <div id="composer">
     <v-card class="c-main" hover>
-      <v-textarea rows="2" auto-grow
+      <v-textarea
+        rows="2"
+        auto-grow
         :solo-inverted="$vuetify.theme.dark"
         :solo="!$vuetify.theme.dark"
       ></v-textarea>
