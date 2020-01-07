@@ -13,5 +13,9 @@ export const actions: ActionTree<LayoutState, RootState> = {
 
   toggleDrawer({ commit }) {
     commit("toggleDrawer");
+  },
+
+  toggleAnimations({commit}) {
+    commit("toggleAnimations");
   }
 };

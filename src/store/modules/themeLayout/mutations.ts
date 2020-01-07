@@ -12,5 +12,9 @@ export const mutations: MutationTree<LayoutState> = {
 
   toggleDrawer(state) {
     state.showDrawer = !state.showDrawer;
+  },
+
+  toggleAnimations(state) {
+    state.animations = !state.animations;
   }
 };

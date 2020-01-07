@@ -9,7 +9,8 @@ import { mutations } from "./mutations";
 export const state: LayoutState = {
   showDrawer: true,
   miniDrawer: true,
-  masonryLayout: false
+  masonryLayout: false,
+  animations: true
 };
 
 const namespaced: boolean = true;

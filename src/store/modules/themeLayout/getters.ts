@@ -13,5 +13,9 @@ export const getters: GetterTree<LayoutState, RootState> = {
 
   showDrawer(state): boolean {
     return state.showDrawer;
+  },
+
+  animations(state): boolean {
+    return state.animations;
   }
 };
