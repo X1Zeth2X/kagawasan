@@ -1,8 +1,13 @@
 <template>
-  <div id="layoutSettings">
-    <v-card>
+  <v-expansion-panel>
+    <v-expansion-panel-header
+      expand-icon="ion-ios-arrow-down"
+    >
+      THEME AND LAYOUT
+    </v-expansion-panel-header>
+
+    <v-expansion-panel-content>
       <v-list>
-        <v-subheader>THEME AND LAYOUT</v-subheader>
         <v-list-item v-for="(item, index) in items" :key="index">
           <v-list-item-content>
             <v-list-item-title>
@@ -22,8 +27,8 @@
           </v-list-item-action>
         </v-list-item>
       </v-list>
-    </v-card>
-  </div>
+    </v-expansion-panel-content>
+  </v-expansion-panel>
 </template>
 
 <script lang="ts">
