@@ -8,7 +8,10 @@
           </div>
           <p>Adjust application and user settings.</p>
 
-          <Layout />
+          <v-expansion-panels focusable>
+            <Layout />
+            <Content />
+          </v-expansion-panels>
         </v-col>
       </v-row>
     </v-container>
@@ -20,10 +23,12 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 import Layout from "@/components/Settings/Layout.vue";
+import Content from "@/components/Settings/Content.vue";
 
 @Component({
   components: {
-    Layout
+    Layout,
+    Content
   }
 })
 export default class Settings extends Vue {}
