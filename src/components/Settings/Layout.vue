@@ -2,6 +2,7 @@
   <div id="layoutSettings">
     <v-card>
       <v-list>
+        <v-subheader>THEME AND LAYOUT</v-subheader>
         <v-list-item v-for="(item, index) in items" :key="index">
           <v-list-item-content>
             <v-list-item-title>
@@ -61,9 +62,15 @@ export default class Layout extends Vue {
     },
     {
       title: "Masonry",
-      subtitle: "Use Masonry layout instead of standard layout.",
+      subtitle: "Use masonry layout instead of standard layout. (Keep off for better experience on mobile)",
       value: this.$store.getters["themeLayout/masonryLayout"],
       onChange: this.toggleMasonryLayout
+    },
+    {
+      title: "Animations",
+      subtitle: "App animations/transitions. (Disabling might give you increased performance)",
+      value: this.$vuetify.theme.dark,
+      onChange: this.toggleDarkMode
     }
   ];
 
