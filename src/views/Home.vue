@@ -13,14 +13,12 @@ import Component from "vue-class-component";
 import { Getter } from "vuex-class";
 
 import StandardLayout from "@/components/Home/StandardLayout.vue";
-import MasonryLayout from "@/components/Home/MasonryLayout.vue";
-import ComposerDialog from "@/components/Home/ComposerDialog.vue";
 
 @Component({
   components: {
     StandardLayout,
-    MasonryLayout,
-    ComposerDialog
+    // Lazily import MasonryLayout.
+    MasonryLayout: () => import("@/components/Home/MasonryLayout.vue"),
   }
 })
 export default class Home extends Vue {

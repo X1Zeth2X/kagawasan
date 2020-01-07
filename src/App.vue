@@ -3,8 +3,8 @@
     <Navbar />
 
     <v-content>
-      <v-slide-y-reverse-transition mode="out-in"
-        ><router-view :key="$route.fullPath"></router-view>
+      <v-slide-y-reverse-transition mode="out-in">
+        <router-view :key="$route.fullPath"></router-view>
       </v-slide-y-reverse-transition>
     </v-content>
   </v-app>
