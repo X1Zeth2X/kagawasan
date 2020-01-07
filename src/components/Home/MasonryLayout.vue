@@ -3,9 +3,9 @@
     <ComposerDialog />
     <masonry
       :cols="{
-        default: 3, 1264:
-        2, 960:
-        1
+        default: 3,
+        1264: 2,
+        960: 1
       }"
       gutter="10"
     >
@@ -18,7 +18,8 @@
         </v-card-title>
 
         <v-card-text>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut, voluptates.
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut,
+          voluptates.
           <ul>
             <li>Lorem, ipsum.</li>
           </ul>
@@ -29,14 +30,12 @@
             Going
           </v-btn>
         </v-card-actions>
-
       </v-card>
 
       <PostMain />
       <PostMain />
       <PostMain />
     </masonry>
-
   </div>
 </template>
 

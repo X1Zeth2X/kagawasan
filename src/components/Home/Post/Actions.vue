@@ -2,7 +2,7 @@
   <v-card-actions>
     <v-btn icon @click="toggleKek">
       <v-icon :color="kekGiven ? 'red lighten-1' : ''">
-        {{ kekGiven ? 'ion-ios-heart' : 'ion-ios-heart-empty' }}
+        {{ kekGiven ? "ion-ios-heart" : "ion-ios-heart-empty" }}
       </v-icon>
     </v-btn>
     <span class="mb1 f6">19k</span>

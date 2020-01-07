@@ -62,13 +62,15 @@ export default class Layout extends Vue {
     },
     {
       title: "Masonry",
-      subtitle: "Use masonry layout instead of standard layout. (Keep off for better experience on mobile)",
+      subtitle:
+        "Use masonry layout instead of standard layout. (Keep off for better experience on mobile)",
       value: this.$store.getters["themeLayout/masonryLayout"],
       onChange: this.toggleMasonryLayout
     },
     {
       title: "Animations",
-      subtitle: "App animations/transitions. (Disabling might give you increased performance)",
+      subtitle:
+        "App animations/transitions. (Disabling might give you increased performance)",
       value: this.$vuetify.theme.dark,
       onChange: this.toggleDarkMode
     }
