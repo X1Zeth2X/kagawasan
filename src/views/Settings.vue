@@ -3,9 +3,10 @@
     <v-container>
       <v-row align="start" justify="start">
         <v-col cols="12">
-          <div class="f1 fw7 mb4">
+          <div class="f1 fw7">
             Settings
           </div>
+          <p>Adjust application and user settings.</p>
 
           <Layout />
         </v-col>
