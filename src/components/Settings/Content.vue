@@ -36,7 +36,7 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import { Getter, Action } from "vuex-class";
 
-const namespace: string = "themeLayout";
+const namespace: string = "settings";
 
 interface Option {
   title: string;

@@ -5,7 +5,7 @@ import { RootState } from "./types";
 // Use VuexPersist
 import VuexPersist from "vuex-persist";
 
-import { themeLayout } from "./modules/themeLayout/index";
+import { settings } from "./modules/settings/index";
 
 Vue.use(Vuex);
 
@@ -13,7 +13,7 @@ const vuexLocalStorage = new VuexPersist<RootState>({
   storage: window.localStorage,
   reducer: state => ({
     // @ts-ignore
-    themeLayout: state.themeLayout
+    settings: state.settings
     // Add stuff here
   })
 });
@@ -24,7 +24,7 @@ const store: StoreOptions<RootState> = {
   },
   modules: {
     // Register modules
-    themeLayout
+    settings
   },
   plugins: [vuexLocalStorage.plugin]
 };

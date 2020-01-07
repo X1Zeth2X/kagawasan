@@ -22,7 +22,7 @@ import StandardLayout from "@/components/Home/StandardLayout.vue";
   }
 })
 export default class Home extends Vue {
-  @Getter("masonryLayout", { namespace: "themeLayout" })
+  @Getter("masonryLayout", { namespace: "settings" })
   private masonryLayout!: boolean;
 }
 </script>

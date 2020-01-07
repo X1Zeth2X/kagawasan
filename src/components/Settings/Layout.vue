@@ -36,7 +36,7 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import { Getter, Action } from "vuex-class";
 
-const namespace: string = "themeLayout";
+const namespace: string = "settings";
 
 interface Option {
   title: string;
@@ -62,14 +62,14 @@ export default class Layout extends Vue {
     {
       title: "Mini Drawer",
       subtitle: "Use mini navigation drawers.",
-      value: this.$store.getters["themeLayout/miniDrawer"],
+      value: this.$store.getters["settings/miniDrawer"],
       onChange: this.toggleMiniDrawer
     },
     {
       title: "Masonry",
       subtitle:
         "Use masonry layout instead of standard layout. (Keep off for better experience on mobile)",
-      value: this.$store.getters["themeLayout/masonryLayout"],
+      value: this.$store.getters["settings/masonryLayout"],
       onChange: this.toggleMasonryLayout
     },
     {

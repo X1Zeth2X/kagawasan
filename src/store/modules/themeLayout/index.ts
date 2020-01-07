@@ -15,7 +15,7 @@ export const state: LayoutState = {
 
 const namespaced: boolean = true;
 
-export const themeLayout: Module<LayoutState, RootState> = {
+export const settings: Module<LayoutState, RootState> = {
   namespaced,
   state,
   getters,

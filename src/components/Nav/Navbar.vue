@@ -43,7 +43,7 @@ import Component from "vue-class-component";
 import Drawer from "./Drawer.vue";
 import { Action } from "vuex-class";
 
-const namespace: string = "themeLayout";
+const namespace: string = "settings";
 
 @Component({
   components: {

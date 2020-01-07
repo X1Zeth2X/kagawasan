@@ -50,7 +50,7 @@ interface Page {
   routeName: string | undefined;
 }
 
-const namespace: string = "themeLayout";
+const namespace: string = "settings";
 
 @Component({
   components: {
