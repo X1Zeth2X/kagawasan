@@ -1,8 +1,8 @@
 import { GetterTree } from "vuex";
-import { LayoutState } from "./types";
+import { SettingState } from "./types";
 import { RootState } from "@/store/types";
 
-export const getters: GetterTree<LayoutState, RootState> = {
+export const getters: GetterTree<SettingState, RootState> = {
   miniDrawer(state): boolean {
     return state.miniDrawer;
   },
@@ -13,9 +13,5 @@ export const getters: GetterTree<LayoutState, RootState> = {
 
   showDrawer(state): boolean {
     return state.showDrawer;
-  },
-
-  animations(state): boolean {
-    return state.animations;
   }
 };

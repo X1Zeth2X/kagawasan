@@ -1,8 +1,8 @@
 import { ActionTree } from "vuex";
 import { RootState } from "@/store/types";
-import { LayoutState } from "./types";
+import { SettingState } from "./types";
 
-export const actions: ActionTree<LayoutState, RootState> = {
+export const actions: ActionTree<SettingState, RootState> = {
   toggleMiniDrawer({ commit }) {
     commit("toggleMiniDrawer");
   },
@@ -15,7 +15,11 @@ export const actions: ActionTree<LayoutState, RootState> = {
     commit("toggleDrawer");
   },
 
-  toggleAnimations({ commit }) {
-    commit("toggleAnimations");
-  }
+  toggleMarkdown({ commit }) {
+    commit("toggleMarkdown");
+  },
+
+  toggleDarkMode({ commit }) {
+    commit("toggleDarkMode");
+  },
 };

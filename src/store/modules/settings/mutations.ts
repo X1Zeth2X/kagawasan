@@ -1,7 +1,7 @@
 import { MutationTree } from "vuex";
-import { LayoutState } from "./types";
+import { SettingState } from "./types";
 
-export const mutations: MutationTree<LayoutState> = {
+export const mutations: MutationTree<SettingState> = {
   toggleMiniDrawer(state) {
     state.miniDrawer = !state.miniDrawer;
   },
@@ -14,7 +14,12 @@ export const mutations: MutationTree<LayoutState> = {
     state.showDrawer = !state.showDrawer;
   },
 
-  toggleAnimations(state) {
-    state.animations = !state.animations;
-  }
+  toggleMarkdown(state) {
+    state.markdown = !state.markdown;
+  },
+
+  toggleDarkMode(state) {
+    state.darkMode = !state.darkMode;
+  },
+
 };
