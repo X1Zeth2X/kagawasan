@@ -12,7 +12,7 @@ export const state: SettingState = {
   miniDrawer: true,
   masonryLayout: false,
 
-  markdown: false,
+  markdown: false
 };
 
 const namespaced: boolean = true;

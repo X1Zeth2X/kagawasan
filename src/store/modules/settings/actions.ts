@@ -21,5 +21,5 @@ export const actions: ActionTree<SettingState, RootState> = {
 
   toggleDarkMode({ commit }) {
     commit("toggleDarkMode");
-  },
+  }
 };

@@ -13,5 +13,13 @@ export const getters: GetterTree<SettingState, RootState> = {
 
   showDrawer(state): boolean {
     return state.showDrawer;
+  },
+
+  markdown(state): boolean {
+    return state.markdown;
+  },
+
+  darkMode(state): boolean {
+    return state.darkMode;
   }
 };

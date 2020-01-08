@@ -5,7 +5,6 @@ export interface SettingState {
   miniDrawer: boolean;
   masonryLayout: boolean;
 
-
   // Content
   markdown: boolean;
 }

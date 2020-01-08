@@ -20,6 +20,5 @@ export const mutations: MutationTree<SettingState> = {
 
   toggleDarkMode(state) {
     state.darkMode = !state.darkMode;
-  },
-
+  }
 };
