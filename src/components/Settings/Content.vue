@@ -1,8 +1,6 @@
 <template>
   <v-expansion-panel>
-    <v-expansion-panel-header
-      expand-icon="ion-ios-arrow-down"
-    >
+    <v-expansion-panel-header expand-icon="ion-ios-arrow-down">
       CONTENT
     </v-expansion-panel-header>
 
@@ -46,16 +44,17 @@ interface Option {
 }
 
 @Component
-export default class Layout extends Vue {
+export default class Content extends Vue {
+  @Action("toggleMarkdown", { namespace }) private toggleMarkdown!: Function;
 
   private items: Option[] = [
     {
       title: "Markdown",
-      subtitle: "Markdown syntax on contents. (No truncation/limit, this may cause long boi posts.)",
-      value: this.$vuetify.theme.dark,
-      onChange: () => alert("implement me"),
+      subtitle:
+        "Markdown syntax on contents. (No truncation/limit, this may cause long boi posts.)",
+      value: this.$store.getters["settings/markdown"],
+      onChange: this.toggleMarkdown
     }
   ];
 }
 </script>
-

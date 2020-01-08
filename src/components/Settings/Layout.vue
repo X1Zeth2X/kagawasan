@@ -1,8 +1,6 @@
 <template>
   <v-expansion-panel>
-    <v-expansion-panel-header
-      expand-icon="ion-ios-arrow-down"
-    >
+    <v-expansion-panel-header expand-icon="ion-ios-arrow-down">
       THEME AND LAYOUT
     </v-expansion-panel-header>
 
@@ -71,13 +69,6 @@ export default class Layout extends Vue {
         "Use masonry layout instead of standard layout. (Keep off for better experience on mobile)",
       value: this.$store.getters["settings/masonryLayout"],
       onChange: this.toggleMasonryLayout
-    },
-    {
-      title: "Animations",
-      subtitle:
-        "App animations/transitions. (Disabling might give you increased performance)",
-      value: this.$vuetify.theme.dark,
-      onChange: this.toggleDarkMode
     }
   ];
 
