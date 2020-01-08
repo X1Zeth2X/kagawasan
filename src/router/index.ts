@@ -9,7 +9,15 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: () => import("@/views/Home.vue"),
+    component: Home,
+    meta: {
+      showNav: true
+    }
+  },
+  {
+    path: "/profile/:username",
+    name: "profile",
+    component: () => import("@/views/Profile.vue"),
     meta: {
       showNav: true
     }
