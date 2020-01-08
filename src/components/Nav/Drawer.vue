@@ -3,6 +3,7 @@
     app
     :mini-variant="$vuetify.breakpoint.mdAndUp && miniDrawer"
     :value.sync="showDrawer"
+    disable-resize-watcher
   >
     <template v-slot:prepend>
       <v-list-item>
