@@ -3,17 +3,35 @@
     <PostTop />
 
     <v-card-text>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem maiores
-      rerum, laudantium perspiciatis ab ratione fugit pariatur explicabo.
-      Ducimus dolor eligendi dolorum quaerat corrupti aspernatur deleniti
-      perferendis voluptatum fugit earum.
+      <vue-markdown v-if="markdown" source="lorem" />
+
+      <truncate
+        clamp="Show More"
+        text="lorem ipsum dolor sit amet."
+        type="html"
+        :length="3"
+        v-else
+      />
     </v-card-text>
     <!-- Post content -->
 
-    <v-img src="https://source.unsplash.com/1600x900/?nature,water"></v-img>
+    <v-img
+      @dblclick="toggleKek"
+      src="https://source.unsplash.com/1600x900/?nature,water"
+    >
+      <template v-slot:placeholder>
+        <v-row align="center" justify="center" class="fill-height primary">
+          <v-progress-circular
+            color="white"
+            indeterminate
+            width="3"
+          ></v-progress-circular>
+        </v-row>
+      </template>
+    </v-img>
     <!-- Post Image -->
 
-    <PostActions />
+    <PostActions ref="postActions" />
     <!-- Post Actions (Like, Comment, ...) -->
 
     <v-divider></v-divider>
@@ -27,6 +45,9 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
+import { Getter } from "vuex-class";
+
+import truncate from "vue-truncate-collapsed";
 
 import PostTop from "./Top.vue";
 import PostActions from "./Actions.vue";
@@ -35,10 +56,26 @@ import PostActions from "./Actions.vue";
   components: {
     PostTop,
     PostActions,
-    Comment: () => import("./Comment/Main.vue")
+    truncate,
+    Comment: () => import("./Comment/Main.vue"),
+    /* 
+      Lazy load markdown because it does need to get imported
+      if it is turned off in the settings.
+    */
+    VueMarkdown: () => import("vue-markdown")
   }
 })
-export default class PostMain extends Vue {}
+export default class PostMain extends Vue {
+  @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
+
+  public $refs!: {
+    postActions: InstanceType<typeof PostActions>;
+  };
+
+  private toggleKek() {
+    this.$refs.postActions.toggleKek();
+  }
+}
 </script>
 
 <style lang="scss">
