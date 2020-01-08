@@ -32,7 +32,7 @@ import Component from "vue-class-component";
 export default class PostActions extends Vue {
   private kekGiven: boolean = false;
 
-  private toggleKek() {
+  public toggleKek() {
     this.kekGiven = !this.kekGiven;
   }
 }
