@@ -14,9 +14,12 @@
         ><v-icon>ion-ios-menu</v-icon>
       </v-app-bar-nav-icon>
 
-      <v-btn icon>
-        <v-icon>ion-ios-alert</v-icon>
-      </v-btn>
+      <v-toolbar-items>
+        <v-btn icon>
+          <v-icon>ion-ios-alert</v-icon>
+        </v-btn>
+      </v-toolbar-items>
+      <!-- Left aligned toolbar items -->
 
       <v-spacer></v-spacer>
 
@@ -32,6 +35,7 @@
           </v-icon>
         </v-btn>
       </v-toolbar-items>
+      <!-- Right aligned toolbar items -->
     </v-app-bar>
   </div>
 </template>
