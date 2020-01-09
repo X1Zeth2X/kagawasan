@@ -3,7 +3,7 @@
     <v-list-item three-line class="items-start">
       <CommentAvatar />
 
-      <v-list-item-content>
+      <v-list-item-content style="margin-left: -.7em;">
         <CommentDetails />
 
         <p class="f6 pt0">
