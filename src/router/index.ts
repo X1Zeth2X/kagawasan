@@ -1,7 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 import Auth from "@/views/Auth.vue";
+
+// Lazily import components
+const Home = () => import("@/views/Home.vue");
+const Settings = () => import("@/views/Settings.vue");
+const Profile = () => import("@/views/Profile.vue");
 
 Vue.use(VueRouter);
 
@@ -17,7 +21,7 @@ const routes = [
   {
     path: "/profile/:username",
     name: "profile",
-    component: () => import("@/views/Profile.vue"),
+    component: Profile,
     meta: {
       showNav: true
     }
@@ -35,7 +39,7 @@ const routes = [
   {
     path: "/settings",
     name: "settings",
-    component: () => import("@/views/Settings.vue"),
+    component: Settings,
     meta: {
       showNav: true
     }
