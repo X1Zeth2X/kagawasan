@@ -31,14 +31,19 @@
     </v-img>
     <!-- Post Image -->
 
-    <PostActions ref="postActions" />
+    <PostActions ref="postActions" v-on:toggleCommenting="toggleCommenting" />
     <!-- Post Actions (Like, Comment, ...) -->
 
-    <v-divider></v-divider>
+    <v-divider v-show="true"></v-divider>
+    <!-- Comment divider, show if comments are available -->
 
     <div>
       <Comment />
     </div>
+
+    <v-divider v-show="commenting"></v-divider>
+    <Composer v-if="commenting" />
+    <!-- Comment Composer -->
   </v-card>
 </template>
 
@@ -58,6 +63,7 @@ import PostActions from "./Actions.vue";
     PostActions,
     truncate,
     Comment: () => import("./Comment/Main.vue"),
+    Composer: () => import("./Comment/Composer.vue"),
     /* 
       Lazy load markdown because it does need to get imported
       if it is turned off in the settings.
@@ -68,9 +74,15 @@ import PostActions from "./Actions.vue";
 export default class PostMain extends Vue {
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
 
+  private commenting: boolean = false;
+
   public $refs!: {
     postActions: InstanceType<typeof PostActions>;
   };
+
+  private toggleCommenting() {
+    this.commenting = !this.commenting;
+  }
 
   private toggleKek() {
     this.$refs.postActions.toggleKek();
