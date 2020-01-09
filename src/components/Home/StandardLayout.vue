@@ -10,16 +10,10 @@
       <PostMain />
     </v-col>
     <v-col md="4">
-      <div class="f2 fw2">Planning Board</div>
-      <div class="f3 fw7">Standard Layout *</div>
+      <div class="f3 fw7">Announcements</div>
       <p>
-        Your usual social platform layout where the composer and feed is in the
-        middle, and other stuff on the right side, navigation drawer.
-      </p>
-
-      <div class="f3 fw7">Masonry Layout *</div>
-      <p>
-        Composer is a dialog and posts are shown in a masonry layout.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus,
+        cumque?
       </p>
     </v-col>
   </v-row>
