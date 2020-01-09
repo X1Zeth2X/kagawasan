@@ -1,5 +1,5 @@
 <template>
-  <v-list-item two-line>
+  <v-list-item two-line @click="profilePage">
     <v-list-item-avatar>
       <img src="https://randomuser.me/api/portraits/lego/6.jpg" />
     </v-list-item-avatar>
@@ -11,7 +11,7 @@
 
     <v-list-item-action>
       <v-btn icon>
-        <v-icon>ion-md-more</v-icon>
+        <v-icon>ion-ios-arrow-forward</v-icon>
       </v-btn>
     </v-list-item-action>
   </v-list-item>
@@ -22,5 +22,14 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 @Component
-export default class CurrentUser extends Vue {}
+export default class CurrentUser extends Vue {
+  private profilePage() {
+    this.$router.push({
+      name: "profile",
+      params: {
+        username: "X1Zeth2X"
+      }
+    });
+  }
+}
 </script>
