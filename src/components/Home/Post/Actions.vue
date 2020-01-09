@@ -7,7 +7,7 @@
     </v-btn>
     <span class="mb1 f6">19k</span>
 
-    <v-btn icon>
+    <v-btn icon @click="$emit('toggleCommenting')">
       <v-icon>ion-ios-chatboxes</v-icon>
     </v-btn>
     <span class="mb1 f6">1</span>
@@ -27,6 +27,7 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
+import { Emit } from "vue-property-decorator";
 
 @Component
 export default class PostActions extends Vue {
