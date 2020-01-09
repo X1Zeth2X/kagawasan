@@ -1,7 +1,7 @@
 <template>
-  <v-list-item-avatar class="pb1">
+  <v-list-item-avatar class="pb1 ml2">
     <a href="#">
-      <v-avatar size="40" class="ml3">
+      <v-avatar size="40">
         <v-img
           src="https://api.adorable.io/avatars/50/abott@adorable.png"
           v-if="avatar"
