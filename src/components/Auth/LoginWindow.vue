@@ -8,17 +8,64 @@
           </h1>
           <p>Welcome back, we're glad to see you again!</p>
 
-          <v-text-field outlined label="Email"></v-text-field>
+          <ValidationObserver ref="observe">
+            <ValidationProvider
+              mode="lazy"
+              rules="required|email"
+              name="Email"
+              v-slot="{ errors }"
+            >
+              <v-text-field
+                outlined
+                label="Email"
+                v-model="email"
+                :error-messages="errors[0]"
+              ></v-text-field>
+            </ValidationProvider>
 
-          <v-text-field outlined label="Password"></v-text-field>
+            <ValidationProvider
+              mode="lazy"
+              rules="required|min:4"
+              name="Password"
+              v-slot="{ errors }"
+            >
+              <v-text-field
+                outlined
+                label="Password"
+                v-model="password"
+                :type="showPassword ? 'text' : 'password'"
+                :append-icon="showPassword ? 'ion-ios-eye' : 'ion-ios-eye-off'"
+                :error-messages="errors[0]"
+                @click:append="showPassword = !showPassword"
+              ></v-text-field>
+            </ValidationProvider>
 
-          <v-btn block x-large rounded elevation="10" color="deep-purple" dark>
-            Login
-          </v-btn>
+            <v-alert
+              v-if="loginErrorMsg"
+              elevation="5"
+              icon="ion-ios-warning"
+              type="error"
+              border="left"
+              colored-border
+            >
+              {{ loginErrorMsg }}
+            </v-alert>
+
+            <v-btn
+              block
+              x-large
+              rounded
+              elevation="10"
+              color="deep-purple"
+              dark
+              @click="validateFields"
+              >Login</v-btn
+            >
+          </ValidationObserver>
 
           <p class="pt3">
             Don't have an account?
-            <a @click="register" style="color: #B39DDB">Register</a>
+            <a @click="$emit('register')" style="color: #B39DDB">Register</a>
           </p>
         </div>
       </v-container>
@@ -34,16 +81,52 @@ import Component from "vue-class-component";
 
 import { Emit } from "vue-property-decorator";
 
-@Component
+// Import validation stuff
+import { ValidationProvider } from "vee-validate/dist/vee-validate.full";
+import { ValidationObserver } from "vee-validate";
+import { Action, Getter } from "vuex-class";
+
+const namespace: string = "auth";
+
+@Component({
+  components: {
+    ValidationObserver,
+    ValidationProvider
+  }
+})
 export default class LoginWindow extends Vue {
+  @Getter("errorMsg", { namespace }) private loginErrorMsg!: string;
   /*
     Get Vuex state and watch for token changes.
     On token change, push to the home page.
   */
+  @Action("login", { namespace }) private login!: Function;
 
-  @Emit("register")
-  private register(): boolean {
-    return true;
+  $refs!: {
+    observe: InstanceType<typeof ValidationObserver>;
+  };
+
+  private email: string = "";
+  private password: string = "";
+
+  private showPassword: boolean = false;
+
+  private async validateFields() {
+    const isValid = await this.$refs.observe.validate();
+
+    if (isValid) {
+      const vuexResp = await this.login({
+        email: this.email,
+        password: this.password
+      });
+
+      // If the login was successful, push to Home.
+      if (vuexResp) {
+        this.$router.push({
+          name: "home"
+        });
+      }
+    }
   }
 }
 </script>
