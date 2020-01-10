@@ -47,8 +47,6 @@ interface Option {
 export default class Layout extends Vue {
   @Action("toggleMiniDrawer", { namespace })
   private toggleMiniDrawer!: Function;
-  @Action("toggleMasonryLayout", { namespace })
-  private toggleMasonryLayout!: Function;
 
   private items: Option[] = [
     {
@@ -62,13 +60,6 @@ export default class Layout extends Vue {
       subtitle: "Use mini navigation drawers.",
       value: this.$store.getters["settings/miniDrawer"],
       onChange: this.toggleMiniDrawer
-    },
-    {
-      title: "Masonry",
-      subtitle:
-        "Use masonry layout instead of standard layout. (Keep off for better experience on mobile)",
-      value: this.$store.getters["settings/masonryLayout"],
-      onChange: this.toggleMasonryLayout
     }
   ];
 
