@@ -1,20 +1,12 @@
 interface AuthState {
   authenticating: boolean;
   registering: boolean;
-  error: boolean;
 
   accessToken: string;
   currentUser: User | any;
 
-  authErrorCode: number;
-  authError: string;
-}
-
-interface RegisterData {
-  email: string;
-  password: string;
-  entry_key: string;
-  // Add more
+  error: boolean;
+  errorMsg: string;
 }
 
 interface User {
@@ -22,16 +14,15 @@ interface User {
   public_id: string;
   email: string;
 
+  // Media
+  zavatar: string | null;
+  background_cover: string | null;
   bio: string | null;
-  full_name: string;
-  profile_picture: string | null;
-  avatar: string | null;
-  joined_date: Date;
 
+  full_name: string;
+  orientation: string;
+  joined_date: string;
   roles: number[];
-  comment_likes: number[];
-  post_likes: number[];
-  reply_likes: number[];
 }
 
 export { AuthState, User };
