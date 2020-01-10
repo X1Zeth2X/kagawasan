@@ -6,6 +6,8 @@ import { RootState } from "./types";
 import VuexPersist from "vuex-persist";
 
 import { settings } from "./modules/settings/index";
+import { auth } from "./modules/auth/index";
+import { dialog } from "./modules/dialogs/index";
 
 Vue.use(Vuex);
 
@@ -24,7 +26,9 @@ const store: StoreOptions<RootState> = {
   },
   modules: {
     // Register modules
-    settings
+    settings,
+    auth,
+    dialog
   },
   plugins: [vuexLocalStorage.plugin]
 };
