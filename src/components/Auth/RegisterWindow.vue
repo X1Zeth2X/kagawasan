@@ -8,25 +8,39 @@
           </h1>
           <p>Join the free (as in freedom) social platform.</p>
 
-          <v-text-field outlined label="Username"></v-text-field>
+          <ValidationObserver>
+            <ValidationProvider>
+              <v-text-field outlined label="Username"></v-text-field>
+            </ValidationProvider>
 
-          <v-text-field outlined label="Email"></v-text-field>
+            <ValidationProvider>
+              <v-text-field outlined label="Email"></v-text-field>
+            </ValidationProvider>
+          </ValidationObserver>
 
-          <v-btn block x-large rounded elevation="10" color="pink" dark>
+          <v-btn
+            block
+            x-large
+            rounded
+            elevation="10"
+            color="pink"
+            dark
+            @click="toggleRegisterDialog"
+          >
             Continue
             <v-icon class="ml2">ion-ios-arrow-dropright</v-icon>
           </v-btn>
 
           <p class="pt3">
             Already have an account?
-            <a @click="login" style="color: #B39DDB">Sign In</a>
+            <a @click="$emit('login')" style="color: #B39DDB">Sign In</a>
           </p>
         </div>
       </v-container>
     </v-col>
 
     <v-col md="7" class="right" cols="12">
-      <v-container> </v-container>
+      <RegisterDialog />
     </v-col>
   </v-row>
 </template>
@@ -36,32 +50,18 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 import { Emit } from "vue-property-decorator";
+import { Action } from "vuex-class";
 
-interface RegistrationData {
-  username: string;
-  email: string;
-}
+const RegisterDialog = () => import("./RegisterDialog.vue");
 
-@Component
-export default class RegisterWindow extends Vue {
-  /*
-    1. User fills up Username and Email
-    2. Shows dialog for full registration form
-    3. Register -> Get Token and user info
-
-    Get Vuex state and watch for token changes.
-    On token change, push to the home page.
-  */
-
-  private registrationData: RegistrationData = {
-    username: "",
-    email: ""
-  };
-
-  @Emit("login")
-  private login(): boolean {
-    return true;
+@Component({
+  components: {
+    RegisterDialog
   }
+})
+export default class RegisterWindow extends Vue {
+  @Action("toggleRegisterDialog", { namespace: "dialog" })
+  private toggleRegisterDialog!: Function;
 }
 </script>
 
