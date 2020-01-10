@@ -7,10 +7,6 @@ export const actions: ActionTree<SettingState, RootState> = {
     commit("toggleMiniDrawer");
   },
 
-  toggleMasonryLayout({ commit }) {
-    commit("toggleMasonryLayout");
-  },
-
   toggleDrawer({ commit }) {
     commit("toggleDrawer");
   },

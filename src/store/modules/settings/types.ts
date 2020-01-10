@@ -3,7 +3,6 @@ export interface SettingState {
   darkMode: boolean;
   showDrawer: boolean;
   miniDrawer: boolean;
-  masonryLayout: boolean;
 
   // Content
   markdown: boolean;

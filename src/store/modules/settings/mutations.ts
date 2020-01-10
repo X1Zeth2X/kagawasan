@@ -6,10 +6,6 @@ export const mutations: MutationTree<SettingState> = {
     state.miniDrawer = !state.miniDrawer;
   },
 
-  toggleMasonryLayout(state) {
-    state.masonryLayout = !state.masonryLayout;
-  },
-
   toggleDrawer(state) {
     state.showDrawer = !state.showDrawer;
   },

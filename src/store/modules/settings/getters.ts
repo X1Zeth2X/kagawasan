@@ -7,10 +7,6 @@ export const getters: GetterTree<SettingState, RootState> = {
     return state.miniDrawer;
   },
 
-  masonryLayout(state): boolean {
-    return state.masonryLayout;
-  },
-
   showDrawer(state): boolean {
     return state.showDrawer;
   },

@@ -1,8 +1,7 @@
 <template>
   <div id="homeView">
     <v-container fluid>
-      <MasonryLayout v-if="masonryLayout" />
-      <StandardLayout v-else />
+      <StandardLayout />
     </v-container>
   </div>
 </template>
@@ -16,9 +15,7 @@ import StandardLayout from "@/components/Home/StandardLayout.vue";
 
 @Component({
   components: {
-    StandardLayout,
-    // Lazily import MasonryLayout.
-    MasonryLayout: () => import("@/components/Home/MasonryLayout.vue")
+    StandardLayout
   }
 })
 export default class Home extends Vue {
