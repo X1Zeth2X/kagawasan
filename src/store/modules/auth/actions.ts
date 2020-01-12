@@ -10,8 +10,6 @@ export const actions: ActionTree<AuthState, RootState> = {
     try {
       const serviceResp = await AuthService.login(email, password);
 
-      console.log(serviceResp);
-
       commit("loginSuccess", {
         accessToken: serviceResp.accessToken,
         user: serviceResp.user
