@@ -57,7 +57,11 @@ const namespace: string = "settings";
 export default class Navbar extends Vue {
   @Action("toggleDrawer", { namespace }) private toggleDrawer!: Function;
 
+  @Action("logout", { namespace: "auth" }) private logoutVuex!: Function;
+
   public logout() {
+    this.logoutVuex();
+
     this.$router.push({
       name: "auth"
     });
