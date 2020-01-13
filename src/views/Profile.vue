@@ -16,13 +16,20 @@
                   fit
                 ></v-img>
               </v-avatar>
-              <h3 class="f3">Zeth Leonardo</h3>
-              <p>@X1Zeth2X</p>
+              <h3 class="f3">Lasso Dior</h3>
+              <p>@diorem</p>
             </div>
 
             <v-card-text>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
               Doloribus, explicabo.
+
+              <div>
+                <v-chip class="mr2 mt2" color="accent">developer</v-chip>
+                <v-chip class="mr2 mt2" color="amber" light>python</v-chip>
+                <v-chip class="mr2 mt2" color="primary">typescript</v-chip>
+                <v-chip class="mr2 mt2" color="primary">certified trap</v-chip>
+              </div>
             </v-card-text>
 
             <v-divider></v-divider>
