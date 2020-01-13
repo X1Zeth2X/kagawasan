@@ -9,7 +9,7 @@
         clamp="Show More"
         text="lorem ipsum dolor sit amet."
         type="html"
-        :length="3"
+        :length="500"
         v-else
       />
     </v-card-text>
