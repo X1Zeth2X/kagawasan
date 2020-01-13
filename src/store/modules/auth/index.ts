@@ -14,7 +14,9 @@ export const state: AuthState = {
   currentUser: null,
 
   error: false,
-  errorMsg: ""
+
+  loginErrorMsg: "",
+  registerErrorMsg: "",
 };
 
 const namespaced: boolean = true;

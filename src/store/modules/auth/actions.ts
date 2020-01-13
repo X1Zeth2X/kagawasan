@@ -43,5 +43,9 @@ export const actions: ActionTree<AuthState, RootState> = {
       }
       return false;
     }
+  },
+
+  logout({commit}) {
+    commit("logout");
   }
 };

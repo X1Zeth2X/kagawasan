@@ -5,12 +5,13 @@ export const mutations: MutationTree<AuthState> = {
   registerRequest(state) {
     state.registering = true;
     state.error = false;
-    state.errorMsg = "";
+    state.registerErrorMsg = "";
   },
 
   loginRequest(state) {
     state.authenticating = true;
     state.error = false;
+    state.loginErrorMsg = "";
   },
 
   registerSuccess(state, { accessToken, user }) {
@@ -28,12 +29,17 @@ export const mutations: MutationTree<AuthState> = {
   registerError(state, errorMsg) {
     state.registering = false;
     state.error = true;
-    state.errorMsg = errorMsg;
+    state.registerErrorMsg = errorMsg;
   },
 
   loginError(state, errorMsg) {
     state.authenticating = false;
     state.error = true;
-    state.errorMsg = errorMsg;
+    state.loginErrorMsg = errorMsg;
+  },
+
+  logout(state) {
+    state.accessToken = "";
+    state.currentUser = null;
   }
 };

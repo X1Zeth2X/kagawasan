@@ -6,7 +6,9 @@ interface AuthState {
   currentUser: User | any;
 
   error: boolean;
-  errorMsg: string;
+
+  loginErrorMsg: string;
+  registerErrorMsg: string;
 }
 
 interface User {

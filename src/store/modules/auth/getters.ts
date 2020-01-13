@@ -23,7 +23,11 @@ export const getters: GetterTree<AuthState, RootState> = {
     return state.error;
   },
 
-  errorMsg(state): string {
-    return state.errorMsg;
+  loginErrorMsg(state): string {
+    return state.loginErrorMsg;
+  },
+
+  registerErrorMsg(state): string {
+    return state.registerErrorMsg;
   }
 };
