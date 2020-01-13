@@ -6,6 +6,6 @@ Vue.use(Vuetify);
 
 export default new Vuetify({
   theme: {
-    dark: store.getters["darkMode"]
+    dark: store.getters["settings/darkMode"]
   }
 });
