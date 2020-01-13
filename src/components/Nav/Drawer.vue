@@ -2,7 +2,7 @@
   <v-navigation-drawer
     app
     :mini-variant="$vuetify.breakpoint.mdAndUp && miniDrawer"
-    :value="showDrawer"
+    :value.sync="showDrawer"
     disable-resize-watcher
   >
     <template v-slot:prepend>
