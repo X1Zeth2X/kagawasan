@@ -8,13 +8,35 @@
           </h1>
           <p>Join the free (as in freedom) social platform.</p>
 
-          <ValidationObserver>
-            <ValidationProvider>
-              <v-text-field outlined label="Username"></v-text-field>
+          <ValidationObserver ref="observe">
+            <ValidationProvider
+              mode="lazy"
+              rules="required|alpha_num|min:4|max:15"
+              v-slot="{ errors }"
+              name="Username"
+            >
+              <v-text-field
+                outlined
+                label="Username"
+
+                v-model="username"
+                :error-messages="errors[0]"
+              ></v-text-field>
             </ValidationProvider>
 
-            <ValidationProvider>
-              <v-text-field outlined label="Email"></v-text-field>
+            <ValidationProvider
+              mode="lazy"
+              rules="required|email"
+              v-slot="{ errors }"
+              name="Email"
+            >
+              <v-text-field
+                outlined
+                label="Email"
+                
+                v-model="email"
+                :error-messages="errors[0]"
+              ></v-text-field>
             </ValidationProvider>
           </ValidationObserver>
 
@@ -25,7 +47,7 @@
             elevation="10"
             color="pink"
             dark
-            @click="toggleRegisterDialog"
+            @click="validateFields"
           >
             Continue
             <v-icon class="ml2">ion-ios-arrow-dropright</v-icon>
@@ -40,7 +62,11 @@
     </v-col>
 
     <v-col md="7" class="right" cols="12">
-      <RegisterDialog />
+      <RegisterDialog 
+        v-if="registerDialog"
+        :username="username"
+        :email="email"
+      />
     </v-col>
   </v-row>
 </template>
@@ -50,18 +76,41 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 import { Emit } from "vue-property-decorator";
-import { Action } from "vuex-class";
+import { Action, Getter } from "vuex-class";
+
+import { ValidationProvider } from "vee-validate/dist/vee-validate.full";
+import { ValidationObserver } from "vee-validate";
 
 const RegisterDialog = () => import("./RegisterDialog.vue");
 
 @Component({
   components: {
-    RegisterDialog
+    RegisterDialog,
+    ValidationObserver,
+    ValidationProvider,
   }
 })
 export default class RegisterWindow extends Vue {
+  @Getter("registerDialog", { namespace: "dialog" })
+  private registerDialog!: boolean;
+
   @Action("toggleRegisterDialog", { namespace: "dialog" })
   private toggleRegisterDialog!: Function;
+
+  $refs!: {
+    observe: InstanceType<typeof ValidationObserver>;
+  }
+
+  private email: string = "";
+  private username: string = "";
+
+  private async validateFields() {
+    const isValid = await this.$refs.observe.validate();
+
+    if (isValid) {
+      this.toggleRegisterDialog();
+    }
+  }
 }
 </script>
 
