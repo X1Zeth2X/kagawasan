@@ -59,7 +59,6 @@ const AuthService = {
         user
       };
     } catch (error) {
-      console.log(error);
       throw new AuthError(error.response.data.message);
     }
   }, // Login
@@ -70,4 +69,5 @@ const AuthService = {
   }
 };
 
-export { AuthService, AuthError };
+export default AuthService;
+export { AuthService, AuthError, RegisterData };
