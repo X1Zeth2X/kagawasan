@@ -59,6 +59,7 @@
               color="deep-purple"
               dark
               @click="validateFields"
+              :loading="authenticating"
               >Login</v-btn
             >
           </ValidationObserver>
@@ -95,6 +96,8 @@ const namespace: string = "auth";
   }
 })
 export default class LoginWindow extends Vue {
+  @Getter("authenticating", { namespace }) private authenticating!: boolean;
+
   @Getter("loginErrorMsg", { namespace }) private loginErrorMsg!: string;
   /*
     Get Vuex state and watch for token changes.
