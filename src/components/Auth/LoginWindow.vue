@@ -95,7 +95,7 @@ const namespace: string = "auth";
   }
 })
 export default class LoginWindow extends Vue {
-  @Getter("errorMsg", { namespace }) private loginErrorMsg!: string;
+  @Getter("loginErrorMsg", { namespace }) private loginErrorMsg!: string;
   /*
     Get Vuex state and watch for token changes.
     On token change, push to the home page.
