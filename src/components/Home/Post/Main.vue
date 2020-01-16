@@ -1,13 +1,13 @@
 <template>
   <v-card id="post" class="mb2">
-    <PostTop />
+    <PostTop :author="post.author" :date="post.created"/>
 
     <v-card-text>
-      <vue-markdown v-if="markdown" source="lorem" />
+      <vue-markdown v-if="markdown" :source="post.content"/>
 
       <truncate
         clamp="Show More"
-        text="lorem ipsum dolor sit amet."
+        :text="post.content"
         type="html"
         :length="500"
         v-else
@@ -17,6 +17,7 @@
 
     <v-img
       @dblclick="toggleKek"
+      v-if="post.image"
       src="https://source.unsplash.com/1600x900/?nature,water"
     >
       <template v-slot:placeholder>
@@ -56,6 +57,7 @@ import truncate from "vue-truncate-collapsed";
 
 import PostTop from "./Top.vue";
 import PostActions from "./Actions.vue";
+import { Prop } from 'vue-property-decorator';
 
 @Component({
   components: {
@@ -72,6 +74,8 @@ import PostActions from "./Actions.vue";
   }
 })
 export default class PostMain extends Vue {
+  @Prop() private post!: any;
+
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
 
   private commenting: boolean = false;
