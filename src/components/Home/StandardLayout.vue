@@ -9,7 +9,7 @@
 
       <PostMain />
     </v-col>
-    <v-col md="4">
+    <v-col md="4" v-if="$vuetify.breakpoint.mdAndUp">
       <div class="f3 fw7">Announcements</div>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus,
