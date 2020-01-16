@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Auth from "@/views/Auth.vue";
-import store from '@/store';
+import store from "@/store";
 
 // Lazily import components
 const Home = () => import("@/views/Home.vue");
@@ -54,9 +54,9 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, _, next) => {
-  const isPublic = to.matched.some((record) => record.meta.public);
+  const isPublic = to.matched.some(record => record.meta.public);
   const onlyWhenLoggedOut = to.matched.some(
-    (record) => record.meta.onlyWhenLoggedOut,
+    record => record.meta.onlyWhenLoggedOut
   );
 
   const loggedIn = !!store.getters["auth/accessToken"];
@@ -74,6 +74,6 @@ router.beforeEach((to, _, next) => {
   }
 
   next();
-})
+});
 
 export default router;

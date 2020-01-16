@@ -18,7 +18,6 @@
               <v-text-field
                 outlined
                 label="Username"
-
                 v-model="username"
                 :error-messages="errors[0]"
               ></v-text-field>
@@ -33,7 +32,6 @@
               <v-text-field
                 outlined
                 label="Email"
-                
                 v-model="email"
                 :error-messages="errors[0]"
               ></v-text-field>
@@ -62,7 +60,7 @@
     </v-col>
 
     <v-col md="7" class="right" cols="12">
-      <RegisterDialog 
+      <RegisterDialog
         v-if="registerDialog"
         :username="username"
         :email="email"
@@ -87,7 +85,7 @@ const RegisterDialog = () => import("./RegisterDialog.vue");
   components: {
     RegisterDialog,
     ValidationObserver,
-    ValidationProvider,
+    ValidationProvider
   }
 })
 export default class RegisterWindow extends Vue {
@@ -99,7 +97,7 @@ export default class RegisterWindow extends Vue {
 
   $refs!: {
     observe: InstanceType<typeof ValidationObserver>;
-  }
+  };
 
   private email: string = "";
   private username: string = "";

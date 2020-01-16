@@ -37,7 +37,6 @@
                   outlined
                   label="Username"
                   append-icon="ion-ios-person"
-
                   v-model="registerData.username"
                   :error-messages="errors[0]"
                 ></v-text-field>
@@ -53,7 +52,6 @@
                   outlined
                   label="Email"
                   append-icon="ion-ios-mail"
-                  
                   v-model="registerData.email"
                   :error-messages="errors[0]"
                 ></v-text-field>
@@ -82,12 +80,10 @@
                   outlined
                   label="Full Name"
                   append-icon="ion-ios-person"
-
                   v-model="registerData.full_name"
                   :error-messages="errors[0]"
                 ></v-text-field>
               </ValidationProvider>
-
             </v-col>
 
             <v-divider vertical></v-divider>
@@ -105,7 +101,6 @@
                   outlined
                   label="Password"
                   type="password"
-
                   v-model="registerData.password"
                   :error-messages="errors[0]"
                 ></v-text-field>
@@ -121,7 +116,6 @@
                   outlined
                   label="Confirm Password"
                   type="password"
-
                   v-model="confirmPassword"
                   :error-messages="errors[0]"
                 ></v-text-field>
@@ -135,8 +129,8 @@
                 border="left"
                 colored-border
               >
-                Entry Keys help prevents random users from entering the instance.
-                Ask the owner for one.
+                Entry Keys help prevents random users from entering the
+                instance. Ask the owner for one.
               </v-alert>
 
               <ValidationProvider
@@ -149,7 +143,6 @@
                   outlined
                   label="Entry Key"
                   append-icon="ion-ios-key"
-
                   v-model="registerData.entry_key"
                   :error-messages="errors[0]"
                 ></v-text-field>
@@ -176,7 +169,8 @@
                 @click="validateFields"
                 :disabled="!valid"
                 :loading="registering"
-              >Register</v-btn>
+                >Register</v-btn
+              >
             </v-col>
           </v-row>
         </ValidationObserver>
@@ -226,7 +220,7 @@ export default class RegisterDialog extends Vue {
 
   $refs!: {
     observe: InstanceType<typeof ValidationObserver>;
-  }
+  };
 
   private mode: number = 0;
   private confirmPassword: string = "";
@@ -237,14 +231,14 @@ export default class RegisterDialog extends Vue {
     full_name: "",
     password: "",
     entry_key: ""
-  }
+  };
 
   private async validateFields() {
     const isValid = await this.$refs.observe.validate();
 
     if (isValid) {
       const vuexResp = await this.register(this.registerData);
-      
+
       // If registration succeeded, push to home.
       if (vuexResp) {
         this.$router.push({
