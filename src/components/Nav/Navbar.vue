@@ -8,8 +8,7 @@
       dense
       :color="$vuetify.theme.dark ? '' : 'grey lighten-1'"
     >
-      <v-app-bar-nav-icon
-        @click="toggleDrawer"
+      <v-app-bar-nav-icon @click="toggleDrawer"
         ><v-icon>ion-ios-menu</v-icon>
       </v-app-bar-nav-icon>
 
