@@ -1,7 +1,7 @@
 import { ActionTree } from "vuex";
 import { AuthState } from "./types";
 import { RootState } from "@/store/types";
-import { AuthService, AuthError } from "@/services/auth.service";
+import { AuthService, AuthError, RegisterData } from "@/services/auth.service";
 
 export const actions: ActionTree<AuthState, RootState> = {
   async login({ commit }, { email, password }) {
@@ -25,7 +25,7 @@ export const actions: ActionTree<AuthState, RootState> = {
     }
   },
 
-  async register({ commit }, data) {
+  async register({ commit }, data: RegisterData) {
     commit("registerRequest");
 
     try {
