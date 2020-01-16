@@ -1,5 +1,3 @@
-// @ts-nocheck
-// Disable TSLinting to prevent false-positives.
 import Vue from "vue";
 import Vuex, { StoreOptions } from "vuex";
 
@@ -16,9 +14,12 @@ Vue.use(Vuex);
 const vuexLocalStorage = new VuexPersist<RootState>({
   storage: window.localStorage,
   reducer: state => ({
+    // @ts-ignore
     settings: state.settings,
     auth: {
+      // @ts-ignore
       accessToken: state.auth.accessToken,
+      // @ts-ignore
       currentUser: state.auth.currentUser
     }
   })
