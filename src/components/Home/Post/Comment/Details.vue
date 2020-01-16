@@ -8,11 +8,11 @@
 
     <span class="f7">3 days ago</span>
 
-    <span class="float-right mr2">
+    <span class="float-right">
       <v-menu>
         <template v-slot:activator="{ on }">
           <v-btn icon x-small v-on="on">
-            <v-icon>ion-ios-more</v-icon>
+            <v-icon small>ion-ios-arrow-down</v-icon>
           </v-btn>
         </template>
 
