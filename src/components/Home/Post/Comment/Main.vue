@@ -1,6 +1,6 @@
 <template>
   <v-row align="start">
-    <v-list-item three-line class="items-start">
+    <v-list-item three-line class="comment">
       <CommentAvatar />
 
       <v-list-item-content style="margin-left: -.7em;">
@@ -33,3 +33,10 @@ import CommentActions from "./Actions.vue";
 })
 export default class CommentMain extends Vue {}
 </script>
+
+<style lang="scss">
+.comment {
+  margin-left: .3em;
+  margin-right: .75em
+}
+</style>
