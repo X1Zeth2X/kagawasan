@@ -9,7 +9,6 @@
       :color="$vuetify.theme.dark ? '' : 'grey lighten-1'"
     >
       <v-app-bar-nav-icon
-        v-show="$vuetify.breakpoint.mdAndDown"
         @click="toggleDrawer"
         ><v-icon>ion-ios-menu</v-icon>
       </v-app-bar-nav-icon>
