@@ -19,7 +19,7 @@
     </v-list-item-content>
 
     <v-list-item-icon>
-      <v-menu transition="scale-transition">
+      <v-menu>
         <template v-slot:activator="{ on }">
           <v-btn v-on="on" icon>
             <v-icon>ion-md-more</v-icon>
