@@ -175,6 +175,7 @@
                 dark
                 @click="validateFields"
                 :disabled="!valid"
+                :loading="registering"
               >Register</v-btn>
             </v-col>
           </v-row>
@@ -211,6 +212,9 @@ export default class RegisterDialog extends Vue {
   @Getter("registerDialog", { namespace })
   private show!: boolean;
 
+  @Getter("registering", { namespace: "auth" })
+  private registering!: boolean;
+
   @Getter("registerErrorMsg", { namespace: "auth" })
   private registerErrorMsg!: string;
 
@@ -228,21 +232,11 @@ export default class RegisterDialog extends Vue {
   private confirmPassword: string = "";
 
   private registerData: RegisterData = {
-    email: "",
-    username: "",
+    email: this.email,
+    username: this.username,
     full_name: "",
     password: "",
     entry_key: ""
-  }
-
-  private mounted() {
-    this.loadData();
-  }
-
-  // Loads email and username
-  private loadData() {
-    this.registerData.email = this.email;
-    this.registerData.username = this.username;
   }
 
   private async validateFields() {
