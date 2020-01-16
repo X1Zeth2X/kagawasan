@@ -10,11 +10,11 @@
 
     <v-list-item-content>
       <v-list-item-title class="b">
-        Zeth Leonardo
+        {{ author.full_name ? author.full_name : `@${author.username}` }}
       </v-list-item-title>
 
       <v-list-item-subtitle>
-        29th Jan, 2020
+        {{ prettyDate }}
       </v-list-item-subtitle>
     </v-list-item-content>
 
@@ -44,6 +44,35 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 
+import moment from "moment";
+
+import { Prop } from 'vue-property-decorator';
+
+interface Author {
+  public_id: string;
+  joined_date: string;
+  full_name: string;
+  username: string;
+  email: string;
+  roles: number[];
+
+  bio: string | null;
+  avatar: string | null;
+
+  orientation: null;
+  profile_picture: string | null;
+  backgroun_cover: string | null;
+}
+
 @Component
-export default class PostTop extends Vue {}
+export default class PostTop extends Vue {
+  @Prop() private author!: Author;
+  @Prop() private date!: string;
+
+  private get prettyDate(): string {
+    const prettyDate: string = moment.utc(this.date).local().format("MMM Do YYYY, h:mm A");
+    return prettyDate;
+  }
+
+}
 </script>
