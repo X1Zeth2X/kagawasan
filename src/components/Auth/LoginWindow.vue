@@ -20,6 +20,7 @@
                 label="Email"
                 v-model="email"
                 :error-messages="errors[0]"
+                @keyup.enter="validateFields"
               ></v-text-field>
             </ValidationProvider>
 
@@ -37,6 +38,7 @@
                 :append-icon="showPassword ? 'ion-ios-eye' : 'ion-ios-eye-off'"
                 :error-messages="errors[0]"
                 @click:append="showPassword = !showPassword"
+                @keyup.enter="validateFields"
               ></v-text-field>
             </ValidationProvider>
 
