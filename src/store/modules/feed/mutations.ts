@@ -1,5 +1,5 @@
-import { MutationTree } from 'vuex';
-import { FeedState } from './types';
+import { MutationTree } from "vuex";
+import { FeedState } from "./types";
 
 export const mutations: MutationTree<FeedState> = {
   feedRequest(state) {
@@ -22,4 +22,4 @@ export const mutations: MutationTree<FeedState> = {
     state.error = true;
     state.feedErrorMsg = errorMsg;
   }
-}
+};

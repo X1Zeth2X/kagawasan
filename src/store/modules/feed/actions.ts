@@ -1,7 +1,7 @@
-import { ActionTree } from 'vuex';
-import { FeedState } from './types';
-import { RootState } from '@/store/types';
-import FeedService, { FeedError } from '@/services/feed.service';
+import { ActionTree } from "vuex";
+import { FeedState } from "./types";
+import { RootState } from "@/store/types";
+import FeedService, { FeedError } from "@/services/feed.service";
 
 export const actions: ActionTree<FeedState, RootState> = {
   async getIds({ commit }) {
@@ -12,17 +12,16 @@ export const actions: ActionTree<FeedState, RootState> = {
       commit("getIdSuccess", postIds);
 
       return true;
-
     } catch (error) {
       if (error instanceof FeedError) {
         commit("feedError", error.message);
-      };
+      }
 
       return false;
     }
   }, // Get Post IDs
 
   async setFeedItems({ commit }, items: object[]) {
-    commit("setFeedItems",  items);
-  }, // Set feed
-} 
+    commit("setFeedItems", items);
+  } // Set feed
+};

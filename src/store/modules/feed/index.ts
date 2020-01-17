@@ -1,19 +1,19 @@
-import { FeedState } from './types';
-import { Module } from 'vuex';
-import { RootState } from '@/store/types';
+import { FeedState } from "./types";
+import { Module } from "vuex";
+import { RootState } from "@/store/types";
 
-import { getters } from './getters';
-import { mutations } from './mutations';
-import { actions } from './actions';
+import { getters } from "./getters";
+import { mutations } from "./mutations";
+import { actions } from "./actions";
 
 const state: FeedState = {
-    feedItems: [],
-    postIds: [],
+  feedItems: [],
+  postIds: [],
 
-    requesting: false,
-    error: false,
-    feedErrorMsg: "",
-}
+  requesting: false,
+  error: false,
+  feedErrorMsg: ""
+};
 
 const namespaced: boolean = true;
 
@@ -23,4 +23,4 @@ export const feed: Module<FeedState, RootState> = {
   getters,
   mutations,
   actions
-}
+};
