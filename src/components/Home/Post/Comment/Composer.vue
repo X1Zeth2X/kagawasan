@@ -1,34 +1,21 @@
 <template>
-  <div id="commentComposer">
-    <v-list-item three-line>
-      <v-list-item-avatar size="40" class="[avatar ? 'pb2' : 'accent']">
-        <v-avatar class="primary" size="40">
-          <v-icon dark>ion-ios-person</v-icon>
-        </v-avatar>
-      </v-list-item-avatar>
+  <div id="commentComposer" class="mh3 mt3">
+    <v-textarea
+      rows="2"
 
-      <v-list-item-content class="text-end">
-        <v-textarea rows="1" auto-grow class="pa0"></v-textarea>
+      placeholder="Write a comment..."
 
-        <div>
-          <v-btn text small>
-            Cancel
-          </v-btn>
-
-          <v-btn small icon dark class="primary darken-1 mr1">
-            <v-icon small>
-              ion-ios-image
-            </v-icon>
-          </v-btn>
-
-          <v-btn small icon dark class="teal">
-            <v-icon small>
-              ion-ios-send
-            </v-icon>
-          </v-btn>
-        </div>
-      </v-list-item-content>
-    </v-list-item>
+      auto-grow
+      class="b-card"
+      solo
+      filled
+    >
+      <template v-slot:append>
+        <v-btn icon class="teal mb3 ml2" elevation="2" dark>
+          <v-icon>ion-ios-image</v-icon>
+        </v-btn>
+      </template>
+    </v-textarea>
   </div>
 </template>
 
