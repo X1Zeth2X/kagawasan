@@ -43,36 +43,22 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
+import { Prop } from "vue-property-decorator";
 
 import moment from "moment";
-
-import { Prop } from 'vue-property-decorator';
-
-interface Author {
-  public_id: string;
-  joined_date: string;
-  full_name: string;
-  username: string;
-  email: string;
-  roles: number[];
-
-  bio: string | null;
-  avatar: string | null;
-
-  orientation: null;
-  profile_picture: string | null;
-  backgroun_cover: string | null;
-}
+import { Author } from "@/store/post";
 
 @Component
 export default class PostTop extends Vue {
-  @Prop() private author!: Author;
-  @Prop() private date!: string;
+  @Prop() author!: Author;
+  @Prop() date!: string;
 
   private get prettyDate(): string {
-    const prettyDate: string = moment.utc(this.date).local().format("MMM Do YYYY, h:mm A");
+    const prettyDate: string = moment
+      .utc(this.date)
+      .local()
+      .format("MMM Do YYYY, h:mm A");
     return prettyDate;
   }
-
 }
 </script>
