@@ -8,7 +8,7 @@
       <v-divider class="mv4"></v-divider>
 
       <div v-for="post in feed" :key="post.public_id">
-        <PostMain :post="post"/>
+        <PostMain :post="post" />
       </div>
 
       <infinite-loading v-if="!requesting" @infinite="feedHandler">
@@ -22,9 +22,7 @@
             Something made an oopsie
           </div>
 
-          <p class="f5 fw2">
-            Error: {{ feedError }}
-          </p>
+          <p class="f5 fw2">Error: {{ feedError }}</p>
         </div>
 
         <div slot="spinner">
@@ -36,8 +34,8 @@
           ></v-progress-circular>
         </div>
       </infinite-loading>
-
     </v-col>
+
     <v-col md="4" v-if="$vuetify.breakpoint.mdAndUp">
       <div class="f3 fw7">Announcements</div>
       <p>
@@ -57,8 +55,8 @@ const InfiniteLoading = () => import("vue-infinite-loading");
 
 import PostMain from "./Post/Main.vue";
 import Composer from "./Composer.vue";
-import { Getter, Action } from 'vuex-class';
-import ApiService, { backendUrl } from '../../services/api.service';
+import { Getter, Action } from "vuex-class";
+import ApiService, { backendUrl } from "../../services/api.service";
 
 const namespace: string = "feed";
 
@@ -85,9 +83,9 @@ export default class StandardLayout extends Vue {
   @Action("getIds", { namespace })
   private getIds!: Function;
 
-  private created() {
+  private mounted() {
     this.getIds();
-  }
+  } // Lifecycle
 
   private feedError: string = "";
 
@@ -111,29 +109,27 @@ export default class StandardLayout extends Vue {
     ApiService.setHeader();
 
     ApiService.post(resource, {
-      post_ids: this.postIds.slice(this.feed.length, limit),
+      post_ids: this.postIds.slice(this.feed.length, limit)
     })
-    .then(resp => {
-      if (resp.status === 200) {
+      .then(resp => {
+        if (resp.status === 200) {
+          this.setFeedItems(this.feed.concat(resp.data.posts));
+          setTimeout(() => {
+            $state.loaded();
+          }, 250);
 
-        this.setFeedItems(this.feed.concat(resp.data.posts));
-        setTimeout(() => {
+          if (this.feed.length === this.postIds.length) {
+            $state.complete();
+          }
+        } else if (resp.status === 204) {
           $state.loaded();
-        }, 250);
-
-        if (this.feed.length === this.postIds.length) {
           $state.complete();
         }
-
-      } else if (resp.status === 204) {
-        $state.loaded();
-        $state.complete();
-      }
-    })
-    .catch(error => {
-      this.feedError = error.response.message;
-      $state.error();
-    });
+      })
+      .catch(error => {
+        this.feedError = error.response.message;
+        $state.error();
+      });
   }
 }
 </script>
