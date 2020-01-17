@@ -18,8 +18,5 @@ import StandardLayout from "@/components/Home/StandardLayout.vue";
     StandardLayout
   }
 })
-export default class Home extends Vue {
-  @Getter("masonryLayout", { namespace: "settings" })
-  private masonryLayout!: boolean;
-}
+export default class Home extends Vue {}
 </script>

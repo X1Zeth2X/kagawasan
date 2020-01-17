@@ -48,6 +48,9 @@ export default class Layout extends Vue {
   @Action("toggleMiniDrawer", { namespace })
   private toggleMiniDrawer!: Function;
 
+  @Action("toggleDarkMode", { namespace })
+  private toggleDarkModeVuex!: Function;
+
   private items: Option[] = [
     {
       title: "Dark Mode",
@@ -65,6 +68,7 @@ export default class Layout extends Vue {
 
   private toggleDarkMode() {
     this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    this.toggleDarkModeVuex();
   }
 }
 </script>
