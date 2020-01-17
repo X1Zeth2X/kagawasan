@@ -1,12 +1,12 @@
 <template>
   <div id="commentDetails">
     <a class="b link f6">
-      Zeth Leonardo
+      {{ author.full_name ? author.full_name : `@${author.username}` }}
     </a>
 
     &middot;
 
-    <span class="f7">3 days ago</span>
+    <span class="f7 fw5">{{ prettyDate }}</span>
 
     <span class="float-right">
       <v-menu>
@@ -29,6 +29,21 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 
+import moment from "moment";
+import { Prop } from "vue-property-decorator";
+import { Author } from "@/store/post";
+
 @Component
-export default class CommentDetails extends Vue {}
+export default class CommentDetails extends Vue {
+  @Prop() author!: Author;
+  @Prop() date!: string;
+
+  private get prettyDate(): string {
+    const prettyDate: string = moment
+      .utc(this.date)
+      .fromNow();
+    
+    return prettyDate;
+  }
+}
 </script>
