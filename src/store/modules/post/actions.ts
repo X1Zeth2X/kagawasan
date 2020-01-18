@@ -2,13 +2,14 @@ import { ActionTree } from 'vuex';
 import { PostState } from './types';
 import { RootState } from '@/store/types';
 import PostService, { PostError, CreateData } from '@/services/post.service';
+import { Post } from '@/store/post';
 
 export const actions: ActionTree<PostState, RootState> = {
   async get({commit}, postPublicId: string) {
     commit("postRequest");
 
     try {
-      const post = await PostService.get(postPublicId);
+      const post: Post = await PostService.get(postPublicId);
 
       // Return requested post.
       return post;
