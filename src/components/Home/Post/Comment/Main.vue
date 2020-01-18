@@ -1,9 +1,9 @@
 <template>
   <v-row align="start">
     <v-list-item three-line class="comment">
-      <CommentAvatar />
+      <CommentAvatar v-show="$vuetify.breakpoint.mdAndUp"/>
 
-      <v-list-item-content style="margin-left: -.7em;">
+      <v-list-item-content :class="$vuetify.breakpoint.mdAndUp ? 'ml-negative' : 'ml2'">
         <CommentDetails :author="comment.author" :date="comment.created" />
 
         <p class="f6 pt0">
@@ -22,7 +22,7 @@
             clamp="Show More"
             :class="[
               $vuetify.theme.dark ? 'white--text' : 'grey--text text--darken-4',
-              'fw5'
+              'fw5',
             ]"
             :text="comment.content"
             :length="500"
