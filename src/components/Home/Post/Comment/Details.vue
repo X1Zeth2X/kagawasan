@@ -39,10 +39,8 @@ export default class CommentDetails extends Vue {
   @Prop() date!: string;
 
   private get prettyDate(): string {
-    const prettyDate: string = moment
-      .utc(this.date)
-      .fromNow();
-    
+    const prettyDate: string = moment.utc(this.date).fromNow();
+
     return prettyDate;
   }
 }

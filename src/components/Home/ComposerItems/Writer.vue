@@ -3,8 +3,9 @@
     <v-textarea
       rows="2"
       auto-grow
-      :solo-inverted="$vuetify.theme.dark"
-      :solo="!$vuetify.theme.dark"
+      outlined
+      filled
+
       v-model="content"
       @keyup="update(content)"
     ></v-textarea>

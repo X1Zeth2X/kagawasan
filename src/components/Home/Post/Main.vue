@@ -46,7 +46,6 @@
     <PostActions
       ref="postActions"
       v-on:toggleCommenting="toggleCommenting"
-
       :action="actionProps"
       :commenting="commenting"
     />
@@ -62,7 +61,7 @@
     </div>
 
     <v-scale-transition>
-      <Composer v-if="commenting"/>
+      <Composer v-if="commenting" />
     </v-scale-transition>
 
     <!-- Comment Composer -->
@@ -125,7 +124,7 @@ export default class PostMain extends Vue {
     if (this.post.initial_comments !== null) {
       setTimeout(() => {
         this.comments = this.post.initial_comments;
-      }, 1000)
+      }, 1000);
     }
   } // Lifecycle
 

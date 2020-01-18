@@ -2,9 +2,7 @@
   <div id="commentComposer" class="mh3 mt3">
     <v-textarea
       rows="2"
-
       placeholder="Write a comment..."
-
       auto-grow
       class="b-card"
       solo
