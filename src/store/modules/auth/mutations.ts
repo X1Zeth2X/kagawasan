@@ -26,13 +26,13 @@ export const mutations: MutationTree<AuthState> = {
     state.currentUser = user;
   },
 
-  registerError(state, errorMsg) {
+  registerError(state, errorMsg: string) {
     state.registering = false;
     state.error = true;
     state.registerErrorMsg = errorMsg;
   },
 
-  loginError(state, errorMsg) {
+  loginError(state, errorMsg: string) {
     state.authenticating = false;
     state.error = true;
     state.loginErrorMsg = errorMsg;
