@@ -39,7 +39,7 @@ const PostService = {
       // Return newly created post.
       return apiResponse.data.post;
     } catch (error) {
-      throw new PostError(error.response.message);
+      throw new PostError(error.response.data.message);
     }
   },
 
