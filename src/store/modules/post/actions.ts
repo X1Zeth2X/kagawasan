@@ -1,11 +1,11 @@
-import { ActionTree } from 'vuex';
-import { PostState } from './types';
-import { RootState } from '@/store/types';
-import PostService, { PostError, CreateData } from '@/services/post.service';
-import { Post } from '@/store/post';
+import { ActionTree } from "vuex";
+import { PostState } from "./types";
+import { RootState } from "@/store/types";
+import PostService, { PostError, CreateData } from "@/services/post.service";
+import { Post } from "@/store/post";
 
 export const actions: ActionTree<PostState, RootState> = {
-  async get({commit}, postPublicId: string) {
+  async get({ commit }, postPublicId: string) {
     commit("postRequest");
 
     try {
@@ -29,7 +29,7 @@ export const actions: ActionTree<PostState, RootState> = {
       const post = await PostService.create(data);
 
       // Return newly created post.
-      return post
+      return post;
     } catch (error) {
       if (error instanceof PostError) {
         commit("postError", error.message);
@@ -39,7 +39,7 @@ export const actions: ActionTree<PostState, RootState> = {
     }
   }, // Create a new post
 
-  async delete({commit}, postPublicId: string) {
+  async delete({ commit }, postPublicId: string) {
     commit("postRequest");
 
     try {
@@ -54,4 +54,4 @@ export const actions: ActionTree<PostState, RootState> = {
       return false;
     }
   } // Delete a post
-}
+};

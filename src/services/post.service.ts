@@ -34,7 +34,7 @@ const PostService = {
     ApiService.setHeader();
 
     try {
-      const apiResponse = await ApiService.post(resource, data)
+      const apiResponse = await ApiService.post(resource, data);
 
       // Return newly created post.
       return apiResponse.data.post;
@@ -56,7 +56,7 @@ const PostService = {
       throw new PostError(error.response.message);
     }
   }
-}
+};
 
 export default PostService;
 export { PostService, PostError, CreateData };

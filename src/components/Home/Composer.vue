@@ -2,10 +2,7 @@
   <div id="composer">
     <v-card class="c-main" hover>
       <v-window v-model="mode">
-        <Writer
-          ref="writer"
-          v-on:update="syncContent"
-        />
+        <Writer ref="writer" v-on:update="syncContent" />
         <Uploader />
       </v-window>
 
@@ -16,7 +13,8 @@
         type="error"
         border="left"
         colored-border
-      >Uh oh! {{ errorMsg }}</v-alert>
+        >Uh oh! {{ errorMsg }}</v-alert
+      >
 
       <v-card-actions>
         <v-btn-toggle v-model="mode" rounded color="primary">
@@ -50,10 +48,10 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 import Writer from "./ComposerItems/Writer.vue";
-import { Action, Getter } from 'vuex-class';
+import { Action, Getter } from "vuex-class";
 
 import { CreateData } from "@/services/post.service";
-import { Post } from '@/store/post';
+import { Post } from "@/store/post";
 
 const namespace: string = "post";
 

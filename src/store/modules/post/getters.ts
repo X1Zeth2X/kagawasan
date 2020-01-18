@@ -1,6 +1,6 @@
-import { GetterTree } from 'vuex';
-import { PostState } from './types';
-import { RootState } from '@/store/types';
+import { GetterTree } from "vuex";
+import { PostState } from "./types";
+import { RootState } from "@/store/types";
 
 export const getters: GetterTree<PostState, RootState> = {
   requesting(state): boolean {
@@ -14,4 +14,4 @@ export const getters: GetterTree<PostState, RootState> = {
   errorMsg(state): string {
     return state.errorMsg;
   }
-}
+};

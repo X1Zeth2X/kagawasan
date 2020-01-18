@@ -1,5 +1,5 @@
-import { MutationTree } from 'vuex';
-import { PostState } from './types';
+import { MutationTree } from "vuex";
+import { PostState } from "./types";
 
 export const mutations: MutationTree<PostState> = {
   postRequest(state) {
@@ -10,7 +10,7 @@ export const mutations: MutationTree<PostState> = {
 
   postError(state, errorMsg: string) {
     state.requesting = false;
-    state.error = true
+    state.error = true;
     state.errorMsg = errorMsg;
   }
-}
+};

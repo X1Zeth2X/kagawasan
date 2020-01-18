@@ -3,7 +3,7 @@
     <v-col md="7">
       <div class="f3 fw7">Create</div>
       <p>What's on your mind?</p>
-      <Composer v-on:addPost="addPost"/>
+      <Composer v-on:addPost="addPost" />
 
       <v-divider class="mv4"></v-divider>
 

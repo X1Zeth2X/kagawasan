@@ -12,7 +12,6 @@
           auto-grow
           outlined
           filled
-
           v-model="content"
           :error-messages="errors[0]"
           @keyup="update(content)"
