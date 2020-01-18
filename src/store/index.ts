@@ -10,6 +10,7 @@ import { auth } from "./modules/auth/index";
 
 import { dialog } from "./modules/dialogs/index";
 import { feed } from "./modules/feed/index";
+import { post } from "./modules/post/index";
 
 Vue.use(Vuex);
 
@@ -36,7 +37,8 @@ const store: StoreOptions<RootState> = {
     settings,
     auth,
     dialog,
-    feed
+    feed,
+    post
   },
   plugins: [vuexLocalStorage.plugin]
 };
