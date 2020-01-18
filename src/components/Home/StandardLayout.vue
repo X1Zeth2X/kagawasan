@@ -3,7 +3,7 @@
     <v-col md="7">
       <div class="f3 fw7">Create</div>
       <p>What's on your mind?</p>
-      <Composer />
+      <Composer v-on:addPost="addPost"/>
 
       <v-divider class="mv4"></v-divider>
 
@@ -50,13 +50,15 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 
+import { Getter, Action } from "vuex-class";
+import ApiService, { backendUrl } from "../../services/api.service";
+import { Post } from "@/store/post";
+
 // Dynamically import InfiniteLoader
 const InfiniteLoading = () => import("vue-infinite-loading");
 
 import PostMain from "./Post/Main.vue";
 import Composer from "./Composer.vue";
-import { Getter, Action } from "vuex-class";
-import ApiService, { backendUrl } from "../../services/api.service";
 
 const namespace: string = "feed";
 
@@ -113,7 +115,9 @@ export default class StandardLayout extends Vue {
     })
       .then(resp => {
         if (resp.status === 200) {
-          this.setFeedItems(this.feed.concat(resp.data.posts));
+          const posts: Post[] = resp.data.posts;
+          this.setFeedItems(this.feed.concat(posts));
+
           setTimeout(() => {
             $state.loaded();
           }, 250);
@@ -130,6 +134,11 @@ export default class StandardLayout extends Vue {
         this.feedError = error.response.message;
         $state.error();
       });
+  }
+
+  private addPost(post: Post) {
+    this.setFeedItems([post, ...this.feed]);
+    console.log(post);
   }
 }
 </script>
