@@ -53,6 +53,13 @@
 
     <div v-if="comments !== null">
       <v-divider></v-divider>
+      <div class="tc fw2">
+        <v-btn block text color="primary" class="fw9">
+          <v-icon class="mr2 mt1">ion-ios-arrow-dropup</v-icon>
+          View Previous Comments {{ `(${comments.length}/${post.comments.length})` }}
+        </v-btn>
+      </div>
+
       <Comment
         v-for="comment in comments"
         :key="comment.public_id"
@@ -63,7 +70,6 @@
     <v-scale-transition>
       <Composer v-if="commenting" />
     </v-scale-transition>
-
     <!-- Comment Composer -->
   </v-card>
 </template>
