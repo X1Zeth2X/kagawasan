@@ -38,7 +38,6 @@ const PostService = {
 
       // Returns a boolean
       return apiResponse.data.success;
-
     } catch (error) {
       throw new PostError(error.response.data.message);
     }
@@ -54,7 +53,6 @@ const PostService = {
 
       // Returns a boolean
       return apiResponse.data.success;
-
     } catch (error) {
       throw new PostError(error.response.data.message);
     }

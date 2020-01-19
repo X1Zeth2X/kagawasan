@@ -29,7 +29,6 @@ export const actions: ActionTree<PostState, RootState> = {
       const liked: boolean = await PostService.like(postPublicId);
 
       return liked;
-
     } catch (error) {
       if (error instanceof PostError) {
         commit("postError", error.message);
@@ -46,7 +45,6 @@ export const actions: ActionTree<PostState, RootState> = {
       const unliked: boolean = await PostService.unlike(postPublicId);
 
       return unliked;
-
     } catch (error) {
       if (error instanceof PostError) {
         commit("postError", error.message);

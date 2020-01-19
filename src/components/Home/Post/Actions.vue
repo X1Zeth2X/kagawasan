@@ -32,7 +32,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import { Emit, Prop } from "vue-property-decorator";
-import { Action } from 'vuex-class';
+import { Action } from "vuex-class";
 
 const namespace: string = "post";
 
@@ -51,8 +51,7 @@ export default class PostActions extends Vue {
   private kekGiven: boolean = this.action.kekGiven;
   private keks: number = this.action.keks;
 
-  private mounted() {
-  } // Lifecycle
+  private mounted() {} // Lifecycle
 
   private unlikePost() {
     this.kekGiven = false;
@@ -73,7 +72,6 @@ export default class PostActions extends Vue {
     if (this.kekGiven) {
       // Unlike
       this.unlikePost();
-
     } else {
       // Like
       this.likePost();

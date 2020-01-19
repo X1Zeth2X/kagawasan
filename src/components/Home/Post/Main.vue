@@ -52,7 +52,6 @@
       :action="actionProps"
       :commenting="commenting"
       :postPublicId="post.public_id"
-
       ref="postActions"
       v-on:toggleCommenting="toggleCommenting"
     />
@@ -141,7 +140,7 @@ export default class PostMain extends Vue {
   private actionProps: ActionProps = {
     kekGiven: this.post.liked,
     keks: this.post.likes.length,
-    comments: this.post.comments.length,
+    comments: this.post.comments.length
   };
 
   private mounted() {
