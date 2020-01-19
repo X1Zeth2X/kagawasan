@@ -60,9 +60,8 @@ export default class Navbar extends Vue {
   public logout() {
     this.logoutVuex();
 
-    this.$router.push({
-      name: "auth"
-    });
+    // Router go resets the Vue to its base state.
+    this.$router.go(0);
   }
 }
 </script>
