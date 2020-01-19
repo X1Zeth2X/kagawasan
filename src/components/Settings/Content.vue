@@ -5,6 +5,18 @@
     </v-expansion-panel-header>
 
     <v-expansion-panel-content>
+      <v-alert
+        type="warning"
+        border="left"
+        icon="ion-ios-warning"
+        class="mt2"
+        colored-border
+      >
+        Note that using Markdown will import and load the required plugins which
+        may slow down performance. There is no truncation so posts span may get
+        long.
+      </v-alert>
+
       <v-list>
         <v-list-item v-for="(item, index) in items" :key="index">
           <v-list-item-content>
