@@ -94,7 +94,7 @@ export default class Composer extends Vue {
     },
     {
       desc: "Post settings",
-      icon: "ion-ios-aperture"
+      icon: "ion-ios-cog"
     }
   ];
 
