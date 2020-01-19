@@ -7,7 +7,11 @@
     </v-btn>
     <span class="mb1 f6">{{ action.likes }}</span>
 
-    <v-btn icon @click="$emit('toggleCommenting')" :color="commenting ? 'primary' : ''">
+    <v-btn
+      icon
+      @click="$emit('toggleCommenting')"
+      :color="commenting ? 'primary' : ''"
+    >
       <v-icon>ion-ios-chatboxes</v-icon>
     </v-btn>
     <span class="mb1 f6">{{ action.comments.length }}</span>

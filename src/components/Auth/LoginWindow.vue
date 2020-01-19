@@ -82,12 +82,12 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 
+import { Action, Getter } from "vuex-class";
 import { Emit } from "vue-property-decorator";
 
 // Import validation stuff
 import { ValidationProvider } from "vee-validate/dist/vee-validate.full";
 import { ValidationObserver } from "vee-validate";
-import { Action, Getter } from "vuex-class";
 
 const namespace: string = "auth";
 

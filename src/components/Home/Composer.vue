@@ -2,9 +2,19 @@
   <div id="composer">
     <v-card class="c-main" hover>
       <v-window v-model="mode">
-        <Writer v-on:update="syncContent" />
+        <Writer ref="writer" v-on:update="syncContent" />
         <Uploader />
       </v-window>
+
+      <v-alert
+        v-if="errorMsg"
+        dismissible
+        icon="ion-ios-close"
+        type="error"
+        border="left"
+        colored-border
+        >Uh oh! {{ errorMsg }}</v-alert
+      >
 
       <v-card-actions>
         <v-btn-toggle v-model="mode" rounded color="primary">
@@ -23,7 +33,7 @@
         </v-btn-toggle>
         <v-spacer></v-spacer>
 
-        <v-btn fab small color="teal" dark>
+        <v-btn fab small color="teal" dark @click="validateFields">
           <v-icon>
             ion-ios-send
           </v-icon>
@@ -38,11 +48,12 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 import Writer from "./ComposerItems/Writer.vue";
+import { Action, Getter } from "vuex-class";
 
-interface PostData {
-  content: string;
-  imageId: string;
-}
+import { CreateData } from "@/services/post.service";
+import { Post } from "@/store/post";
+
+const namespace: string = "post";
 
 @Component({
   components: {
@@ -55,10 +66,21 @@ interface PostData {
   }
 })
 export default class Composer extends Vue {
+  @Getter("errorMsg", { namespace })
+  private errorMsg!: string;
+
+  @Action("create", { namespace })
+  private create!: Function;
+
+  public $refs!: {
+    writer: InstanceType<typeof Writer>;
+  };
+
   private mode: number = 0;
-  private postData: PostData = {
+
+  private postData: CreateData = {
     content: "",
-    imageId: ""
+    image_id: ""
   };
 
   private composerModes: object[] = [
@@ -78,6 +100,28 @@ export default class Composer extends Vue {
 
   private syncContent(content: string) {
     this.postData.content = content;
+  }
+
+  private async validateFields() {
+    const isValid = await this.$refs.writer.checkValidity();
+
+    if (isValid) {
+      this.submit();
+    }
+  }
+
+  private async submit() {
+    const vuexResp = await this.create(this.postData);
+
+    if (vuexResp !== false) {
+      // Emit to home.
+      this.$emit("addPost", vuexResp);
+
+      // Reset validator and fields.
+      this.$refs.writer.resetValidator();
+      this.postData.content = "";
+      this.postData.image_id = "";
+    }
   }
 }
 </script>

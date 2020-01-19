@@ -46,7 +46,6 @@
     <PostActions
       ref="postActions"
       v-on:toggleCommenting="toggleCommenting"
-
       :action="actionProps"
       :commenting="commenting"
     />
@@ -54,6 +53,14 @@
 
     <div v-if="comments !== null">
       <v-divider></v-divider>
+      <div class="tc fw2">
+        <v-btn block text color="primary" class="fw9">
+          <v-icon class="mr2 mt1">ion-ios-arrow-dropup</v-icon>
+          View Previous Comments
+          {{ `(${comments.length}/${post.comments.length})` }}
+        </v-btn>
+      </div>
+
       <Comment
         v-for="comment in comments"
         :key="comment.public_id"
@@ -62,9 +69,8 @@
     </div>
 
     <v-scale-transition>
-      <Composer v-if="commenting"/>
+      <Composer v-if="commenting" />
     </v-scale-transition>
-
     <!-- Comment Composer -->
   </v-card>
 </template>
@@ -125,7 +131,7 @@ export default class PostMain extends Vue {
     if (this.post.initial_comments !== null) {
       setTimeout(() => {
         this.comments = this.post.initial_comments;
-      }, 1000)
+      }, 1000);
     }
   } // Lifecycle
 
