@@ -22,6 +22,40 @@ export const actions: ActionTree<PostState, RootState> = {
     }
   }, // Get specific post
 
+  async like({ commit }, postPublicId: string) {
+    commit("postRequest");
+
+    try {
+      const liked: boolean = await PostService.like(postPublicId);
+
+      return liked;
+
+    } catch (error) {
+      if (error instanceof PostError) {
+        commit("postError", error.message);
+      }
+
+      return false;
+    }
+  }, // Like post
+
+  async unlike({ commit }, postPublicId: string) {
+    commit("postRequest");
+
+    try {
+      const unliked: boolean = await PostService.unlike(postPublicId);
+
+      return unliked;
+
+    } catch (error) {
+      if (error instanceof PostError) {
+        commit("postError", error.message);
+      }
+
+      return false;
+    }
+  }, // Unlike post
+
   async create({ commit }, data: CreateData) {
     commit("postRequest");
 
