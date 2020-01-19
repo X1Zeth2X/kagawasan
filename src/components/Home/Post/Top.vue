@@ -26,10 +26,12 @@
           </v-btn>
         </template>
 
-        <v-list v-for="item in menuActions" :key="item.label">
-          <v-list-item @click="item.action" v-if="item.show">
-            {{ item.label }}
-          </v-list-item>
+        <v-list>
+          <div v-for="item in menuActions" :key="item.label">
+            <v-list-item @click="item.action" v-if="item.show">
+              {{ item.label }}
+            </v-list-item>
+          </div>
         </v-list>
       </v-menu>
     </v-list-item-icon>
