@@ -49,10 +49,12 @@
     <!-- Post Image -->
 
     <PostActions
-      ref="postActions"
-      v-on:toggleCommenting="toggleCommenting"
       :action="actionProps"
       :commenting="commenting"
+      :postPublicId="post.public_id"
+
+      ref="postActions"
+      v-on:toggleCommenting="toggleCommenting"
     />
     <!-- Post Actions (Like, Comment, ...) -->
 
@@ -103,6 +105,12 @@ const truncate = () => import("vue-truncate-collapsed");
 
 const Prism = require("prismjs");
 
+interface ActionProps {
+  kekGiven: boolean;
+  keks: number;
+  comments: number;
+}
+
 @Component({
   components: {
     PostTop,
@@ -130,10 +138,10 @@ export default class PostMain extends Vue {
   private commenting: boolean = false;
 
   // Props for the post actions.
-  private actionProps: object = {
+  private actionProps: ActionProps = {
     kekGiven: this.post.liked,
-    likes: this.post.likes.length,
-    comments: this.post.comments
+    keks: this.post.likes.length,
+    comments: this.post.comments.length,
   };
 
   private mounted() {
