@@ -111,7 +111,7 @@ export default class Composer extends Vue {
   }
 
   private async submit() {
-    const vuexResp = await this.create(this.postData);
+    const vuexResp: boolean | Post = await this.create(this.postData);
 
     if (vuexResp !== false) {
       // Emit to home.

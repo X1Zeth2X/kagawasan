@@ -1,6 +1,11 @@
 <template>
   <v-card id="post" class="mb4">
-    <PostTop :author="post.author" :date="post.created" />
+    <PostTop
+      :author="post.author"
+      :date="post.created"
+      :postPublicId="post.public_id"
+      v-on:removePost="removePost"
+    />
 
     <v-card-text>
       <vue-markdown
@@ -78,7 +83,7 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import { Getter } from "vuex-class";
+import { Getter, Action } from "vuex-class";
 
 import PostTop from "./Top.vue";
 import PostActions from "./Actions.vue";
@@ -96,6 +101,8 @@ const Composer = () => import("./Comment/Composer.vue");
 const VueMarkdown = () => import("vue-markdown");
 const truncate = () => import("vue-truncate-collapsed");
 
+const Prism = require("prismjs");
+
 @Component({
   components: {
     PostTop,
@@ -110,6 +117,9 @@ export default class PostMain extends Vue {
   @Prop() post!: Post;
 
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
+
+  @Action("removePost", { namespace: "feed" })
+  private removePostVuex!: Function;
 
   public $refs!: {
     postActions: InstanceType<typeof PostActions>;
@@ -129,9 +139,17 @@ export default class PostMain extends Vue {
   private mounted() {
     // Load initial comments
     if (this.post.initial_comments !== null) {
-      setTimeout(() => {
-        this.comments = this.post.initial_comments;
-      }, 1000);
+      this.comments = this.post.initial_comments;
+    }
+  } // Lifecycle
+
+  private updated() {
+    /*
+      Highlight if the comments are null and markdown is enabled.
+      If there are comments/replies, call the highlight from there.
+    */
+    if (this.post.initial_comments === null && this.markdown) {
+      Prism.highlightAll();
     }
   } // Lifecycle
 
@@ -142,10 +160,14 @@ export default class PostMain extends Vue {
   private toggleKek() {
     this.$refs.postActions.toggleKek();
   }
+
+  private removePost() {
+    this.removePostVuex(this.post);
+  }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #post {
   border-radius: 1em;
 }

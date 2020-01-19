@@ -27,13 +27,11 @@
         </template>
 
         <v-list>
-          <v-list-item>
-            Edit
-          </v-list-item>
-
-          <v-list-item>
-            Delete
-          </v-list-item>
+          <div v-for="item in menuActions" :key="item.label">
+            <v-list-item @click="item.action" v-if="item.show">
+              {{ item.label }}
+            </v-list-item>
+          </div>
         </v-list>
       </v-menu>
     </v-list-item-icon>
@@ -47,11 +45,40 @@ import { Prop } from "vue-property-decorator";
 
 import moment from "moment";
 import { Author } from "@/store/post";
+import { Action, Getter } from "vuex-class";
+import { User } from "@/store/modules/auth/types";
+
+const namespace: string = "post";
 
 @Component
 export default class PostTop extends Vue {
   @Prop() author!: Author;
   @Prop() date!: string;
+  @Prop() postPublicId!: string;
+
+  @Getter("currentUser", { namespace: "auth" })
+  private currentUser!: User;
+
+  @Action("delete", { namespace })
+  private delete!: Function;
+
+  private menuActions: object[] = [
+    {
+      label: "Edit",
+      action: this.editPost,
+      show: true
+    },
+    {
+      label: "Delete",
+      action: this.deletePost,
+      show: true
+    },
+    {
+      label: "Report",
+      action: () => null,
+      show: true
+    }
+  ];
 
   private get prettyDate(): string {
     const prettyDate: string = moment
@@ -59,6 +86,19 @@ export default class PostTop extends Vue {
       .local()
       .format("MMM Do YYYY, h:mm A");
     return prettyDate;
+  }
+
+  private editPost() {
+    console.log("Edit post");
+  }
+
+  private async deletePost() {
+    const isDeleted: boolean = await this.delete(this.postPublicId);
+
+    // Self immolate if succeeded.
+    if (isDeleted) {
+      this.$emit("removePost");
+    }
   }
 }
 </script>

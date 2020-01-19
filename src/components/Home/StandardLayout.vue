@@ -138,7 +138,6 @@ export default class StandardLayout extends Vue {
 
   private addPost(post: Post) {
     this.setFeedItems([post, ...this.feed]);
-    console.log(post);
   }
 }
 </script>

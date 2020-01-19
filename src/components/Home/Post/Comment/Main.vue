@@ -57,6 +57,8 @@ import { Getter } from "vuex-class";
 const VueMarkdown = () => import("vue-markdown");
 const truncate = () => import("vue-truncate-collapsed");
 
+const Prism = require("prismjs");
+
 @Component({
   components: {
     CommentAvatar,
@@ -71,6 +73,16 @@ export default class CommentMain extends Vue {
   @Prop() comment!: Comment;
 
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
+
+  private created() {
+    console.log(this.comment.initial_replies);
+  }
+
+  private updated() {
+    if (this.markdown) {
+      Prism.highlightAll();
+    }
+  } // Lifecycle
 }
 </script>
 
