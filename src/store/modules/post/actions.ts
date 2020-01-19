@@ -43,8 +43,9 @@ export const actions: ActionTree<PostState, RootState> = {
     commit("postRequest");
 
     try {
-      const isDeleted = await PostService.delete(postPublicId);
+      const isDeleted: boolean = await PostService.delete(postPublicId);
 
+      // Return true if the post was deleted.
       return isDeleted;
     } catch (error) {
       if (error instanceof PostError) {
