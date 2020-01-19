@@ -34,7 +34,7 @@
     <v-img
       @dblclick="toggleKek"
       v-if="post.image"
-      src="https://source.unsplash.com/1600x900/?nature,water"
+      :src="backendUrl + post.image_url"
     >
       <template v-slot:placeholder>
         <v-row align="center" justify="center" class="fill-height primary">
@@ -90,6 +90,7 @@ import PostTop from "./Top.vue";
 import PostActions from "./Actions.vue";
 
 import { Prop } from "vue-property-decorator";
+import { backendUrl } from "@/services/api.service";
 import { Post } from "@/store/post";
 
 const Comment = () => import("./Comment/Main.vue");
@@ -169,6 +170,7 @@ export default class PostMain extends Vue {
   }
 
   private removePost() {
+    // Alert the user that the post has been deleted.
     this.removePostVuex(this.post);
   }
 }
