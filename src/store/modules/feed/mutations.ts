@@ -1,5 +1,6 @@
 import { MutationTree } from "vuex";
 import { FeedState } from "./types";
+import { Post } from "@/store/post";
 
 export const mutations: MutationTree<FeedState> = {
   feedRequest(state) {
@@ -21,5 +22,10 @@ export const mutations: MutationTree<FeedState> = {
     state.requesting = false;
     state.error = true;
     state.feedErrorMsg = errorMsg;
+  },
+
+  removePost(state, post: Post) {
+    const index = state.feedItems.indexOf(post);
+    state.feedItems.splice(index, 1);
   }
 };

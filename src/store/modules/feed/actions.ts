@@ -2,6 +2,7 @@ import { ActionTree } from "vuex";
 import { FeedState } from "./types";
 import { RootState } from "@/store/types";
 import FeedService, { FeedError } from "@/services/feed.service";
+import { Post } from "@/store/post";
 
 export const actions: ActionTree<FeedState, RootState> = {
   async getIds({ commit }) {
@@ -21,7 +22,11 @@ export const actions: ActionTree<FeedState, RootState> = {
     }
   }, // Get Post IDs
 
-  async setFeedItems({ commit }, items: object[]) {
+  setFeedItems({ commit }, items: Post[]) {
     commit("setFeedItems", items);
-  } // Set feed
+  }, // Set feed
+
+  removePost({ commit }, post: Post) {
+    commit("removePost", post);
+  }
 };
