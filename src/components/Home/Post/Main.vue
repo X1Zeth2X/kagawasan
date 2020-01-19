@@ -1,6 +1,11 @@
 <template>
   <v-card id="post" class="mb4">
-    <PostTop :author="post.author" :date="post.created" />
+    <PostTop
+      :author="post.author"
+      :date="post.created"
+      :postPublicId="post.public_id"
+      v-on:removePost="removePost"
+    />
 
     <v-card-text>
       <vue-markdown
@@ -78,7 +83,7 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import { Getter } from "vuex-class";
+import { Getter, Action } from "vuex-class";
 
 import PostTop from "./Top.vue";
 import PostActions from "./Actions.vue";
@@ -111,6 +116,9 @@ export default class PostMain extends Vue {
 
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
 
+  @Action("removePost", { namespace: "feed" })
+  private removePostVuex!: Function;
+
   public $refs!: {
     postActions: InstanceType<typeof PostActions>;
   };
@@ -131,7 +139,7 @@ export default class PostMain extends Vue {
     if (this.post.initial_comments !== null) {
       setTimeout(() => {
         this.comments = this.post.initial_comments;
-      }, 1000);
+      }, 250);
     }
   } // Lifecycle
 
@@ -141,6 +149,10 @@ export default class PostMain extends Vue {
 
   private toggleKek() {
     this.$refs.postActions.toggleKek();
+  }
+
+  private removePost() {
+    this.removePostVuex(this.post);
   }
 }
 </script>
