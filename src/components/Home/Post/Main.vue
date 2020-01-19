@@ -101,6 +101,8 @@ const Composer = () => import("./Comment/Composer.vue");
 const VueMarkdown = () => import("vue-markdown");
 const truncate = () => import("vue-truncate-collapsed");
 
+const Prism = require("prismjs");
+
 @Component({
   components: {
     PostTop,
@@ -137,9 +139,17 @@ export default class PostMain extends Vue {
   private mounted() {
     // Load initial comments
     if (this.post.initial_comments !== null) {
-      setTimeout(() => {
-        this.comments = this.post.initial_comments;
-      }, 250);
+      this.comments = this.post.initial_comments;
+    }
+  } // Lifecycle
+
+  private updated() {
+    /*
+      Highlight if the comments are null and markdown is enabled.
+      If there are comments/replies, call the highlight from there.
+    */
+    if (this.post.initial_comments === null && this.markdown) {
+      Prism.highlightAll();
     }
   } // Lifecycle
 
@@ -157,7 +167,7 @@ export default class PostMain extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #post {
   border-radius: 1em;
 }
