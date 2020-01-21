@@ -19,7 +19,7 @@ const FeedService = {
       const apiResponse = await ApiService.get(resource);
       return apiResponse.data.post_ids;
     } catch (error) {
-      throw new FeedError(error.response.message);
+      throw new FeedError(error.response.data.message);
     }
   }, // Gets Post IDs
 
@@ -36,7 +36,7 @@ const FeedService = {
       // Return information of posts
       return apiResponse.data.posts;
     } catch (error) {
-      throw new FeedError(error.response.message);
+      throw new FeedError(error.response.data.message);
     }
   } // Get Posts' information
 };

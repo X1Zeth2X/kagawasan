@@ -131,7 +131,7 @@ export default class StandardLayout extends Vue {
         }
       })
       .catch(error => {
-        this.feedError = error.response.message;
+        this.feedError = error.response.data.message;
         $state.error();
       });
   }

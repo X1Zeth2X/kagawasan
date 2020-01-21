@@ -74,10 +74,6 @@ export default class CommentMain extends Vue {
 
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
 
-  private created() {
-    console.log(this.comment.initial_replies);
-  }
-
   private updated() {
     if (this.markdown) {
       Prism.highlightAll();

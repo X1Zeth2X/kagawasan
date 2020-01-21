@@ -7,7 +7,10 @@ import { mutations } from "./mutations";
 import { actions } from "./actions";
 
 export const state: DialogState = {
-  registerDialog: false
+  registerDialog: false,
+
+  snack: false,
+  snackMsg: null
 };
 
 const namespaced: boolean = true;

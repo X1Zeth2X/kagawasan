@@ -8,7 +8,7 @@ import VuexPersist from "vuex-persist";
 import { settings } from "./modules/settings/index";
 import { auth } from "./modules/auth/index";
 
-import { dialog } from "./modules/dialogs/index";
+import { dialog } from "./modules/dialog/index";
 import { feed } from "./modules/feed/index";
 import { post } from "./modules/post/index";
 

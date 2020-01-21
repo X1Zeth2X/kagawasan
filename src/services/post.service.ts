@@ -24,9 +24,39 @@ const PostService = {
       const apiResponse = await ApiService.get(resource);
       return apiResponse.data.post;
     } catch (error) {
-      throw new PostError(error.response.message);
+      throw new PostError(error.response.data.message);
     }
-  },
+  }, // Get specific post
+
+  async like(postPublicId: string) {
+    const resource: string = `${backendUrl}/like/post/${postPublicId}`;
+
+    ApiService.setHeader();
+
+    try {
+      const apiResponse = await ApiService.post(resource, null);
+
+      // Returns a boolean
+      return apiResponse.data.success;
+    } catch (error) {
+      throw new PostError(error.response.data.message);
+    }
+  }, // Like post
+
+  async unlike(postPublicId: string) {
+    const resource: string = `${backendUrl}/like/post/${postPublicId}`;
+
+    ApiService.setHeader();
+
+    try {
+      const apiResponse = await ApiService.delete(resource);
+
+      // Returns a boolean
+      return apiResponse.data.success;
+    } catch (error) {
+      throw new PostError(error.response.data.message);
+    }
+  }, // Unlike post
 
   async create(data: CreateData) {
     const resource: string = `${backendUrl}/post/create`;
@@ -53,7 +83,7 @@ const PostService = {
       // Returns true if succeeded.
       return apiResponse.data.success;
     } catch (error) {
-      throw new PostError(error.response.message);
+      throw new PostError(error.response.data.message);
     }
   }
 };

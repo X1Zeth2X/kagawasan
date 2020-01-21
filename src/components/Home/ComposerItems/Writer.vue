@@ -6,6 +6,7 @@
         rules="required|min:1|max:1600"
         name="content"
         v-slot="{ errors }"
+        spellcheck="false"
       >
         <v-textarea
           rows="2"
@@ -54,6 +55,7 @@ export default class Writer extends Vue {
   }
 
   public resetValidator() {
+    this.content = "";
     this.$refs.observe.reset();
   }
 }

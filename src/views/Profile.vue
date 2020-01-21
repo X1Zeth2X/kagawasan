@@ -5,6 +5,7 @@
       height="16em"
       class="elevation-3"
     ></v-img>
+
     <v-container>
       <v-row align="start" justify="space-around">
         <v-col md="4" cols="12" class="p-content">
