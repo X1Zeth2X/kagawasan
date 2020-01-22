@@ -2,6 +2,7 @@
   <div id="homeView">
     <v-container fluid>
       <StandardLayout />
+      <EditDialog />
     </v-container>
   </div>
 </template>
@@ -12,10 +13,12 @@ import Component from "vue-class-component";
 import { Getter } from "vuex-class";
 
 import StandardLayout from "@/components/Home/StandardLayout.vue";
+const EditDialog = () => import("@/components/EditDialog.vue");
 
 @Component({
   components: {
-    StandardLayout
+    StandardLayout,
+    EditDialog
   }
 })
 export default class Home extends Vue {}
