@@ -2,8 +2,8 @@
   <v-navigation-drawer
     app
     :mini-variant="$vuetify.breakpoint.mdAndUp && miniDrawer"
+    :mini-variant-width="80"
     :value.sync="showDrawer"
-    disable-resize-watcher
   >
     <template v-slot:prepend>
       <v-list-item>
