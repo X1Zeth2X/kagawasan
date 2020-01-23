@@ -103,7 +103,7 @@ export default class Composer extends Vue {
   }
 
   private async validateFields() {
-    const isValid = await this.$refs.writer.checkValidity();
+    const isValid: boolean = await this.$refs.writer.checkValidity();
 
     if (isValid) {
       this.submit();

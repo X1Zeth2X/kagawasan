@@ -103,7 +103,7 @@ export default class RegisterWindow extends Vue {
   private username: string = "";
 
   private async validateFields() {
-    const isValid = await this.$refs.observe.validate();
+    const isValid: boolean = await this.$refs.observe.validate();
 
     if (isValid) {
       this.toggleRegisterDialog();
