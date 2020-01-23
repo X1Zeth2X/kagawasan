@@ -22,6 +22,11 @@
 
     <v-spacer></v-spacer>
 
+    <v-chip color="info" v-if="action.edited" outlined>
+      <v-icon left>ion-ios-information-circle</v-icon>
+      Edited
+    </v-chip>
+
     <v-btn icon>
       <v-icon>ion-md-bookmark</v-icon>
     </v-btn>
