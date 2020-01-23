@@ -234,7 +234,7 @@ export default class RegisterDialog extends Vue {
   };
 
   private async validateFields() {
-    const isValid = await this.$refs.observe.validate();
+    const isValid: boolean = await this.$refs.observe.validate();
 
     if (isValid) {
       const vuexResp = await this.register(this.registerData);

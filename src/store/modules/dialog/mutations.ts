@@ -1,6 +1,6 @@
 import { MutationTree } from "vuex";
 import { DialogState } from "./types";
-import { Post } from '@/store/post';
+import { Post } from "@/store/post";
 
 export const mutations: MutationTree<DialogState> = {
   toggleRegisterDialog(state) {
@@ -11,7 +11,11 @@ export const mutations: MutationTree<DialogState> = {
     state.editDialog = !state.editDialog;
   },
 
-  setEditPost(state, post: Post) {
-    state.editPost = post;
+  setEditPost(
+    state,
+    { content, postPublicId }: { content: string; postPublicId: string }
+  ) {
+    state.editPost.content = content;
+    state.editPost.postPublicId = postPublicId;
   }
 };

@@ -49,7 +49,7 @@ export default class Writer extends Vue {
   }
 
   public async checkValidity() {
-    const isValid = await this.$refs.observe.validate();
+    const isValid: boolean = await this.$refs.observe.validate();
 
     return isValid;
   }

@@ -73,6 +73,24 @@ const PostService = {
     }
   },
 
+  async update(content: string, postPublicId: string) {
+    const resource: string = `${backendUrl}/post/update/${postPublicId}`;
+
+    ApiService.setHeader();
+
+    try {
+      const apiResponse = await ApiService.put(resource, {
+        content,
+        image_id: ""
+      });
+
+      // Return success boolean
+      return apiResponse.data.success;
+    } catch (error) {
+      throw new PostError(error.response.data.message);
+    }
+  }, // Update post
+
   async delete(postPublicId: string) {
     const resource: string = `${backendUrl}/post/delete/${postPublicId}`;
 

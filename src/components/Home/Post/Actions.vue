@@ -16,11 +16,12 @@
     </v-btn>
     <span class="mb1 f6">{{ action.comments }}</span>
 
-    <v-btn icon>
-      <v-icon>ion-ios-share-alt</v-icon>
-    </v-btn>
-
     <v-spacer></v-spacer>
+
+    <v-chip color="info" v-if="action.edited" outlined>
+      <v-icon left>ion-ios-information-circle</v-icon>
+      Edited
+    </v-chip>
 
     <v-btn icon>
       <v-icon>ion-md-bookmark</v-icon>

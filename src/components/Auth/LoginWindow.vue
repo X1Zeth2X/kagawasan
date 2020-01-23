@@ -117,7 +117,7 @@ export default class LoginWindow extends Vue {
   private showPassword: boolean = false;
 
   private async validateFields() {
-    const isValid = await this.$refs.observe.validate();
+    const isValid: boolean = await this.$refs.observe.validate();
 
     if (isValid) {
       const vuexResp = await this.login({

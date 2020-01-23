@@ -1,7 +1,7 @@
 import { GetterTree } from "vuex";
 import { DialogState } from "./types";
 import { RootState } from "@/store/types";
-import { Post } from '@/store/post';
+import { Post } from "@/store/post";
 
 export const getters: GetterTree<DialogState, RootState> = {
   registerDialog(state): boolean {
@@ -12,7 +12,10 @@ export const getters: GetterTree<DialogState, RootState> = {
     return state.editDialog;
   },
 
-  editPost(state): Post | null {
-    return state.editPost;
+  editPost(state): object {
+    return {
+      content: state.editPost.content,
+      postPublicId: state.editPost.postPublicId
+    };
   }
 };
