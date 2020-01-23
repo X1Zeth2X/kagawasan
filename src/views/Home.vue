@@ -2,7 +2,8 @@
   <div id="homeView">
     <v-container fluid>
       <StandardLayout />
-      <EditDialog />
+
+      <EditDialog v-if="showEdit" :show="showEdit" />
     </v-container>
   </div>
 </template>
@@ -21,5 +22,8 @@ const EditDialog = () => import("@/components/EditDialog.vue");
     EditDialog
   }
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  // Bind "editDialog" boolean from home so that it can conditionally render it.
+  @Getter("editDialog", { namespace: "dialog" }) private showEdit!: boolean;
+}
 </script>
