@@ -1,6 +1,7 @@
+import { Post } from '@/store/post';
+
 export interface DialogState {
   registerDialog: boolean;
-
-  snack: boolean;
-  snackMsg: string | null;
+  editDialog: boolean;
+  editPost: Post | null;
 }

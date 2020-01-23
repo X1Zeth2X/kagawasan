@@ -26,7 +26,7 @@
           </v-btn>
         </template>
 
-        <v-list>
+        <v-list v-if="!editing">
           <div v-for="item in menuActions" :key="item.label">
             <v-list-item @click="item.action" v-if="item.show">
               {{ item.label }}
@@ -62,6 +62,8 @@ export default class PostTop extends Vue {
   @Action("delete", { namespace })
   private delete!: Function;
 
+  private editing: boolean = false;
+
   private menuActions: object[] = [
     {
       label: "Edit",
@@ -80,12 +82,24 @@ export default class PostTop extends Vue {
     }
   ];
 
+  private created() {
+    this.checkIfEditing();
+  } // Lifecycle
+
   private get prettyDate(): string {
     const prettyDate: string = moment
       .utc(this.date)
       .local()
       .format("MMM Do YYYY, h:mm A");
     return prettyDate;
+  }
+
+  // Checks if the post is being edited
+  private checkIfEditing() {
+    // There is nothing to do so return null.
+    if (!this.postPublicId) {
+      this.editing = true;
+    }
   }
 
   private editPost() {

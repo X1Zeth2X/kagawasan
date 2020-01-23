@@ -8,9 +8,8 @@ import { actions } from "./actions";
 
 export const state: DialogState = {
   registerDialog: false,
-
-  snack: false,
-  snackMsg: null
+  editDialog: false,
+  editPost: null
 };
 
 const namespaced: boolean = true;
