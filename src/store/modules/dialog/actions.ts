@@ -1,7 +1,6 @@
 import { ActionTree } from "vuex";
 import { DialogState } from "./types";
 import { RootState } from "@/store/types";
-import { Post } from '@/store/post';
 
 export const actions: ActionTree<DialogState, RootState> = {
   toggleRegisterDialog({ commit }) {
@@ -12,8 +11,11 @@ export const actions: ActionTree<DialogState, RootState> = {
     commit("toggleEditDialog");
   },
 
-  setEditPost({ commit }, post: Post) {
+  setEditPost(
+    { commit },
+    { content, postPublicId }: { content: string; postPublicId: string }
+  ) {
     // Set the post that is being edited.
-    commit("setEditPost", post);
+    commit("setEditPost", { content, postPublicId });
   }
 };

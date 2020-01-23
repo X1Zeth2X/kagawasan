@@ -9,7 +9,11 @@ import { actions } from "./actions";
 export const state: DialogState = {
   registerDialog: false,
   editDialog: false,
-  editPost: null
+
+  editPost: {
+    content: null,
+    postPublicId: null
+  }
 };
 
 const namespaced: boolean = true;
