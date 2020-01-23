@@ -1,14 +1,42 @@
 <template>
-  <v-dialog
-    persistent
-    :value="false"
-    max-width="35em"
-  >
+  <v-dialog persistent :value.sync="show" max-width="35em">
     <v-card>
-      <Top 
-        :author="currentUser"
-        :postPublicId="null"
-      />
+      <Top :author="currentUser" :postPublicId="null" />
+
+      <ValidationObserver ref="observe">
+        <ValidationProvider
+          mode="lazy"
+          rules="required|min:1|max:1600"
+          name="content"
+          v-slot="{ errors }"
+          spellcheck="false"
+        >
+          <v-card-text>
+            <v-textarea
+              rows="2"
+              auto-grow
+              outlined
+              filled
+              v-model="updatedContent"
+              :error-messages="errors[0]"
+            ></v-textarea>
+          </v-card-text>
+        </ValidationProvider>
+      </ValidationObserver>
+
+      <v-divider></v-divider>
+
+      <v-card-actions>
+        <v-btn text color="error" @click="toggleEditDialog">
+          Cancel
+        </v-btn>
+
+        <v-spacer></v-spacer>
+
+        <v-btn color="teal" dark @click="validateFields">
+          Update
+        </v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -17,16 +45,71 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 
+import { Getter, Action } from "vuex-class";
+import { User } from "@/store/modules/auth/types";
+import { Prop } from "vue-property-decorator";
+
+// Import validation stuff
+import { ValidationProvider } from "vee-validate/dist/vee-validate.full";
+import { ValidationObserver } from "vee-validate";
+
 import Top from "@/components/Home/Post/Top.vue";
-import { Getter } from 'vuex-class';
-import { User } from '@/store/modules/auth/types';
+
+const namespace: string = "dialog";
+
+interface EditData {
+  content: string;
+  postPublicId: string;
+}
 
 @Component({
   components: {
-    Top
+    Top,
+    ValidationProvider,
+    ValidationObserver
   }
 })
 export default class Edit extends Vue {
+  @Prop() show!: boolean;
+
   @Getter("currentUser", { namespace: "auth" }) private currentUser!: User;
+
+  @Getter("editPost", { namespace }) private editData!: EditData;
+
+  @Action("toggleEditDialog", { namespace })
+  private toggleEditDialog!: Function;
+
+  @Action("update", { namespace: "post" }) private updatePostVuex!: Function;
+
+  $refs!: {
+    observe: InstanceType<typeof ValidationObserver>;
+  };
+
+  private updatedContent: string = "";
+
+  private mounted() {
+    // If editData is not undefined update v-model value.
+    if (this.editData) {
+      this.updatedContent = this.editData.content;
+    }
+  }
+
+  private async validateFields() {
+    const isValid: boolean = await this.$refs.observe.validate();
+
+    // If it's valid and changes were made then update.
+    if (isValid && this.updatedContent !== this.editData.content) {
+      // Update the post.
+      const vuexResp: boolean = await this.updatePostVuex({
+        content: this.updatedContent,
+        postPublicId: this.editData.postPublicId
+      });
+
+      if (vuexResp) {
+        // Do something that indicates that it has been updated.
+        this.toggleEditDialog();
+      }
+    }
+  }
 }
 </script>
