@@ -71,6 +71,26 @@ export const actions: ActionTree<PostState, RootState> = {
     }
   }, // Create a new post
 
+  async update(
+    { commit },
+    { content, postPublicId }: { content: string; postPublicId: string }
+  ) {
+    commit("postRequest");
+
+    try {
+      const apiResp = await PostService.update(content, postPublicId);
+
+      // Return a response that it has been updated.
+      return true;
+    } catch (error) {
+      if (error instanceof PostError) {
+        commit("postError", error.message);
+      }
+
+      return false;
+    }
+  },
+
   async delete({ commit }, postPublicId: string) {
     commit("postRequest");
 
