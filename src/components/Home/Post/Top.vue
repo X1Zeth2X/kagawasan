@@ -26,7 +26,7 @@
           </v-btn>
         </template>
 
-        <v-list v-if="!editing">
+        <v-list v-if="!isEditing">
           <div v-for="item in menuActions" :key="item.label">
             <v-list-item @click="item.action" v-if="item.show">
               {{ item.label }}
@@ -59,10 +59,12 @@ export default class PostTop extends Vue {
   @Getter("currentUser", { namespace: "auth" })
   private currentUser!: User;
 
+  // If edit dialog is true, it is being edited.
+  @Getter("editDialog", { namespace: "dialog" })
+  private isEditing!: boolean;
+
   @Action("delete", { namespace })
   private delete!: Function;
-
-  private editing: boolean = false;
 
   private menuActions: object[] = [
     {
@@ -82,10 +84,6 @@ export default class PostTop extends Vue {
     }
   ];
 
-  private created() {
-    this.checkIfEditing();
-  } // Lifecycle
-
   private get prettyDate(): string {
     const prettyDate: string = moment
       .utc(this.date)
@@ -94,16 +92,8 @@ export default class PostTop extends Vue {
     return prettyDate;
   }
 
-  // Checks if the post is being edited
-  private checkIfEditing() {
-    // There is nothing to do so return null.
-    if (!this.postPublicId) {
-      this.editing = true;
-    }
-  }
-
   private editPost() {
-    console.log("Edit post");
+    this.$emit("editPost");
   }
 
   private async deletePost() {
