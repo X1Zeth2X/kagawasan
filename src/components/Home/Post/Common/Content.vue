@@ -4,8 +4,7 @@
       v-if="markdown"
       :source="content"
       :class="[
-        $vuetify.theme.dark ? 'white--text br3' : 'grey--text text--darken-4',
-        'fw5'
+        $vuetify.theme.dark ? 'white--text' : 'grey--text text--darken-4',
       ]"
     />
 
@@ -13,7 +12,6 @@
       clamp="Show More"
       :class="[
         $vuetify.theme.dark ? 'white--text' : 'grey--text text--darken-4',
-        'fw5'
       ]"
       :text="content"
       :length="500"
@@ -49,7 +47,7 @@ export default class Content extends Vue {
 
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
 
-  private mounted() {
+  private updated() {
     if (this.highlight && this.markdown) {
       Prism.highlightAll();
     }
