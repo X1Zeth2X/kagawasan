@@ -9,27 +9,7 @@
         <CommentDetails :author="comment.author" :date="comment.created" />
 
         <p class="f6 pt0">
-          <vue-markdown
-            v-if="markdown"
-            :source="comment.content"
-            :class="[
-              $vuetify.theme.dark
-                ? 'white--text br3'
-                : 'grey--text text--darken-4',
-              'fw5'
-            ]"
-          />
-
-          <truncate
-            clamp="Show More"
-            :class="[
-              $vuetify.theme.dark ? 'white--text' : 'grey--text text--darken-4',
-              'fw5'
-            ]"
-            :text="comment.content"
-            :length="500"
-            v-else
-          />
+          <Content :content="comment.content" :highlight="true" />
         </p>
 
         <CommentActions />
@@ -48,37 +28,24 @@ import { Comment } from "@/store/post";
 import CommentAvatar from "./Avatar.vue";
 import CommentDetails from "./Details.vue";
 import CommentActions from "./Actions.vue";
+
+// Import content component.
+import Content from "../Common/Content.vue";
+
 import { Getter } from "vuex-class";
-
-/* 
-  Lazy load truncate/markdown because it does need to get imported
-  if it is turned off in the settings.
-*/
-const VueMarkdown = () => import("vue-markdown");
-const truncate = () => import("vue-truncate-collapsed");
-
-const Prism = require("prismjs");
 
 @Component({
   components: {
     CommentAvatar,
     CommentDetails,
     CommentActions,
-
-    VueMarkdown,
-    truncate
+    Content
   }
 })
 export default class CommentMain extends Vue {
   @Prop() comment!: Comment;
 
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
-
-  private updated() {
-    if (this.markdown) {
-      Prism.highlightAll();
-    }
-  } // Lifecycle
 }
 </script>
 

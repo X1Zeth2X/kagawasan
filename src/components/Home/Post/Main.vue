@@ -5,29 +5,11 @@
       :date="post.created"
       :postPublicId="post.public_id"
       v-on:removePost="removePost"
+      v-on:editPost="editPost"
     />
 
     <v-card-text>
-      <vue-markdown
-        v-if="markdown"
-        :source="post.content"
-        :class="[
-          $vuetify.theme.dark ? 'white--text' : 'grey--text text--darken-4',
-          'fw5'
-        ]"
-      />
-
-      <truncate
-        clamp="Show More"
-        type="html"
-        :class="[
-          $vuetify.theme.dark ? 'white--text' : 'grey--text text--darken-4',
-          'fw5'
-        ]"
-        :text="post.content"
-        :length="500"
-        v-else
-      />
+      <Content :content="post.content" :highlight="false" />
     </v-card-text>
     <!-- Post content -->
 
@@ -88,6 +70,7 @@ import { Getter, Action } from "vuex-class";
 
 import PostTop from "./Top.vue";
 import PostActions from "./Actions.vue";
+import Content from "./Common/Content.vue";
 
 import { Prop } from "vue-property-decorator";
 import { backendUrl } from "@/services/api.service";
@@ -96,29 +79,20 @@ import { Post } from "@/store/post";
 const Comment = () => import("./Comment/Main.vue");
 const Composer = () => import("./Comment/Composer.vue");
 
-/* 
-  Lazy load truncate/markdown because it does need to get imported
-  if it is turned off in the settings.
-*/
-const VueMarkdown = () => import("vue-markdown");
-const truncate = () => import("vue-truncate-collapsed");
-
-const Prism = require("prismjs");
-
 interface ActionProps {
   kekGiven: boolean;
   keks: number;
   comments: number;
+  edited: boolean;
 }
 
 @Component({
   components: {
     PostTop,
     PostActions,
-    truncate,
     Comment,
     Composer,
-    VueMarkdown
+    Content
   }
 })
 export default class PostMain extends Vue {
@@ -128,6 +102,12 @@ export default class PostMain extends Vue {
 
   @Action("removePost", { namespace: "feed" })
   private removePostVuex!: Function;
+
+  @Action("toggleEditDialog", { namespace: "dialog" })
+  private toggleEditDialog!: Function;
+
+  @Action("setEditPost", { namespace: "dialog" })
+  private setEditPost!: Function;
 
   public $refs!: {
     postActions: InstanceType<typeof PostActions>;
@@ -141,7 +121,8 @@ export default class PostMain extends Vue {
   private actionProps: ActionProps = {
     kekGiven: this.post.liked,
     keks: this.post.likes.length,
-    comments: this.post.comments.length
+    comments: this.post.comments.length,
+    edited: this.post.edited
   };
 
   private mounted() {
@@ -151,22 +132,23 @@ export default class PostMain extends Vue {
     }
   } // Lifecycle
 
-  private updated() {
-    /*
-      Highlight if the comments are null and markdown is enabled.
-      If there are comments/replies, call the highlight from there.
-    */
-    if (this.post.initial_comments === null && this.markdown) {
-      Prism.highlightAll();
-    }
-  } // Lifecycle
-
   private toggleCommenting() {
     this.commenting = !this.commenting;
   }
 
   private toggleKek() {
     this.$refs.postActions.toggleKek();
+  }
+
+  private editPost() {
+    // Set content being edited.
+    this.setEditPost({
+      content: this.post.content,
+      postPublicId: this.post.public_id
+    });
+
+    // Toggle edit dialog.
+    this.toggleEditDialog();
   }
 
   private removePost() {
