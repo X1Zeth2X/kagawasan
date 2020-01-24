@@ -63,7 +63,7 @@ export default class Content extends Vue {
     {
       title: "Markdown",
       subtitle:
-        "Markdown syntax on contents. (No truncation/limit, this may cause long boi posts.)",
+        "Markdown syntax on contents. (If the code highlighting is not working, simple go to another page and back)",
       value: this.$store.getters["settings/markdown"],
       onChange: this.toggleMarkdown
     }

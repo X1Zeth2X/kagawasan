@@ -85,7 +85,7 @@ export default class StandardLayout extends Vue {
   @Action("getIds", { namespace })
   private getIds!: Function;
 
-  private mounted() {
+  private created() {
     this.getIds();
   } // Lifecycle
 

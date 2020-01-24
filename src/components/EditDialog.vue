@@ -1,5 +1,5 @@
 <template>
-  <v-dialog persistent :value.sync="show" max-width="35em">
+  <v-dialog persistent :value.sync="show" max-width="35em" scrollable>
     <v-card>
       <Top :author="currentUser" :postPublicId="null" />
 

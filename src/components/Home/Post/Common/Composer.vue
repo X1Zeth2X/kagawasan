@@ -1,12 +1,12 @@
 <template>
   <div id="commentComposer" class="mh3 mt3">
     <v-textarea
-      rows="2"
       placeholder="Write a comment..."
-      auto-grow
-
       class="b-card"
+      rows="2"
+      auto-grow
       solo
+      outlined
       rounded
       filled
     >
@@ -27,5 +27,5 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 @Component
-export default class CommentComposer extends Vue {}
+export default class CommentReplyComposer extends Vue {}
 </script>

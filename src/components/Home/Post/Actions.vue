@@ -52,8 +52,6 @@ export default class PostActions extends Vue {
   private kekGiven: boolean = this.action.kekGiven;
   private keks: number = this.action.keks;
 
-  private mounted() {} // Lifecycle
-
   private unlikePost() {
     this.kekGiven = false;
     this.keks = this.keks - 1;
