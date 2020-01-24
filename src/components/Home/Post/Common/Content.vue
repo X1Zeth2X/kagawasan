@@ -33,8 +33,6 @@ import { Prop } from "vue-property-decorator";
 const VueMarkdown = () => import("vue-markdown");
 const truncate = () => import("vue-truncate-collapsed");
 
-const Prism = require("prismjs");
-
 @Component({
   components: {
     VueMarkdown,
@@ -46,11 +44,5 @@ export default class Content extends Vue {
   @Prop() highlight!: boolean;
 
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
-
-  private updated() {
-    if (this.highlight && this.markdown) {
-      Prism.highlightAll();
-    }
-  } // Lifecycle
 }
 </script>
