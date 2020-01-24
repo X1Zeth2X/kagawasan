@@ -27,13 +27,13 @@ export default class App extends Vue {}
 <style lang="scss">
 #app {
   font-family: "Be Vietnam", sans-serif;
-}
 
-.b-card {
-  border-radius: 1em;
-}
+  .b-card {
+    border-radius: 1em;
+  }
 
-.ml-negative {
-  margin-left: -0.3em;
+  .ml-negative {
+    margin-left: -0.3em;
+  }
 }
 </style>
