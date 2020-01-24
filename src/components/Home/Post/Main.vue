@@ -141,11 +141,17 @@ export default class PostMain extends Vue {
   }
 
   private editPost() {
-    // Set content being edited.
-    this.setEditPost({
+    // Also, I just did this for fun.
+    const editData: {
+      content: string;
+      postPublicId: string;
+    } = {
       content: this.post.content,
       postPublicId: this.post.public_id
-    });
+    };
+
+    // Set content being edited.
+    this.setEditPost(editData);
 
     // Toggle edit dialog.
     this.toggleEditDialog();
