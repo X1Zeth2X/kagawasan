@@ -66,6 +66,9 @@ export default class PostTop extends Vue {
   @Action("delete", { namespace })
   private delete!: Function;
 
+  @Action("removePost", { namespace: "feed" })
+  private removePost!: Function;
+
   private menuActions: object[] = [
     {
       label: "Edit",
@@ -101,7 +104,7 @@ export default class PostTop extends Vue {
 
     // Self immolate if succeeded.
     if (isDeleted) {
-      this.$emit("removePost");
+      this.removePost(this.postPublicId);
     }
   }
 }
