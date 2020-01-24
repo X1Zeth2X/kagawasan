@@ -4,7 +4,6 @@
       :author="post.author"
       :date="post.created"
       :postPublicId="post.public_id"
-      v-on:removePost="removePost"
       v-on:editPost="editPost"
     />
 
@@ -100,9 +99,6 @@ export default class PostMain extends Vue {
 
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
 
-  @Action("removePost", { namespace: "feed" })
-  private removePostVuex!: Function;
-
   @Action("toggleEditDialog", { namespace: "dialog" })
   private toggleEditDialog!: Function;
 
@@ -155,11 +151,6 @@ export default class PostMain extends Vue {
 
     // Toggle edit dialog.
     this.toggleEditDialog();
-  }
-
-  private removePost() {
-    // Alert the user that the post has been deleted.
-    this.removePostVuex(this.post);
   }
 }
 </script>
