@@ -1,5 +1,5 @@
 <template>
-  <v-dialog persistent :value.sync="show" max-width="35em" scrollable>
+  <v-dialog persistent :value.sync="show" max-width="35em">
     <v-card>
       <Top :author="currentUser" :postPublicId="null" />
 
@@ -33,7 +33,7 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn color="teal" dark @click="validateFields">
+        <v-btn color="teal" dark :loading="updating" @click="validateFields">
           Update
         </v-btn>
       </v-card-actions>
@@ -76,10 +76,17 @@ export default class Edit extends Vue {
 
   @Getter("editPost", { namespace }) private editData!: EditData;
 
+  @Getter("requesting", { namespace: "post" }) private updating!: boolean;
+
   @Action("toggleEditDialog", { namespace })
   private toggleEditDialog!: Function;
 
+  // Update the post from the API.
   @Action("update", { namespace: "post" }) private updatePostVuex!: Function;
+
+  // Update the edited post in the feed.
+  @Action("updateEditedPost", { namespace: "feed" })
+  private updatedEditedPost!: Function;
 
   $refs!: {
     observe: InstanceType<typeof ValidationObserver>;
@@ -107,6 +114,11 @@ export default class Edit extends Vue {
 
       if (vuexResp) {
         // Do something that indicates that it has been updated.
+        this.updatedEditedPost({
+          content: this.updatedContent,
+          postPublicId: this.editData.postPublicId
+        });
+
         this.toggleEditDialog();
       }
     }
