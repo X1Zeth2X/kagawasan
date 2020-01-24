@@ -1,5 +1,5 @@
 <template>
-  <v-card id="post" class="mb4">
+  <v-card id="post" class="mb4 b-card">
     <PostTop
       :author="post.author"
       :date="post.created"
