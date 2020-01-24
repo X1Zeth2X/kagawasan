@@ -5,7 +5,7 @@
         {{ kekGiven ? "ion-ios-heart" : "ion-ios-heart-empty" }}
       </v-icon>
     </v-btn>
-    <span class="mb1 f6">{{ keks }}</span>
+    <span class="mb1 f6 mr1">{{ keks }}</span>
 
     <v-btn
       icon
@@ -23,7 +23,7 @@
       Edited
     </v-chip>
 
-    <v-btn icon>
+    <v-btn icon class="ml1">
       <v-icon>ion-md-bookmark</v-icon>
     </v-btn>
   </v-card-actions>
