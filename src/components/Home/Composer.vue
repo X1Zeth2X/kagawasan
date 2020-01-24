@@ -114,7 +114,7 @@ export default class Composer extends Vue {
     const vuexResp: boolean | Post = await this.create(this.postData);
 
     if (vuexResp !== false) {
-      // Emit to home.
+      // Emit to parent.
       this.$emit("addPost", vuexResp);
 
       // Reset validator and fields.
