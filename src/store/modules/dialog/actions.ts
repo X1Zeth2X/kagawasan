@@ -11,11 +11,11 @@ export const actions: ActionTree<DialogState, RootState> = {
     commit("toggleEditDialog");
   },
 
-  setEditPost(
-    { commit },
-    { content, postPublicId }: { content: string; postPublicId: string }
-  ) {
+  setEditPost({commit}, editData) {
     // Set the post that is being edited.
-    commit("setEditPost", { content, postPublicId });
+    commit("setEditPost", {
+      content: editData.content,
+      postPublicId: editData.postPublicId
+    });
   }
 };
