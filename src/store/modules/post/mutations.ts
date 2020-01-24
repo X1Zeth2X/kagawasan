@@ -8,6 +8,10 @@ export const mutations: MutationTree<PostState> = {
     state.errorMsg = "";
   },
 
+  postSuccess(state) {
+    state.requesting = false;
+  },
+
   postError(state, errorMsg: string) {
     state.requesting = false;
     state.error = true;
