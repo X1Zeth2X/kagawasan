@@ -154,9 +154,3 @@ export default class PostMain extends Vue {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-#post {
-  border-radius: 1em;
-}
-</style>
