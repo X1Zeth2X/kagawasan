@@ -1,7 +1,15 @@
+import store from "@/store";
+const isDark = "settings/darkMode";
+
 // Highlighter stuff.
 import "prismjs";
-import "prismjs/themes/prism-tomorrow.css";
+
+if (store.getters[isDark]) {
+  require("prismjs/themes/prism-tomorrow.css");
+} else {
+  require("prismjs/themes/prism-solarizedlight.css");
+}
 
 // Load languages
-require("prismjs/components/prism-python");
-require("prismjs/components/prism-typescript");
+import "prismjs/components/prism-python";
+import "prismjs/components/prism-typescript";
