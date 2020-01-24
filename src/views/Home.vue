@@ -36,6 +36,6 @@ export default class Home extends Vue {
         Prism.highlightAll();
       }
     });
-  }
+  } // Lifecycle
 }
 </script>
