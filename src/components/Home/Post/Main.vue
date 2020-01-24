@@ -77,7 +77,7 @@ import { backendUrl } from "@/services/api.service";
 import { Post } from "@/store/post";
 
 const Comment = () => import("./Comment/Main.vue");
-const Composer = () => import("./Comment/Composer.vue");
+const Composer = () => import("./Common/Composer.vue");
 
 interface ActionProps {
   kekGiven: boolean;

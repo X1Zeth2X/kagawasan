@@ -4,14 +4,14 @@
       v-if="markdown"
       :source="content"
       :class="[
-        $vuetify.theme.dark ? 'white--text' : 'grey--text text--darken-4',
+        $vuetify.theme.dark ? 'white--text' : 'grey--text text--darken-4'
       ]"
     />
 
     <truncate
       clamp="Show More"
       :class="[
-        $vuetify.theme.dark ? 'white--text' : 'grey--text text--darken-4',
+        $vuetify.theme.dark ? 'white--text' : 'grey--text text--darken-4'
       ]"
       :text="content"
       :length="500"
