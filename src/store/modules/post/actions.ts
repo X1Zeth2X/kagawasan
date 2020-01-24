@@ -68,7 +68,7 @@ export const actions: ActionTree<PostState, RootState> = {
       return post;
     } catch (error) {
       if (error instanceof PostError) {
-        commit("postError", error.message);
+        commit("createError", error.message);
       }
 
       return false;

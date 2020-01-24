@@ -1,5 +1,6 @@
 export interface PostState {
   requesting: boolean;
-  error: boolean;
-  errorMsg: string;
+
+  errorMsg: string | null;
+  createErrorMsg: string | null;
 }

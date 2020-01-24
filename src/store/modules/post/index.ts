@@ -8,8 +8,9 @@ import { actions } from "./actions";
 
 const state: PostState = {
   requesting: false,
-  error: false,
-  errorMsg: ""
+
+  errorMsg: null,
+  createErrorMsg: null
 };
 
 const namespaced: boolean = true;
