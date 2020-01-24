@@ -28,7 +28,7 @@
 
         <v-list v-if="!isEditing">
           <div v-for="item in menuActions" :key="item.label">
-            <v-list-item @click="item.action" v-if="item.show">
+            <v-list-item @click="item.action" v-if="modifiable(item.label)">
               {{ item.label }}
             </v-list-item>
           </div>
@@ -72,20 +72,33 @@ export default class PostTop extends Vue {
   private menuActions: object[] = [
     {
       label: "Edit",
-      action: this.editPost,
-      show: true
+      action: this.editPost
     },
     {
       label: "Delete",
       action: this.deletePost,
-      show: true
     },
     {
       label: "Report",
-      action: () => null,
-      show: true
+      action: () => null
     }
   ];
+
+  // Checks if the current user can modify the post.
+  private modifiable(label: string): boolean {
+    // Add more ignore options (If needed).
+    const ignore = ["Report"];
+
+    // Makes sure that the label is not in ignore.
+    if (!ignore.includes(label)) {
+      // Return true if the current user is the owner of the post.
+      return this.currentUser.public_id === this.author.public_id
+        ? true
+        : false;
+    }
+
+    return true;
+  }
 
   private get prettyDate(): string {
     const prettyDate: string = moment
