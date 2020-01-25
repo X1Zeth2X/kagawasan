@@ -1,11 +1,5 @@
 <template>
-  <v-snackbar
-    v-model="show"
-    :color="snackNotifier.color"
-    bottom
-    right
-    multi-line
-  >
+  <v-snackbar v-model="show" :color="snackNotifier.color" bottom multi-line>
     <span class="white--text fw5">
       {{ message }}
     </span>

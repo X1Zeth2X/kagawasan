@@ -1,7 +1,7 @@
 <template>
   <v-list-item two-line @click="profilePage">
     <v-list-item-avatar>
-      <img src="https://randomuser.me/api/portraits/lego/6.jpg" />
+      <img src="https://picsum.photos/200/300" />
     </v-list-item-avatar>
 
     <v-list-item-content>

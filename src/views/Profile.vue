@@ -1,7 +1,7 @@
 <template>
   <div id="profileView">
     <v-img
-      src="https://source.unsplash.com/o8cMgOUB-Z0/1280x720"
+      src="https://picsum.photos/1280/720"
       height="16em"
       class="elevation-3"
     ></v-img>
@@ -12,10 +12,7 @@
           <v-card class="mt4 b-card">
             <div class="tc pt3">
               <v-avatar size="12em" class="elevation-10">
-                <v-img
-                  src="https://source.unsplash.com/zDEdUs9z1zQ/1280x720"
-                  fit
-                ></v-img>
+                <v-img src="https://i.pravatar.cc/300" fit></v-img>
               </v-avatar>
               <h3 class="f3">Lasso Dior</h3>
               <p>@diorem</p>
@@ -29,7 +26,6 @@
                 <v-chip class="mr2 mt2" color="accent">developer</v-chip>
                 <v-chip class="mr2 mt2" color="amber" light>python</v-chip>
                 <v-chip class="mr2 mt2" color="primary">typescript</v-chip>
-                <v-chip class="mr2 mt2" color="primary">certified trap</v-chip>
               </div>
             </v-card-text>
 
