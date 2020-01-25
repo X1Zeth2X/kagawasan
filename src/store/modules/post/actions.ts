@@ -10,6 +10,7 @@ export const actions: ActionTree<PostState, RootState> = {
 
     try {
       const post: Post = await PostService.get(postPublicId);
+      commit("postSuccess");
 
       // Return requested post.
       return post;
@@ -27,6 +28,7 @@ export const actions: ActionTree<PostState, RootState> = {
 
     try {
       const liked: boolean = await PostService.like(postPublicId);
+      commit("postSuccess");
 
       return liked;
     } catch (error) {
@@ -43,6 +45,7 @@ export const actions: ActionTree<PostState, RootState> = {
 
     try {
       const unliked: boolean = await PostService.unlike(postPublicId);
+      commit("postSuccess");
 
       return unliked;
     } catch (error) {
@@ -59,29 +62,28 @@ export const actions: ActionTree<PostState, RootState> = {
 
     try {
       const post = await PostService.create(data);
+      commit("postSuccess");
 
       // Return newly created post.
       return post;
     } catch (error) {
       if (error instanceof PostError) {
-        commit("postError", error.message);
+        commit("createError", error.message);
       }
 
       return false;
     }
   }, // Create a new post
 
-  async update(
-    { commit },
-    { content, postPublicId }: { content: string; postPublicId: string }
-  ) {
+  async update({ commit }, { content, postPublicId }) {
     commit("postRequest");
 
     try {
-      const apiResp = await PostService.update(content, postPublicId);
+      const apiResp: boolean = await PostService.update(content, postPublicId);
+      commit("postSuccess");
 
       // Return a response that it has been updated.
-      return true;
+      return apiResp;
     } catch (error) {
       if (error instanceof PostError) {
         commit("postError", error.message);
@@ -96,6 +98,7 @@ export const actions: ActionTree<PostState, RootState> = {
 
     try {
       const isDeleted: boolean = await PostService.delete(postPublicId);
+      commit("postSuccess");
 
       // Return true if the post was deleted.
       return isDeleted;

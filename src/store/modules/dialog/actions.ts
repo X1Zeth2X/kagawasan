@@ -11,7 +11,7 @@ export const actions: ActionTree<DialogState, RootState> = {
     commit("toggleEditDialog");
   },
 
-  setEditPost({commit}, editData) {
+  setEditPost({ commit }, editData) {
     // Set the post that is being edited.
     commit("setEditPost", {
       content: editData.content,

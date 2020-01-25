@@ -7,13 +7,13 @@
       </v-window>
 
       <v-alert
-        v-if="errorMsg"
+        v-if="createErrorMsg"
         dismissible
         icon="ion-ios-close"
         type="error"
         border="left"
         colored-border
-        >Uh oh! {{ errorMsg }}</v-alert
+        >Uh oh! {{ createErrorMsg }}</v-alert
       >
 
       <v-card-actions>
@@ -66,8 +66,8 @@ const namespace: string = "post";
   }
 })
 export default class Composer extends Vue {
-  @Getter("errorMsg", { namespace })
-  private errorMsg!: string;
+  @Getter("createErrorMsg", { namespace })
+  private createErrorMsg!: string;
 
   @Action("create", { namespace })
   private create!: Function;
@@ -114,7 +114,7 @@ export default class Composer extends Vue {
     const vuexResp: boolean | Post = await this.create(this.postData);
 
     if (vuexResp !== false) {
-      // Emit to home.
+      // Emit to parent.
       this.$emit("addPost", vuexResp);
 
       // Reset validator and fields.

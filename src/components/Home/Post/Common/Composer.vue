@@ -7,7 +7,6 @@
       auto-grow
       solo
       outlined
-      rounded
       filled
     >
       <template v-slot:append>

@@ -1,11 +1,5 @@
 <template>
-  <v-dialog
-    persistent
-    :value="show"
-    max-width="37em"
-    fullscreen
-    transition="dialog-bottom-transition"
-  >
+  <v-dialog persistent :value="show" max-width="37em" hide-overlay fullscreen>
     <v-card>
       <v-toolbar>
         <v-toolbar-title class="fw9">
@@ -246,6 +240,6 @@ export default class RegisterDialog extends Vue {
         });
       }
     }
-  }
+  } // Validate fields
 }
 </script>

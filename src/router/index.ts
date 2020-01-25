@@ -3,10 +3,11 @@ import VueRouter from "vue-router";
 import Auth from "@/views/Auth.vue";
 import store from "@/store";
 
-// Lazily import components
-const Home = () => import("@/views/Home.vue");
-const Settings = () => import("@/views/Settings.vue");
-const Profile = () => import("@/views/Profile.vue");
+// Lazy import handler
+const loadView = function(view: string) {
+  return () =>
+    import(/* webpackChunkName: "view-[request]" */ `@/views/${view}.vue`);
+};
 
 Vue.use(VueRouter);
 
@@ -14,7 +15,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Home,
+    component: loadView("Home"),
     meta: {
       showNav: true
     }
@@ -22,7 +23,7 @@ const routes = [
   {
     path: "/profile/:username",
     name: "profile",
-    component: Profile,
+    component: loadView("Profile"),
     meta: {
       showNav: true
     }
@@ -40,7 +41,7 @@ const routes = [
   {
     path: "/settings",
     name: "settings",
-    component: Settings,
+    component: loadView("Settings"),
     meta: {
       showNav: true
     }

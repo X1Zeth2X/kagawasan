@@ -26,7 +26,14 @@ export const actions: ActionTree<FeedState, RootState> = {
     commit("setFeedItems", items);
   }, // Set feed
 
-  removePost({ commit }, post: Post) {
-    commit("removePost", post);
+  updateEditedPost({ commit }, { content, postPublicId }) {
+    commit("updateEditedPost", {
+      content,
+      postPublicId
+    });
+  }, // Updates an edited post.
+
+  removePost({ commit }, postPublicId: string) {
+    commit("removePost", postPublicId);
   }
 };

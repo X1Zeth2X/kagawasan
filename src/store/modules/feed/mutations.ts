@@ -24,8 +24,25 @@ export const mutations: MutationTree<FeedState> = {
     state.feedErrorMsg = errorMsg;
   },
 
-  removePost(state, post: Post) {
-    const index = state.feedItems.indexOf(post);
+  updateEditedPost(state, { content, postPublicId }) {
+    const index = state.feedItems.findIndex(
+      // @ts-ignore
+      // Ignore this cause no types need to be specified.
+      post => post.public_id === postPublicId
+    );
+
+    const post: any = state.feedItems[index];
+
+    post.content = content;
+    post.edited = true;
+  },
+
+  removePost(state, postPublicId: string) {
+    const index = state.feedItems.findIndex(
+      // @ts-ignore
+      // Ignore this cause no types need to be specified.
+      post => post.public_id === postPublicId
+    );
     state.feedItems.splice(index, 1);
   }
 };

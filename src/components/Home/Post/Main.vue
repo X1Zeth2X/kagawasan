@@ -1,10 +1,9 @@
 <template>
-  <v-card id="post" class="mb4">
+  <v-card id="post" class="mb4 b-card">
     <PostTop
       :author="post.author"
       :date="post.created"
       :postPublicId="post.public_id"
-      v-on:removePost="removePost"
       v-on:editPost="editPost"
     />
 
@@ -42,7 +41,13 @@
     <div v-if="comments !== null">
       <v-divider></v-divider>
       <div class="tc fw2">
-        <v-btn block text color="primary" class="fw9">
+        <v-btn
+          block
+          text
+          color="primary"
+          class="fw9"
+          v-if="this.comments.length > 5"
+        >
           <v-icon class="mr2 mt1">ion-ios-arrow-dropup</v-icon>
           View Previous Comments
           {{ `(${comments.length}/${post.comments.length})` }}
@@ -100,9 +105,6 @@ export default class PostMain extends Vue {
 
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
 
-  @Action("removePost", { namespace: "feed" })
-  private removePostVuex!: Function;
-
   @Action("toggleEditDialog", { namespace: "dialog" })
   private toggleEditDialog!: Function;
 
@@ -156,16 +158,5 @@ export default class PostMain extends Vue {
     // Toggle edit dialog.
     this.toggleEditDialog();
   }
-
-  private removePost() {
-    // Alert the user that the post has been deleted.
-    this.removePostVuex(this.post);
-  }
 }
 </script>
-
-<style lang="scss" scoped>
-#post {
-  border-radius: 1em;
-}
-</style>
