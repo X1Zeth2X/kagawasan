@@ -1,8 +1,9 @@
 <template>
   <v-window-item>
-    <v-card>
+    <v-card flat>
       <v-card-text>
-        Implement Uploader
+        Uploader will be unavailable for a bit since we will be re-implementing
+        the upload system.
       </v-card-text>
     </v-card>
   </v-window-item>
