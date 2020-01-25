@@ -107,7 +107,7 @@ export default class Edit extends Vue {
 
   // Update the edited post in the feed.
   @Action("updateEditedPost", { namespace: "feed" })
-  private updatedEditedPost!: Function;
+  private updateEditedPost!: Function;
 
   $refs!: {
     observe: InstanceType<typeof ValidationObserver>;
@@ -135,7 +135,7 @@ export default class Edit extends Vue {
 
       if (vuexResp) {
         // Do something that indicates that it has been updated.
-        this.updatedEditedPost({
+        this.updateEditedPost({
           content: this.updatedContent,
           postPublicId: this.editData.postPublicId
         });
