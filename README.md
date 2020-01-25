@@ -9,13 +9,7 @@ Konishi's frontend written in Vue.js + Vuetify and Typescript. This is the respo
 
 *Please remember that this is still in alpha so expect the code to be a bit all over the place, bugs, and glitches.*
 
-Hear me out:
-> Rewrites, rewrites, why the rewrites? The old Kagawasan was written with hacky methods which made the experience clunky and some of them needs changing, why not refactor the code? Refactoring the code would take as much time as rewriting it, Instead of refactoring, I think transfering the core logic and building off that is much better in the long run.
-Rewriting will allow for better **scalability** and **maintainability**.
-I will also make sure that this doesn't happen as often.
-
 ## Features
-
 Kagawasan contains the usual UI/UX of most social platforms and aims to be much better.
 You can learn more about how the components are written using the following documentations.
 
