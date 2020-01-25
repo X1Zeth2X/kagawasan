@@ -38,7 +38,7 @@
     />
     <!-- Post Actions (Like, Comment, ...) -->
 
-    <div v-if="comments !== null">
+    <div v-if="comments.length !== 0">
       <v-divider></v-divider>
       <div class="tc fw2">
         <v-btn
@@ -46,7 +46,8 @@
           text
           color="primary"
           class="fw9"
-          v-if="this.comments.length > 5"
+          v-if="showLoadMore"
+          @click="loadMore"
         >
           <v-icon class="mr2 mt1">ion-ios-arrow-dropup</v-icon>
           View Previous Comments
@@ -115,9 +116,12 @@ export default class PostMain extends Vue {
     postActions: InstanceType<typeof PostActions>;
   };
 
-  private comments: object[] | null = null;
+  private comments: object[] = [];
 
   private commenting: boolean = false;
+
+  // Slicing starts at 5 by default since there is 5 max initial comments.
+  private loadMoreStart: number = 5;
 
   // Props for the post actions.
   private actionProps: ActionProps = {
@@ -158,5 +162,32 @@ export default class PostMain extends Vue {
     // Toggle edit dialog.
     this.toggleEditDialog();
   }
+
+  private get showLoadMore(): boolean {
+    /*
+      Return true if the post comments length is greater than the initial comments (5 max),
+      and that the 'this.comments' length is not the same (less) than the post comments length.
+    */
+    if (
+      this.post.comments.length > 5 &&
+      this.post.comments.length !== this.comments.length
+    ) {
+      return true;
+    }
+
+    return false;
+  }
+
+  private loadMore() {
+    // Load 10 more comments on click.
+    const idArray: number[] = this.post.comments.slice(
+      this.loadMoreStart,
+      this.loadMoreStart + 10
+    );
+
+    // Perform vuexRequest to add more comments.
+    // Add the length of the comments from the API to the `loadMoreStart`
+    // push the comments from the api to `this.comments`
+  } // Load more comments
 }
 </script>
