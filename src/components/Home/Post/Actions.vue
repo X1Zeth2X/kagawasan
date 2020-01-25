@@ -24,7 +24,7 @@
     </v-chip>
 
     <v-btn icon class="ml1">
-      <v-icon>ion-md-bookmark</v-icon>
+      <v-icon>ion-ios-save</v-icon>
     </v-btn>
   </v-card-actions>
 </template>
