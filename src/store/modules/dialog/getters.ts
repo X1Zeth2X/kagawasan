@@ -17,5 +17,13 @@ export const getters: GetterTree<DialogState, RootState> = {
       content: state.editPost.content,
       postPublicId: state.editPost.postPublicId
     };
+  },
+
+  snackNotifier(state): object {
+    return {
+      change: state.snackNotifier.change,
+      message: state.snackNotifier.message,
+      color: state.snackNotifier.color
+    };
   }
 };

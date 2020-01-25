@@ -1,6 +1,5 @@
 import { MutationTree } from "vuex";
 import { DialogState } from "./types";
-import { Post } from "@/store/post";
 
 export const mutations: MutationTree<DialogState> = {
   toggleRegisterDialog(state) {
@@ -17,5 +16,11 @@ export const mutations: MutationTree<DialogState> = {
   ) {
     state.editPost.content = content;
     state.editPost.postPublicId = postPublicId;
+  },
+
+  setSnackNotifier(state, { color, message }) {
+    state.snackNotifier.change = !state.snackNotifier.change;
+    state.snackNotifier.color = color;
+    state.snackNotifier.message = message;
   }
 };
