@@ -69,6 +69,9 @@ export default class PostTop extends Vue {
   @Action("removePost", { namespace: "feed" })
   private removePost!: Function;
 
+  @Action("setSnackNotifier", { namespace: "dialog" })
+  private setSnackNotifier!: Function;
+
   private menuActions: object[] = [
     {
       label: "Edit",
@@ -117,6 +120,12 @@ export default class PostTop extends Vue {
 
     // Self immolate if succeeded.
     if (isDeleted) {
+      // Notify
+      this.setSnackNotifier({
+        color: "orange darken-3",
+        message: "Post has been deleted! 🤔"
+      });
+
       this.removePost(this.postPublicId);
     }
   }
