@@ -1,6 +1,27 @@
 <template>
-  <v-dialog persistent :value.sync="show" max-width="35em">
+  <v-dialog
+    persistent
+    max-width="45em"
+    :value.sync="show"
+    :overlay-opacity="0.9"
+  >
     <v-card>
+      <v-toolbar dense flat>
+        <v-toolbar-title class="b">
+          Edit post
+        </v-toolbar-title>
+
+        <v-spacer></v-spacer>
+
+        <v-toolbar-items>
+          <v-btn icon @click="toggleEditDialog">
+            <v-icon>
+              ion-ios-close
+            </v-icon>
+          </v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
+
       <Top :author="currentUser" :postPublicId="null" />
 
       <ValidationObserver ref="observe">
@@ -122,6 +143,6 @@ export default class Edit extends Vue {
         this.toggleEditDialog();
       }
     }
-  }
+  } // Validate fields
 }
 </script>
