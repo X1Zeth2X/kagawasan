@@ -47,11 +47,9 @@
         type="warning"
         border="left"
         colored-border
-        outlined
         icon="ion-ios-information-circle"
       >
-        There are no confirmation prompts yet,
-        so becareful when deleting posts.
+        There are no confirmation prompts yet, so becareful when deleting posts.
       </v-alert>
     </v-col>
   </v-row>

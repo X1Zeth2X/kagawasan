@@ -76,7 +76,7 @@ export default class PostTop extends Vue {
     },
     {
       label: "Delete",
-      action: this.deletePost,
+      action: this.deletePost
     },
     {
       label: "Report",

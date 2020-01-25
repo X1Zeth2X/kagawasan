@@ -4,7 +4,7 @@ import { PostState } from "./types";
 export const mutations: MutationTree<PostState> = {
   postRequest(state) {
     state.requesting = true;
-    state.errorMsg = null
+    state.errorMsg = null;
   },
 
   postSuccess(state) {

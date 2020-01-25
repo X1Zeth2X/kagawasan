@@ -7,7 +7,7 @@ export const getters: GetterTree<PostState, RootState> = {
     return state.requesting;
   },
 
-  errorMsg(state): string | null{
+  errorMsg(state): string | null {
     return state.errorMsg;
   },
 

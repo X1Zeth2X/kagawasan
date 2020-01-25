@@ -41,7 +41,13 @@
     <div v-if="comments !== null">
       <v-divider></v-divider>
       <div class="tc fw2">
-        <v-btn block text color="primary" class="fw9">
+        <v-btn
+          block
+          text
+          color="primary"
+          class="fw9"
+          v-if="this.comments.length > 5"
+        >
           <v-icon class="mr2 mt1">ion-ios-arrow-dropup</v-icon>
           View Previous Comments
           {{ `(${comments.length}/${post.comments.length})` }}
