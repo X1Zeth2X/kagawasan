@@ -33,7 +33,14 @@
         </v-btn-toggle>
         <v-spacer></v-spacer>
 
-        <v-btn fab small color="teal" dark @click="validateFields">
+        <v-btn
+          fab
+          small
+          color="teal"
+          dark
+          :loading="creating"
+          @click="validateFields"
+        >
           <v-icon>
             ion-ios-send
           </v-icon>
@@ -66,11 +73,16 @@ const namespace: string = "post";
   }
 })
 export default class Composer extends Vue {
+  @Getter("creating", { namespace }) private creating!: boolean;
+
   @Getter("createErrorMsg", { namespace })
   private createErrorMsg!: string;
 
   @Action("create", { namespace })
   private create!: Function;
+
+  @Action("setSnackNotifier", { namespace: "dialog" })
+  private setSnackNotifier!: Function;
 
   public $refs!: {
     writer: InstanceType<typeof Writer>;
@@ -121,6 +133,11 @@ export default class Composer extends Vue {
       this.$refs.writer.resetValidator();
       this.postData.content = "";
       this.postData.image_id = "";
+
+      this.setSnackNotifier({
+        color: "success",
+        message: "Post has been created. 😄"
+      });
     }
   }
 }

@@ -58,11 +58,11 @@ export const actions: ActionTree<PostState, RootState> = {
   }, // Unlike post
 
   async create({ commit }, data: CreateData) {
-    commit("postRequest");
+    commit("createRequest");
 
     try {
       const post = await PostService.create(data);
-      commit("postSuccess");
+      commit("createSuccess");
 
       // Return newly created post.
       return post;

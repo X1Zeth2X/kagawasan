@@ -7,6 +7,7 @@ import { mutations } from "./mutations";
 import { actions } from "./actions";
 
 const state: PostState = {
+  creating: false,
   requesting: false,
 
   errorMsg: null,

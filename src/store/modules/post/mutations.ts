@@ -11,13 +11,23 @@ export const mutations: MutationTree<PostState> = {
     state.requesting = false;
   },
 
-  createError(state, errorMsg: string) {
-    state.requesting = false;
-    state.createErrorMsg = errorMsg;
-  },
-
   postError(state, errorMsg: string) {
     state.requesting = false;
     state.errorMsg = errorMsg;
+  },
+
+  // Create
+  createRequest(state) {
+    state.creating = true;
+    state.createErrorMsg = null;
+  },
+
+  createSuccess(state) {
+    state.creating = false;
+  },
+
+  createError(state, errorMsg: string) {
+    state.creating = false;
+    state.createErrorMsg = errorMsg;
   }
 };

@@ -8,7 +8,7 @@
           </div>
           <p>Adjust application and user settings.</p>
 
-          <v-expansion-panels focusable>
+          <v-expansion-panels focusable class="b-card">
             <Layout />
             <Content />
           </v-expansion-panels>

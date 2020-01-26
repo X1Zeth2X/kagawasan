@@ -17,5 +17,12 @@ export const actions: ActionTree<DialogState, RootState> = {
       content: editData.content,
       postPublicId: editData.postPublicId
     });
+  },
+
+  setSnackNotifier({ commit }, snackData) {
+    commit("setSnackNotifier", {
+      color: snackData.color,
+      message: snackData.message
+    });
   }
 };

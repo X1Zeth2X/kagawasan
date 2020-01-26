@@ -13,6 +13,12 @@ export const state: DialogState = {
   editPost: {
     content: null,
     postPublicId: null
+  },
+
+  snackNotifier: {
+    change: false,
+    message: null,
+    color: "info"
   }
 };
 

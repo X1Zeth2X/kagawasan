@@ -4,6 +4,7 @@
       <StandardLayout />
 
       <EditDialog v-if="showEdit" :show="showEdit" />
+      <SnackNotifier />
     </v-container>
   </div>
 </template>
@@ -14,6 +15,7 @@ import Component from "vue-class-component";
 import { Getter } from "vuex-class";
 
 import StandardLayout from "@/components/Home/StandardLayout.vue";
+import SnackNotifier from "@/components/SnackNotifier.vue";
 const EditDialog = () => import("@/components/EditDialog.vue");
 
 const Prism = require("prismjs");
@@ -21,7 +23,8 @@ const Prism = require("prismjs");
 @Component({
   components: {
     StandardLayout,
-    EditDialog
+    EditDialog,
+    SnackNotifier
   }
 })
 export default class Home extends Vue {
