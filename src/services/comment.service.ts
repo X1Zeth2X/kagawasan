@@ -65,7 +65,7 @@ const CommentService = {
 
     try {
       const apiResponse = await ApiService.post(resource, data);
-      
+
       // Return newly created commment.
       return apiResponse.data.comment;
     } catch (error) {
@@ -104,7 +104,7 @@ const CommentService = {
       throw new CommentError(error.response.data.message);
     }
   } // Delete comment
-}
+};
 
 export default CommentService;
 export { CommentService, CommentError, CreateData };

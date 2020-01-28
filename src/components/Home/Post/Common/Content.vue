@@ -30,7 +30,7 @@ import { Prop } from "vue-property-decorator";
   Lazy load truncate/markdown because it does need to get imported
   if it is turned off in the settings.
 */
-const VueMarkdown = () => import("vue-markdown");
+const VueMarkdown = () => import("vue-markdown-konishi");
 const truncate = () => import("vue-truncate-collapsed");
 
 @Component({
@@ -46,3 +46,7 @@ export default class Content extends Vue {
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
 }
 </script>
+
+<style lang="scss" scoped>
+@import url(https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css);
+</style>
