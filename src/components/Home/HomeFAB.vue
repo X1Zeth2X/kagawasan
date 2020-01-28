@@ -13,7 +13,7 @@
       </v-btn>
     </template>
 
-    <v-btn fab color="teal" @click="highlight" :disabled="highlighted">
+    <v-btn fab color="teal" @click="highlight">
       <v-icon>ion-ios-color-wand</v-icon>
     </v-btn>
 
@@ -32,13 +32,9 @@ const Prism = require("prismjs");
 @Component
 export default class HomeFAB extends Vue {
   private fab: boolean = false;
-  private highlighted: boolean = false;
 
   private highlight() {
-    if (!this.highlighted) {
-      Prism.highlightAll();
-      this.highlighted = !this.highlighted;
-    }
+    Prism.highlightAll();
   }
 
   private scrollUp() {
