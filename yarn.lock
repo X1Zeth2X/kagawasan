@@ -8828,9 +8828,9 @@ vue-loader@^15.7.2:
     vue-style-loader "^4.1.0"
 
 vue-markdown-konishi@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/vue-markdown-konishi/-/vue-markdown-konishi-0.2.2.tgz#c85a0812cde960a6a7a72bc8682652b6a0934593"
-  integrity sha512-MhhcDgyiWD808HIv8P/DGiHpI5o8WETlOscPxvAW+FneSQxK+dOXgyYYqeQPn8ByX8996Z+ebG8/lV1sK68LVA==
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/vue-markdown-konishi/-/vue-markdown-konishi-0.2.3.tgz#2c46f651d8cc3042af018ac4397eaf7ba11ab9a6"
+  integrity sha512-NdW2Eez3+sWohgn/9vT5AZrfdc/yO9aksvtapfvxkOvL6GimPQwE9RWpoOsXVFUufE6z/7y2aPGq4qAMG9qI3Q==
   dependencies:
     "@iktakahiro/markdown-it-katex" "git+https://github.com/iktakahiro/markdown-it-katex.git"
     markdown-it "^8.4.2"
@@ -8842,6 +8842,7 @@ vue-markdown-konishi@^0.2.2:
     markdown-it-sub "^1.0.0"
     markdown-it-sup "^1.0.0"
     markdown-it-task-lists "^2.1.1"
+    prismjs "^1.19.0"
 
 vue-property-decorator@^8.3.0:
   version "8.3.0"

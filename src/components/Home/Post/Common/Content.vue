@@ -30,7 +30,7 @@ import { Prop } from "vue-property-decorator";
   Lazy load truncate/markdown because it does need to get imported
   if it is turned off in the settings.
 */
-const VueMarkdown = () => import("vue-markdown");
+const VueMarkdown = () => import("vue-markdown-konishi");
 const truncate = () => import("vue-truncate-collapsed");
 
 @Component({
