@@ -4,7 +4,9 @@
 
     <v-content>
       <v-slide-y-reverse-transition mode="out-in">
-        <router-view :key="$route.fullPath"></router-view>
+        <keep-alive max="2">
+          <router-view :key="$route.fullPath"></router-view>
+        </keep-alive>
       </v-slide-y-reverse-transition>
     </v-content>
   </v-app>
