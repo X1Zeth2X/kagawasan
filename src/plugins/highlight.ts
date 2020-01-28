@@ -1,6 +1,3 @@
-import store from "@/store";
-const isDark = "settings/darkMode";
-
 // Highlighter stuff.
 import "prismjs";
 
