@@ -46,3 +46,7 @@ export default class Content extends Vue {
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
 }
 </script>
+
+<style lang="scss" scoped>
+@import url(https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css);
+</style>
