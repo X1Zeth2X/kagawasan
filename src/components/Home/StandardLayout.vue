@@ -1,5 +1,6 @@
 <template>
   <v-row align="start" justify="space-around">
+    <!-- Left aligned items -->
     <v-col md="7">
       <div class="f3 fw7">Create</div>
       <p>What's on your mind?</p>
@@ -36,7 +37,9 @@
       </infinite-loading>
     </v-col>
 
+    <!-- Right aligned items: shown in medium viewpoints and up. -->
     <v-col md="4" v-if="$vuetify.breakpoint.mdAndUp">
+      <HomeFAB />
       <div class="f3 fw7">Announcements</div>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus,
@@ -68,6 +71,7 @@ const InfiniteLoading = () => import("vue-infinite-loading");
 
 import PostMain from "./Post/Main.vue";
 import Composer from "./Composer.vue";
+import HomeFAB from "./HomeFAB.vue";
 
 const namespace: string = "feed";
 
@@ -75,7 +79,8 @@ const namespace: string = "feed";
   components: {
     Composer,
     PostMain,
-    InfiniteLoading
+    InfiniteLoading,
+    HomeFAB
   }
 })
 export default class StandardLayout extends Vue {
