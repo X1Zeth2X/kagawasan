@@ -78,7 +78,3 @@ export default class PostActions extends Vue {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-@import url(https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css);
-</style>
