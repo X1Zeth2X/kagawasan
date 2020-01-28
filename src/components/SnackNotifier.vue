@@ -3,7 +3,8 @@
     <span class="white--text fw5">
       {{ message }}
     </span>
-    <v-btn icon text>
+
+    <v-btn icon text @click="show = false">
       <v-icon>ion-ios-close</v-icon>
     </v-btn>
   </v-snackbar>
