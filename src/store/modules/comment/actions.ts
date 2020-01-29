@@ -1,7 +1,10 @@
 import { ActionTree } from "vuex";
 import { PostState } from "./types";
 import { RootState } from "@/store/types";
-import CommentService, { CommentError, CreateData } from '@/services/comment.service';
+import CommentService, {
+  CommentError,
+  CreateData
+} from "@/services/comment.service";
 import { Comment } from "@/store/post";
 
 export const actions: ActionTree<PostState, RootState> = {
@@ -57,7 +60,7 @@ export const actions: ActionTree<PostState, RootState> = {
     }
   }, // Unlike comment
 
-  async create({ commit }, {postPublicId, data}) {
+  async create({ commit }, { postPublicId, data }) {
     commit("commentRequest");
 
     try {
