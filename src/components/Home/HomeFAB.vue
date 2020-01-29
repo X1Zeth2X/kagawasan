@@ -7,7 +7,7 @@
     v-model="fab"
   >
     <template v-slot:activator>
-      <v-btn fab>
+      <v-btn fab color="info">
         <v-icon v-if="fab">ion-ios-close</v-icon>
         <v-icon v-else>ion-md-more</v-icon>
       </v-btn>
