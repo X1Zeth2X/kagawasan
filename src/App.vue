@@ -37,5 +37,9 @@ export default class App extends Vue {}
   .ml-negative {
     margin-left: -0.3em;
   }
+
+  .mb-negative {
+    margin-bottom: -1em;
+  }
 }
 </style>
