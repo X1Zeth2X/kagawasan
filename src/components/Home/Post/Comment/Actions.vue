@@ -4,7 +4,7 @@
     &middot;
 
     <span class="b f7 text-end">
-      <a>
+      <a @click="$emit('reply')">
         Reply
       </a>
     </span>
@@ -17,8 +17,7 @@
     </v-btn>
 
     <div>
-      <v-btn x-small outlined>
-        <v-icon x-small class="mr1">ion-ios-return-right</v-icon>
+      <v-btn x-small rounded depressed block>
         Replies (3)
       </v-btn>
     </div>
