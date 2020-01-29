@@ -2,6 +2,8 @@
   <v-row align="start" justify="space-around">
     <!-- Left aligned items -->
     <v-col md="7">
+      <HomeFAB />
+
       <div class="f3 fw7">Create</div>
       <p>What's on your mind?</p>
       <Composer v-on:addPost="addPost" />
@@ -39,7 +41,6 @@
 
     <!-- Right aligned items: shown in medium viewpoints and up. -->
     <v-col md="4" v-if="$vuetify.breakpoint.mdAndUp">
-      <HomeFAB />
       <div class="f3 fw7">Announcements</div>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus,
