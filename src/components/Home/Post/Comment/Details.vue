@@ -1,6 +1,6 @@
 <template>
   <div id="commentDetails">
-    <a class="b link f6">
+    <a class="b link f6 primary--text">
       {{ author.full_name ? author.full_name : `@${author.username}` }}
     </a>
 
