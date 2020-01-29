@@ -23,7 +23,7 @@
       Edited
     </v-chip>
 
-    <v-btn icon class="ml1">
+    <v-btn icon class="ml1" disabled>
       <v-icon>ion-ios-save</v-icon>
     </v-btn>
   </v-card-actions>
