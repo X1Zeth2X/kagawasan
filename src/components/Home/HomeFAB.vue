@@ -13,7 +13,14 @@
       </v-btn>
     </template>
 
-    <v-btn fab color="green" @click="highlight" :disabled="!markdown" small dark>
+    <v-btn
+      fab
+      color="green"
+      @click="highlight"
+      :disabled="!markdown"
+      small
+      dark
+    >
       <v-icon>ion-ios-color-wand</v-icon>
     </v-btn>
 
@@ -26,7 +33,7 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import { Getter } from 'vuex-class';
+import { Getter } from "vuex-class";
 
 const Prism = require("prismjs");
 
