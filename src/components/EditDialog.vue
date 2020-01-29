@@ -5,7 +5,7 @@
     :value.sync="show"
     :overlay-opacity="0.9"
   >
-    <v-card>
+    <v-card class="b-card" outlined>
       <v-toolbar dense flat>
         <v-toolbar-title class="b">
           Edit post
