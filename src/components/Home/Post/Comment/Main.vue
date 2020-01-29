@@ -5,7 +5,12 @@
     <v-list-item-content
       :class="$vuetify.breakpoint.mdAndUp ? 'ml-negative' : 'ml2'"
     >
-      <CommentDetails :author="comment.author" :date="comment.created" />
+      <CommentDetails
+        :author="comment.author"
+        :date="comment.created"
+        :commentId="comment.id"
+        v-on:deleted="$emit('removeComment')"
+      />
 
       <p class="f6 pt0">
         <Content :content="comment.content" :highlight="true" />
