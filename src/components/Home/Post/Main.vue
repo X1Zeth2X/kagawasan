@@ -56,7 +56,8 @@
       </div>
 
       <Comment
-        v-for="comment in comments"
+        v-for="(comment, index) in comments"
+        v-on:removeComment="removeComment(index)"
         :key="comment.public_id"
         :comment="comment"
       />
@@ -165,6 +166,10 @@ export default class PostMain extends Vue {
 
     // Toggle edit dialog.
     this.toggleEditDialog();
+  }
+
+  private removeComment(index: number) {
+    this.comments.splice(index, 1);
   }
 
   private get showLoadMore(): boolean {
