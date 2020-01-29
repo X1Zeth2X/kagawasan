@@ -44,6 +44,7 @@
         <v-btn
           block
           text
+          tile
           color="primary"
           class="fw9"
           v-if="showLoadMore"
@@ -63,7 +64,7 @@
     </div>
 
     <v-scale-transition>
-      <Composer v-if="commenting" />
+      <Composer v-if="commenting" :placeholder="'Write a comment...'" />
     </v-scale-transition>
     <!-- Comment Composer -->
   </v-card>

@@ -1,21 +1,19 @@
 <template>
-  <v-row align="start">
-    <v-list-item three-line class="comment">
-      <CommentAvatar v-show="$vuetify.breakpoint.mdAndUp" />
+  <v-list-item three-line class="comment">
+    <CommentAvatar v-show="$vuetify.breakpoint.mdAndUp" />
 
-      <v-list-item-content
-        :class="$vuetify.breakpoint.mdAndUp ? 'ml-negative' : 'ml2'"
-      >
-        <CommentDetails :author="comment.author" :date="comment.created" />
+    <v-list-item-content
+      :class="$vuetify.breakpoint.mdAndUp ? 'ml-negative' : 'ml2'"
+    >
+      <CommentDetails :author="comment.author" :date="comment.created" />
 
-        <p class="f6 pt0">
-          <Content :content="comment.content" :highlight="true" />
-        </p>
+      <p class="f6 pt0">
+        <Content :content="comment.content" :highlight="true" />
+      </p>
 
-        <CommentActions />
-      </v-list-item-content>
-    </v-list-item>
-  </v-row>
+      <CommentActions />
+    </v-list-item-content>
+  </v-list-item>
 </template>
 
 <script lang="ts">
@@ -51,7 +49,6 @@ export default class CommentMain extends Vue {
 
 <style lang="scss">
 .comment {
-  margin-left: 0.3em;
-  margin-right: 0.75em;
+  margin-left: -0.4em;
 }
 </style>
