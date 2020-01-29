@@ -3,11 +3,9 @@
     <span class="f7">3 likes</span>
     &middot;
 
-    <span class="b f7 text-end">
-      <a @click="$emit('reply')">
-        Reply
-      </a>
-    </span>
+    <a @click="$emit('reply')" class="b f7 text-end">
+      Reply
+    </a>
     &middot;
 
     <v-btn x-small icon>
