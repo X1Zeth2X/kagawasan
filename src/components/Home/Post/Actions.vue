@@ -7,11 +7,7 @@
     </v-btn>
     <span class="mb1 f6 mr1">{{ keks }}</span>
 
-    <v-btn
-      icon
-      @click="$emit('toggleCommenting')"
-      :color="commenting ? 'primary' : ''"
-    >
+    <v-btn icon @click="$emit('comment')">
       <v-icon>ion-ios-chatboxes</v-icon>
     </v-btn>
     <span class="mb1 f6">{{ action.comments }}</span>
@@ -40,7 +36,6 @@ const namespace: string = "post";
 @Component
 export default class PostActions extends Vue {
   @Prop() action!: any;
-  @Prop() commenting!: boolean;
   @Prop() postPublicId!: string;
 
   @Action("like", { namespace })
