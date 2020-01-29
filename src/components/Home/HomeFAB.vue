@@ -13,11 +13,11 @@
       </v-btn>
     </template>
 
-    <v-btn fab color="teal" @click="highlight">
+    <v-btn fab color="green" @click="highlight" :disabled="!markdown" small dark>
       <v-icon>ion-ios-color-wand</v-icon>
     </v-btn>
 
-    <v-btn fab color="accent" @click="scrollUp">
+    <v-btn fab color="indigo" @click="scrollUp" small dark>
       <v-icon>ion-ios-arrow-up</v-icon>
     </v-btn>
   </v-speed-dial>
@@ -26,11 +26,14 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
+import { Getter } from 'vuex-class';
 
 const Prism = require("prismjs");
 
 @Component
 export default class HomeFAB extends Vue {
+  @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
+
   private fab: boolean = false;
 
   private highlight() {
