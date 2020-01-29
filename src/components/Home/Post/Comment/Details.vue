@@ -17,8 +17,11 @@
         </template>
 
         <v-list>
-          <v-list-item>Edit</v-list-item>
-          <v-list-item>Delete</v-list-item>
+          <div v-for="item in menuActions" :key="item.label">
+            <v-list-item @click="item.action" v-if="modifiable">
+              {{ item.label }}
+            </v-list-item>
+          </div>
         </v-list>
       </v-menu>
     </span>
@@ -32,11 +35,76 @@ import Component from "vue-class-component";
 import moment from "moment";
 import { Prop } from "vue-property-decorator";
 import { Author } from "@/store/post";
+import { Getter, Action } from 'vuex-class';
+import { User } from "@/store/modules/auth/types";
+
+const namespace: string = "comment";
 
 @Component
 export default class CommentDetails extends Vue {
   @Prop() author!: Author;
   @Prop() date!: string;
+  @Prop() commentId!: number;
+
+  @Getter("currentUser", { namespace: "auth" })
+  private currentUser!: User;
+
+  @Action("delete", { namespace })
+  private delete!: Function;
+
+  @Action("setSnackNotifier", { namespace: "dialog" })
+  private setSnackNotifier!: Function;
+
+  private menuActions: object[] = [
+    {
+      label: "Edit",
+      action: this.editComment
+    },
+    {
+      label: "Delete",
+      action: this.deleteComment
+    },
+    {
+      label: "Report",
+      action: () => null
+    }
+  ];
+
+  private editComment() {
+    this.$emit("edit");
+  }
+
+  private async deleteComment() {
+    const isDeleted: boolean = await this.delete(this.commentId);
+
+    // Self immolate if succeeded.
+    if (isDeleted) {
+      // Notify
+      this.setSnackNotifier({
+        color: "orange darken-3",
+        message: "Comment has been deleted! 🤔"
+      });
+
+
+      this.$emit("deleted");
+    }
+  }
+
+  // Checks if the current user can modify the post.
+  private modifiable(label: string): boolean {
+    // Add more ignore options (If needed).
+    const ignore = ["Report"];
+
+    // Makes sure that the label is not in ignore.
+    if (!ignore.includes(label)) {
+      // Return true if the current user is the owner of the post.
+      return this.currentUser.public_id === this.author.public_id
+        ? true
+        : false;
+    }
+
+    return true;
+  }
 
   private get prettyDate(): string {
     const prettyDate: string = moment.utc(this.date).fromNow();
