@@ -31,10 +31,9 @@
 
     <PostActions
       :action="actionProps"
-      :commenting="commenting"
       :postPublicId="post.public_id"
+      v-on:comment="commenting = true"
       ref="postActions"
-      v-on:toggleCommenting="toggleCommenting"
     />
     <!-- Post Actions (Like, Comment, ...) -->
 
@@ -63,9 +62,17 @@
       />
     </div>
 
-    <v-scale-transition>
-      <Composer v-if="commenting" :placeholder="'Write a comment...'" />
-    </v-scale-transition>
+    <v-scroll-x-transition mode="out-in">
+      <Composer
+        class="mb-negative ph3 pt2"
+        v-if="commenting"
+        :placeholder="'Write a comment...'"
+      />
+
+      <div v-else class="pa2">
+        <v-btn block class="b-card" @click="commenting = true">Comment</v-btn>
+      </div>
+    </v-scroll-x-transition>
     <!-- Comment Composer -->
   </v-card>
 </template>
@@ -138,10 +145,6 @@ export default class PostMain extends Vue {
       this.comments = this.post.initial_comments;
     }
   } // Lifecycle
-
-  private toggleCommenting() {
-    this.commenting = !this.commenting;
-  }
 
   private toggleKek() {
     this.$refs.postActions.toggleKek();

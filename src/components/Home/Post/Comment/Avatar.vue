@@ -18,6 +18,6 @@ import Component from "vue-class-component";
 
 @Component
 export default class CommentAvatar extends Vue {
-  private avatar: boolean = true;
+  private avatar: boolean = false;
 }
 </script>

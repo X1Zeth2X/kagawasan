@@ -1,5 +1,5 @@
 <template>
-  <div id="commentComposer" class="mh3 mt3">
+  <div>
     <ValidationObserver ref="observe">
       <ValidationProvider
         mode="lazy"
@@ -9,15 +9,15 @@
         spellcheck="false"
       >
         <v-textarea
-          :placeholder="placeholder"
           class="b-card"
           rows="2"
           auto-grow
           solo
           outlined
           v-model="submitData.content"
-          :error-messages="errors[0]"
           filled
+          :placeholder="placeholder"
+          :error-messages="errors[0]"
         >
           <template v-slot:append>
             <v-btn icon class="info mb3 ml1" elevation="2" dark small>

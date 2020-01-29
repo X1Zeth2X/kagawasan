@@ -11,7 +11,15 @@
         <Content :content="comment.content" :highlight="true" />
       </p>
 
-      <CommentActions />
+      <CommentActions v-on:reply="replying = true" />
+
+      <v-scroll-x-transition mode="out-in">
+        <Composer
+          class="mb-negative pt2"
+          v-if="replying"
+          :placeholder="'Write a reply...'"
+        />
+      </v-scroll-x-transition>
     </v-list-item-content>
   </v-list-item>
 </template>
@@ -29,6 +37,7 @@ import CommentActions from "./Actions.vue";
 
 // Import content component.
 import Content from "../Common/Content.vue";
+const Composer = () => import("../Common/Composer.vue");
 
 import { Getter } from "vuex-class";
 
@@ -37,13 +46,16 @@ import { Getter } from "vuex-class";
     CommentAvatar,
     CommentDetails,
     CommentActions,
-    Content
+    Content,
+    Composer
   }
 })
 export default class CommentMain extends Vue {
   @Prop() comment!: Comment;
 
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
+
+  private replying: boolean = false;
 }
 </script>
 

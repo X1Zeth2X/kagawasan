@@ -74,7 +74,7 @@
       </v-container>
     </v-col>
 
-    <v-col md="7" cols="12" class="right"> </v-col>
+    <v-col md="7" cols="12" class="right"></v-col>
   </v-row>
 </template>
 
