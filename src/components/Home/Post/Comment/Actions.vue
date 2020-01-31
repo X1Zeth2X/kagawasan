@@ -9,13 +9,19 @@
     &middot;
 
     <v-btn x-small icon>
-      <v-icon x-small :color="kekGiven ? 'red lighten-1' : ''" @click="toggleKek">
-        {{ kekGiven ? 'ion-ios-heart' : 'ion-ios-heart-empty' }}
+      <v-icon
+        x-small
+        :color="kekGiven ? 'red lighten-1' : ''"
+        @click="toggleKek"
+      >
+        {{ kekGiven ? "ion-ios-heart" : "ion-ios-heart-empty" }}
       </v-icon>
     </v-btn>
 
     <div>
-      <v-btn x-small rounded depressed block> Replies ({{ action.replies }}) </v-btn>
+      <v-btn x-small rounded depressed block>
+        Replies ({{ action.replies }})
+      </v-btn>
     </div>
   </div>
 </template>
@@ -24,14 +30,14 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import { Prop } from "vue-property-decorator";
-import { Action } from 'vuex-class';
+import { Action } from "vuex-class";
 
 const namespace: string = "comment";
 
 interface ActionProps {
   kekGiven: boolean;
   keks: number;
-  replies: number
+  replies: number;
 }
 
 @Component

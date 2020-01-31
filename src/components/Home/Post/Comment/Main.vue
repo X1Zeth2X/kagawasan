@@ -1,6 +1,6 @@
 <template>
   <v-list-item three-line class="comment">
-    <CommentAvatar class="hidden-sm-and-down"/>
+    <CommentAvatar class="hidden-sm-and-down" />
 
     <v-list-item-content
       :class="$vuetify.breakpoint.mdAndUp ? 'ml-negative' : 'ml2'"
@@ -70,7 +70,7 @@ export default class CommentMain extends Vue {
     kekGiven: this.comment.liked,
     keks: this.comment.likes.length,
     replies: this.comment.replies.length
-  }
+  };
 }
 </script>
 
