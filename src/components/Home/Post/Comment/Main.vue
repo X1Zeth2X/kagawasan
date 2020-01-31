@@ -1,6 +1,6 @@
 <template>
   <v-list-item three-line class="comment">
-    <CommentAvatar v-show="$vuetify.breakpoint.mdAndUp" />
+    <CommentAvatar class="hidden-sm-and-down" />
 
     <v-list-item-content
       :class="$vuetify.breakpoint.mdAndUp ? 'ml-negative' : 'ml2'"
@@ -16,11 +16,15 @@
         <Content :content="comment.content" :highlight="true" />
       </p>
 
-      <CommentActions v-on:reply="replying = true" />
+      <CommentActions
+        v-on:reply="replying = true"
+        :action="actionProps"
+        :commentId="comment.id"
+      />
 
       <v-scroll-x-transition mode="out-in">
         <Composer
-          class="mb-negative pt2"
+          class="mb-negative-reply pt2"
           v-if="replying"
           :placeholder="'Write a reply...'"
         />
@@ -61,6 +65,12 @@ export default class CommentMain extends Vue {
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
 
   private replying: boolean = false;
+
+  private actionProps: object = {
+    kekGiven: this.comment.liked,
+    keks: this.comment.likes.length,
+    replies: this.comment.replies.length
+  };
 }
 </script>
 

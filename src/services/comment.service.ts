@@ -11,7 +11,7 @@ class CommentError extends Error {
 
 interface CreateData {
   content: string;
-  // image_id: string;
+  image_id: string | null;
 }
 
 const CommentService = {

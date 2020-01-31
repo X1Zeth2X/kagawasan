@@ -65,9 +65,12 @@
 
     <v-scroll-x-transition mode="out-in">
       <Composer
-        class="mb-negative ph3 pt2"
-        v-if="commenting"
+        ref="commentComposer"
+        class="mb-negative-comment ph3 pt2"
         :placeholder="'Write a comment...'"
+        :loading="creatingComment"
+        v-if="commenting"
+        v-on:submit="createComment"
       />
 
       <div v-else class="pa2">
@@ -89,7 +92,8 @@ import Content from "./Common/Content.vue";
 
 import { Prop } from "vue-property-decorator";
 import { backendUrl } from "@/services/api.service";
-import { Post } from "@/store/post";
+import { Post, Comment as CommentType } from "@/store/post";
+import { CreateData } from "@/services/post.service";
 
 const Comment = () => import("./Comment/Main.vue");
 const Composer = () => import("./Common/Composer.vue");
@@ -115,14 +119,21 @@ export default class PostMain extends Vue {
 
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
 
+  @Getter("commenting", { namespace: "comment" })
+  private creatingComment!: boolean;
+
   @Action("toggleEditDialog", { namespace: "dialog" })
   private toggleEditDialog!: Function;
 
   @Action("setEditPost", { namespace: "dialog" })
   private setEditPost!: Function;
 
+  @Action("create", { namespace: "comment" })
+  private commentOnPost!: Function;
+
   public $refs!: {
     postActions: InstanceType<typeof PostActions>;
+    commentComposer: any;
   };
 
   private comments: object[] = [];
@@ -166,6 +177,19 @@ export default class PostMain extends Vue {
 
     // Toggle edit dialog.
     this.toggleEditDialog();
+  }
+
+  private async createComment(createData: CreateData) {
+    const vuexResp: CommentType = await this.commentOnPost({
+      postPublicId: this.post.public_id,
+      data: createData
+    });
+
+    if (vuexResp) {
+      // Add newly created comment to comments.
+      this.comments = [...this.comments, vuexResp];
+      this.$refs.commentComposer.resetFields();
+    }
   }
 
   private removeComment(index: number) {

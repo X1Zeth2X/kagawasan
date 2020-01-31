@@ -42,10 +42,6 @@
     <!-- Right aligned items: shown in medium viewpoints and up. -->
     <v-col md="4" v-if="$vuetify.breakpoint.mdAndUp">
       <div class="f3 fw7">Announcements</div>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus,
-        cumque?
-      </p>
 
       <v-alert
         type="warning"

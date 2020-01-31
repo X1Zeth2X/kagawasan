@@ -39,7 +39,13 @@ export default class App extends Vue {}
   }
 
   .mb-negative {
-    margin-bottom: -1em;
+    &-reply {
+      margin-bottom: -1.2em;
+    }
+
+    &-comment {
+      margin-bottom: -0.5em;
+    }
   }
 }
 </style>

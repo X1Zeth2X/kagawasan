@@ -18,7 +18,7 @@
 
         <v-list>
           <div v-for="item in menuActions" :key="item.label">
-            <v-list-item @click="item.action" v-if="modifiable">
+            <v-list-item @click="item.action" v-if="modifiable(item.label)">
               {{ item.label }}
             </v-list-item>
           </div>
@@ -35,7 +35,7 @@ import Component from "vue-class-component";
 import moment from "moment";
 import { Prop } from "vue-property-decorator";
 import { Author } from "@/store/post";
-import { Getter, Action } from 'vuex-class';
+import { Getter, Action } from "vuex-class";
 import { User } from "@/store/modules/auth/types";
 
 const namespace: string = "comment";
@@ -84,7 +84,6 @@ export default class CommentDetails extends Vue {
         color: "orange darken-3",
         message: "Comment has been deleted! 🤔"
       });
-
 
       this.$emit("deleted");
     }
