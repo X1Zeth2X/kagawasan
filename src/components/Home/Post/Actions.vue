@@ -33,9 +33,14 @@ import { Action } from "vuex-class";
 
 const namespace: string = "post";
 
+interface ActionProps {
+  kekGiven: boolean;
+  keks: number;
+}
+
 @Component
 export default class PostActions extends Vue {
-  @Prop() action!: any;
+  @Prop() action!: ActionProps;
   @Prop() postPublicId!: string;
 
   @Action("like", { namespace })
@@ -47,18 +52,18 @@ export default class PostActions extends Vue {
   private kekGiven: boolean = this.action.kekGiven;
   private keks: number = this.action.keks;
 
-  private unlikePost() {
-    this.kekGiven = false;
-    this.keks = this.keks - 1;
-
-    this.unlikePostVuex(this.postPublicId);
-  }
-
   private likePost() {
     this.kekGiven = true;
     this.keks++;
 
     this.likePostVuex(this.postPublicId);
+  }
+
+  private unlikePost() {
+    this.kekGiven = false;
+    this.keks--;
+
+    this.unlikePostVuex(this.postPublicId);
   }
 
   public toggleKek() {
