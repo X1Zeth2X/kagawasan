@@ -10,10 +10,24 @@
         :date="comment.created"
         :commentId="comment.id"
         v-on:deleted="$emit('removeComment')"
+        v-on:edit="editing = true"
       />
 
       <p class="f6 pt0">
-        <Content :content="comment.content" :highlight="true" />
+        <v-scroll-x-transition mode="out-in">
+          <Content
+            v-if="!editing"
+            :content="comment.content"
+            :highlight="true"
+          />
+
+          <Edit
+            v-else
+            class="mb-negative-comment"
+            :content="comment.content"
+            v-on:cancel="editing = false"
+          />
+        </v-scroll-x-transition>
       </p>
 
       <CommentActions
@@ -46,7 +60,9 @@ import CommentActions from "./Actions.vue";
 
 // Import content component.
 import Content from "../Common/Content.vue";
+
 const Composer = () => import("../Common/Composer.vue");
+const Edit = () => import("../Common/Edit.vue");
 
 import { Getter } from "vuex-class";
 
@@ -56,7 +72,8 @@ import { Getter } from "vuex-class";
     CommentDetails,
     CommentActions,
     Content,
-    Composer
+    Composer,
+    Edit
   }
 })
 export default class CommentMain extends Vue {
@@ -65,6 +82,8 @@ export default class CommentMain extends Vue {
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
 
   private replying: boolean = false;
+
+  private editing: boolean = false;
 
   private actionProps: object = {
     kekGiven: this.comment.liked,
