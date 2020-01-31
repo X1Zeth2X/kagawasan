@@ -16,11 +16,15 @@
         <Content :content="comment.content" :highlight="true" />
       </p>
 
-      <CommentActions v-on:reply="replying = true" />
+      <CommentActions
+        v-on:reply="replying = true"
+        :likes="comment.likes.length"
+        :replies="comment.replies.length"
+      />
 
       <v-scroll-x-transition mode="out-in">
         <Composer
-          class="mb-negative pt2"
+          class="mb-negative-reply pt2"
           v-if="replying"
           :placeholder="'Write a reply...'"
         />
