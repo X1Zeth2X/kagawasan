@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="f7">3 likes</span>
+    <span class="f7">{{ likes }} likes</span>
     &middot;
 
     <a @click="$emit('reply')" class="b f7 text-end">
@@ -15,9 +15,7 @@
     </v-btn>
 
     <div>
-      <v-btn x-small rounded depressed block>
-        Replies (3)
-      </v-btn>
+      <v-btn x-small rounded depressed block> Replies ({{ replies }}) </v-btn>
     </div>
   </div>
 </template>
@@ -25,7 +23,11 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
+import { Prop } from "vue-property-decorator";
 
 @Component
-export default class CommentActions extends Vue {}
+export default class CommentActions extends Vue {
+  @Prop() likes!: number;
+  @Prop() replies!: number;
+}
 </script>
