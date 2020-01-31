@@ -68,6 +68,7 @@
         ref="commentComposer"
         class="mb-negative-comment ph3 pt2"
         :placeholder="'Write a comment...'"
+        :loading="creatingComment"
         v-if="commenting"
         v-on:submit="createComment"
       />
@@ -117,6 +118,9 @@ export default class PostMain extends Vue {
   @Prop() post!: Post;
 
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
+
+  @Getter("commenting", { namespace: "comment" })
+  private creatingComment!: boolean;
 
   @Action("toggleEditDialog", { namespace: "dialog" })
   private toggleEditDialog!: Function;
