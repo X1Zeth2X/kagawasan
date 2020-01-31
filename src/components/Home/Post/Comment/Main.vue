@@ -1,6 +1,6 @@
 <template>
   <v-list-item three-line class="comment">
-    <CommentAvatar v-show="$vuetify.breakpoint.mdAndUp" />
+    <CommentAvatar class="hidden-sm-and-down"/>
 
     <v-list-item-content
       :class="$vuetify.breakpoint.mdAndUp ? 'ml-negative' : 'ml2'"
