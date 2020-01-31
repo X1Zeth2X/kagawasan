@@ -12,27 +12,18 @@
           class="b-card"
           rows="2"
           auto-grow
-          solo
           outlined
           v-model="submitData.content"
           filled
+          @keyup.shift.enter.exact="validateFields"
+          :disabled="loading"
           :placeholder="placeholder"
           :error-messages="errors[0]"
+          hint="Use `Shift + Enter` to submit the content."
         >
           <template v-slot:append>
             <v-btn icon class="info mb3 ml1" elevation="2" dark small disabled>
               <v-icon small>ion-ios-image</v-icon>
-            </v-btn>
-
-            <v-btn
-              icon
-              class="teal mb3 ml1"
-              elevation="2"
-              dark
-              small
-              @click="validateFields"
-            >
-              <v-icon small>ion-ios-send</v-icon>
             </v-btn>
           </template>
         </v-textarea>
@@ -61,6 +52,7 @@ interface SubmitData {
   }
 })
 export default class CommentReplyComposer extends Vue {
+  @Prop() loading!: boolean;
   @Prop() placeholder!: string;
 
   $refs!: {
