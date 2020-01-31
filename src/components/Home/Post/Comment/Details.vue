@@ -18,7 +18,7 @@
 
         <v-list>
           <div v-for="item in menuActions" :key="item.label">
-            <v-list-item @click="item.action" v-if="modifiable">
+            <v-list-item @click="item.action" v-if="modifiable(item.label)">
               {{ item.label }}
             </v-list-item>
           </div>
