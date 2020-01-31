@@ -20,9 +20,10 @@
           :error-messages="errors[0]"
         >
           <template v-slot:append>
-            <v-btn icon class="info mb3 ml1" elevation="2" dark small>
+            <v-btn icon class="info mb3 ml1" elevation="2" dark small disabled>
               <v-icon small>ion-ios-image</v-icon>
             </v-btn>
+
             <v-btn
               icon
               class="teal mb3 ml1"
@@ -46,7 +47,12 @@ import Component from "vue-class-component";
 
 import { ValidationProvider } from "vee-validate/dist/vee-validate.full";
 import { ValidationObserver } from "vee-validate";
-import { Prop } from "vue-property-decorator";
+import { Prop, Emit } from "vue-property-decorator";
+
+interface SubmitData {
+  content: string;
+  imageId: string | null;
+}
 
 @Component({
   components: {
@@ -61,20 +67,32 @@ export default class CommentReplyComposer extends Vue {
     observe: InstanceType<typeof ValidationObserver>;
   };
 
-  private submitData: object = {
+  private submitData: SubmitData = {
     content: "",
-    imageId: ""
+    imageId: null
   };
+
+  @Emit("submit")
+  private submit(data: SubmitData) {
+    return data;
+  }
+
+  public resetFields() {
+    this.$refs.observe.reset();
+
+    this.submitData.content = "";
+    this.submitData.imageId = null;
+  }
 
   private async validateFields() {
     const isValid: boolean = await this.$refs.observe.validate();
 
     if (isValid) {
-      // Return data if valid.
-      return this.submitData;
+      // Emit a submit event with the submit data.
+      this.submit(this.submitData);
     }
-
-    return false;
   }
+
+  // Implement uploader.
 }
 </script>
