@@ -19,7 +19,7 @@
     </v-btn>
 
     <div>
-      <v-btn x-small rounded depressed block>
+      <v-btn x-small rounded depressed block v-show="action.replies > 2">
         Replies ({{ action.replies }})
       </v-btn>
     </div>
