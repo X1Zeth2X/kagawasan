@@ -15,7 +15,7 @@
           outlined
           v-model="submitData.content"
           filled
-          @keyup.shift.enter.exact="validateFields"
+          @keyup.alt.enter.exact="validateFields"
           :disabled="loading"
           :placeholder="placeholder"
           :error-messages="errors[0]"
