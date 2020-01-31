@@ -18,8 +18,8 @@
 
       <CommentActions
         v-on:reply="replying = true"
-        :likes="comment.likes.length"
-        :replies="comment.replies.length"
+        :action="actionProps"
+        :commentId="comment.id"
       />
 
       <v-scroll-x-transition mode="out-in">
@@ -65,6 +65,12 @@ export default class CommentMain extends Vue {
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
 
   private replying: boolean = false;
+
+  private actionProps: object = {
+    kekGiven: this.comment.liked,
+    keks: this.comment.likes.length,
+    replies: this.comment.replies.length
+  }
 }
 </script>
 
