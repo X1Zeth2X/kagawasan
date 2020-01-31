@@ -15,11 +15,11 @@
           outlined
           v-model="submitData.content"
           filled
-          @keyup.shift.enter.exact="validateFields"
+          @keyup.alt.enter.exact="validateFields"
           :disabled="loading"
           :placeholder="placeholder"
           :error-messages="errors[0]"
-          hint="Use `Shift + Enter` to submit the content."
+          hint="Use `Alt + Enter` to submit the content."
         >
           <template v-slot:append>
             <v-btn icon class="info mb3 ml1" elevation="2" dark small disabled>
