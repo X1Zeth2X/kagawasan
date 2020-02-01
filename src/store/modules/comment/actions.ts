@@ -5,7 +5,7 @@ import CommentService, {
   CommentError,
   CreateData
 } from "@/services/comment.service";
-import { Comment } from "@/store/post";
+import { Comment } from "@/store/content";
 
 export const actions: ActionTree<PostState, RootState> = {
   async get({ commit }, commentId: number) {
