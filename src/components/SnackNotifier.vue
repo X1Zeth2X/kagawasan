@@ -18,10 +18,10 @@ import { Watch } from "vue-property-decorator";
 
 const namespace: string = "dialog";
 
-interface SnackData {
+type SnackData = {
   message: string;
   color: string;
-}
+};
 
 @Component
 export default class SnackNotifier extends Vue {

@@ -26,6 +26,7 @@
             class="mb-negative-comment"
             :content="comment.content"
             v-on:cancel="editing = false"
+            v-on:submit="updateComment"
           />
         </v-scroll-x-transition>
       </p>
@@ -64,7 +65,9 @@ import Content from "../Common/Content.vue";
 const Composer = () => import("../Common/Composer.vue");
 const Edit = () => import("../Common/Edit.vue");
 
-import { Getter } from "vuex-class";
+import { Getter, Action } from "vuex-class";
+
+const namespace: string = "comment";
 
 @Component({
   components: {
@@ -81,6 +84,9 @@ export default class CommentMain extends Vue {
 
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
 
+  @Action("update", { namespace })
+  private updateCommentVuex!: Function;
+
   private replying: boolean = false;
 
   private editing: boolean = false;
@@ -90,6 +96,20 @@ export default class CommentMain extends Vue {
     keks: this.comment.likes.length,
     replies: this.comment.replies.length
   };
+
+  private async updateComment(updatedContent: string) {
+    const isSuccessful: boolean = this.updateCommentVuex({
+      content: updatedContent,
+      commentId: this.comment.id
+    });
+
+    // If update was successful (true).
+    if (isSuccessful) {
+      this.editing = false;
+
+      this.comment.content = updatedContent;
+    }
+  }
 }
 </script>
 

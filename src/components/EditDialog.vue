@@ -78,10 +78,10 @@ import Top from "@/components/Home/Post/Top.vue";
 
 const namespace: string = "dialog";
 
-interface EditData {
+type EditData = {
   content: string;
   postPublicId: string;
-}
+};
 
 @Component({
   components: {

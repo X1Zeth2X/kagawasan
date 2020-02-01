@@ -25,6 +25,17 @@
             <v-btn icon class="info mb3 ml1" elevation="2" dark small disabled>
               <v-icon small>ion-ios-image</v-icon>
             </v-btn>
+
+            <v-btn
+              icon
+              class="teal mb3 ml1 hidden-md-and-up"
+              elevation="2"
+              dark
+              small
+              @click="validateFields"
+            >
+              <v-icon small>ion-ios-send</v-icon>
+            </v-btn>
           </template>
         </v-textarea>
       </ValidationProvider>
@@ -40,10 +51,10 @@ import { ValidationProvider } from "vee-validate/dist/vee-validate.full";
 import { ValidationObserver } from "vee-validate";
 import { Prop, Emit } from "vue-property-decorator";
 
-interface SubmitData {
+type SubmitData = {
   content: string;
   imageId: string | null;
-}
+};
 
 @Component({
   components: {

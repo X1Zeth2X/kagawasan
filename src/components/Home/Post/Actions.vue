@@ -33,10 +33,10 @@ import { Action } from "vuex-class";
 
 const namespace: string = "post";
 
-interface ActionProps {
+type ActionProps = {
   kekGiven: boolean;
   keks: number;
-}
+};
 
 @Component
 export default class PostActions extends Vue {
