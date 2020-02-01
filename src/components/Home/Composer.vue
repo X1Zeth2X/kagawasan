@@ -58,7 +58,7 @@ import Writer from "./ComposerItems/Writer.vue";
 import { Action, Getter } from "vuex-class";
 
 import { CreateData } from "@/services/post.service";
-import { Post } from "@/store/post";
+import { Post } from "@/store/content";
 
 const namespace: string = "post";
 

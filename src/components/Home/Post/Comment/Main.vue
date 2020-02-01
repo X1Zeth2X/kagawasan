@@ -53,7 +53,7 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 import { Prop } from "vue-property-decorator";
-import { Comment } from "@/store/post";
+import { Comment } from "@/store/content";
 
 import CommentAvatar from "./Avatar.vue";
 import CommentDetails from "./Details.vue";

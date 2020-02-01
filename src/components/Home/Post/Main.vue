@@ -92,7 +92,7 @@ import Content from "./Common/Content.vue";
 
 import { Prop } from "vue-property-decorator";
 import { backendUrl } from "@/services/api.service";
-import { Post, Comment as CommentType } from "@/store/post";
+import { Post, Comment as CommentType } from "@/store/content";
 import { CreateData } from "@/services/post.service";
 
 const Comment = () => import("./Comment/Main.vue");

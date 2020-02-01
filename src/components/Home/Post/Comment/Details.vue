@@ -34,7 +34,7 @@ import Component from "vue-class-component";
 
 import moment from "moment";
 import { Prop } from "vue-property-decorator";
-import { Author } from "@/store/post";
+import { Author } from "@/store/content";
 import { Getter, Action } from "vuex-class";
 import { User } from "@/store/modules/auth/types";
 
