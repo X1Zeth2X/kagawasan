@@ -26,7 +26,7 @@ const AuthService = {
     try {
       const apiResponse = await ApiService.post(resource, data);
 
-      const accessToken: string = apiResponse.data.Authorization;
+      const accessToken: string = apiResponse.data.access_token;
       const user: User = apiResponse.data.user;
 
       return {
@@ -51,7 +51,7 @@ const AuthService = {
         password
       });
 
-      const accessToken: string = apiResponse.data.Authorization;
+      const accessToken: string = apiResponse.data.access_token;
       const user: User = apiResponse.data.user;
 
       return {
