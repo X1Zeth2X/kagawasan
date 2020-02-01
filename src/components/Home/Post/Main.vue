@@ -186,7 +186,7 @@ export default class PostMain extends Vue {
     });
 
     if (vuexResp) {
-      // Add newly created comment to comments.
+      // Add newly created comment to comments array.
       this.comments = [...this.comments, vuexResp];
       this.$refs.commentComposer.resetFields();
     }

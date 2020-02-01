@@ -1,7 +1,7 @@
 <template>
   <v-list-item>
     <v-list-item-avatar>
-      <a href="#">
+      <a>
         <v-avatar size="40" class="primary">
           <v-icon dark>ion-md-person</v-icon>
         </v-avatar>

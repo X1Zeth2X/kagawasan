@@ -1,6 +1,6 @@
 <template>
   <v-list-item-avatar class="pb1 ml2">
-    <a href="#">
+    <a>
       <v-avatar size="40">
         <v-img
           src="https://api.adorable.io/avatars/50/abott@adorable.png"
