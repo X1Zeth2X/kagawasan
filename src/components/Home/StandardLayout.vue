@@ -61,7 +61,7 @@ import Component from "vue-class-component";
 
 import { Getter, Action } from "vuex-class";
 import ApiService, { backendUrl } from "../../services/api.service";
-import { Post } from "@/store/post";
+import { Post } from "@/store/content";
 
 // Dynamically import InfiniteLoader
 const InfiniteLoading = () => import("vue-infinite-loading");

@@ -92,7 +92,7 @@ import Content from "./Common/Content.vue";
 
 import { Prop } from "vue-property-decorator";
 import { backendUrl } from "@/services/api.service";
-import { Post, Comment as CommentType } from "@/store/post";
+import { Post, Comment as CommentType } from "@/store/content";
 import { CreateData } from "@/services/post.service";
 
 const Comment = () => import("./Comment/Main.vue");
@@ -186,7 +186,7 @@ export default class PostMain extends Vue {
     });
 
     if (vuexResp) {
-      // Add newly created comment to comments.
+      // Add newly created comment to comments array.
       this.comments = [...this.comments, vuexResp];
       this.$refs.commentComposer.resetFields();
     }

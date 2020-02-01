@@ -1,7 +1,7 @@
 <template>
   <v-list-item>
     <v-list-item-avatar>
-      <a href="#">
+      <a>
         <v-avatar size="40" class="primary">
           <v-icon dark>ion-md-person</v-icon>
         </v-avatar>
@@ -44,7 +44,7 @@ import Component from "vue-class-component";
 import { Prop } from "vue-property-decorator";
 
 import moment from "moment";
-import { Author } from "@/store/post";
+import { Author } from "@/store/content";
 import { Action, Getter } from "vuex-class";
 import { User } from "@/store/modules/auth/types";
 

@@ -1,6 +1,5 @@
 import { MutationTree } from "vuex";
 import { FeedState } from "./types";
-import { Post } from "@/store/post";
 
 export const mutations: MutationTree<FeedState> = {
   feedRequest(state) {
