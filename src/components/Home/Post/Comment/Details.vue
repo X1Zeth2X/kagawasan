@@ -3,10 +3,19 @@
     <a class="b link f6 primary--text">
       {{ author.full_name ? author.full_name : `@${author.username}` }}
     </a>
-
     &middot;
 
-    <span class="f7 fw5">{{ prettyDate }}</span>
+    <span class="f7 fw5">
+      {{ prettyDate }}
+    </span>
+
+    <span v-show="edited">
+      &middot;
+
+      <v-chip x-small>
+        Edited
+      </v-chip>
+    </span>
 
     <span class="float-right">
       <v-menu>
@@ -45,6 +54,7 @@ export default class CommentDetails extends Vue {
   @Prop() author!: Author;
   @Prop() date!: string;
   @Prop() commentId!: number;
+  @Prop() edited!: boolean;
 
   @Getter("currentUser", { namespace: "auth" })
   private currentUser!: User;
@@ -82,7 +92,7 @@ export default class CommentDetails extends Vue {
       // Notify
       this.setSnackNotifier({
         color: "orange darken-3",
-        message: "Comment has been deleted! 🤔"
+        message: "Comment has been deleted!"
       });
 
       this.$emit("deleted");
