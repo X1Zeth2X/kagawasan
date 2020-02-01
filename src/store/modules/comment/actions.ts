@@ -1,11 +1,8 @@
+import CommentService, { CommentError } from "@/services/comment.service";
+import { Comment } from "@/store/content";
+import { RootState } from "@/store/types";
 import { ActionTree } from "vuex";
 import { PostState } from "./types";
-import { RootState } from "@/store/types";
-import CommentService, {
-  CommentError,
-  CreateData
-} from "@/services/comment.service";
-import { Comment } from "@/store/content";
 
 export const actions: ActionTree<PostState, RootState> = {
   async get({ commit }, commentId: number) {
