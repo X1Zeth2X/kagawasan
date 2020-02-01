@@ -14,8 +14,8 @@
               <v-avatar size="12em" class="elevation-10">
                 <v-img src="https://i.pravatar.cc/300" fit></v-img>
               </v-avatar>
-              <h3 class="f3">Lasso Dior</h3>
-              <p>@diorem</p>
+              <h3 class="f3">Dorime Ameno</h3>
+              <p>@dorime</p>
             </div>
 
             <v-card-text>
