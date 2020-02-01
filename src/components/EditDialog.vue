@@ -81,7 +81,7 @@ const namespace: string = "dialog";
 type EditData = {
   content: string;
   postPublicId: string;
-}
+};
 
 @Component({
   components: {

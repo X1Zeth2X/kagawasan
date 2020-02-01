@@ -54,7 +54,7 @@ import { Prop, Emit } from "vue-property-decorator";
 type SubmitData = {
   content: string;
   imageId: string | null;
-}
+};
 
 @Component({
   components: {

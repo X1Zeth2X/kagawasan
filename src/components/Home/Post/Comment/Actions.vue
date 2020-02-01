@@ -38,7 +38,7 @@ type ActionProps = {
   kekGiven: boolean;
   keks: number;
   replies: number;
-}
+};
 
 @Component
 export default class CommentActions extends Vue {

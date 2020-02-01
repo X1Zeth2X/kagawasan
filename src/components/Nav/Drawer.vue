@@ -49,7 +49,7 @@ type Page = {
   label: string;
   icon: string;
   routeName: string | undefined;
-}
+};
 
 const namespace: string = "settings";
 

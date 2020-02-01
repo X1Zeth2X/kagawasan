@@ -53,7 +53,7 @@ type Option = {
   subtitle: string;
   value: boolean;
   onChange: Function;
-}
+};
 
 @Component
 export default class Content extends Vue {

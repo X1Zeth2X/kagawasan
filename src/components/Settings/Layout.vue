@@ -41,7 +41,7 @@ type Option = {
   subtitle: string;
   value: boolean;
   onChange: Function;
-}
+};
 
 @Component
 export default class Layout extends Vue {

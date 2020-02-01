@@ -103,7 +103,7 @@ type ActionProps = {
   keks: number;
   comments: number;
   edited: boolean;
-}
+};
 
 @Component({
   components: {

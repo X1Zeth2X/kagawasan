@@ -36,7 +36,7 @@ const namespace: string = "post";
 type ActionProps = {
   kekGiven: boolean;
   keks: number;
-}
+};
 
 @Component
 export default class PostActions extends Vue {

@@ -21,7 +21,7 @@ const namespace: string = "dialog";
 type SnackData = {
   message: string;
   color: string;
-}
+};
 
 @Component
 export default class SnackNotifier extends Vue {
