@@ -20,6 +20,18 @@
           @keyup.alt.enter="validateFields"
           :error-messages="errors[0]"
         >
+          <template v-slot:append>
+            <v-btn
+              icon
+              class="teal mb3 ml1 hidden-md-and-up"
+              elevation="2"
+              dark
+              small
+              @click="validateFields"
+            >
+              <v-icon small>ion-ios-send</v-icon>
+            </v-btn>
+          </template>
         </v-textarea>
       </ValidationProvider>
     </ValidationObserver>
