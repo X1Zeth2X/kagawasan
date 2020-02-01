@@ -48,7 +48,7 @@ import { Getter, Action } from "vuex-class";
 
 const namespace: string = "settings";
 
-interface Option {
+type Option = {
   title: string;
   subtitle: string;
   value: boolean;

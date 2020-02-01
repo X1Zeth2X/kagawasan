@@ -98,7 +98,7 @@ import { CreateData } from "@/services/post.service";
 const Comment = () => import("./Comment/Main.vue");
 const Composer = () => import("./Common/Composer.vue");
 
-interface ActionProps {
+type ActionProps = {
   kekGiven: boolean;
   keks: number;
   comments: number;

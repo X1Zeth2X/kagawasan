@@ -45,7 +45,7 @@ import { Getter, Action } from "vuex-class";
 
 import CurrentUser from "./Drawer/CurrentUser.vue";
 
-interface Page {
+type Page = {
   label: string;
   icon: string;
   routeName: string | undefined;

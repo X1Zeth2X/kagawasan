@@ -34,7 +34,7 @@ import { Action } from "vuex-class";
 
 const namespace: string = "comment";
 
-interface ActionProps {
+type ActionProps = {
   kekGiven: boolean;
   keks: number;
   replies: number;

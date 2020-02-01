@@ -51,7 +51,7 @@ import { ValidationProvider } from "vee-validate/dist/vee-validate.full";
 import { ValidationObserver } from "vee-validate";
 import { Prop, Emit } from "vue-property-decorator";
 
-interface SubmitData {
+type SubmitData = {
   content: string;
   imageId: string | null;
 }
