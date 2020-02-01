@@ -44,7 +44,8 @@
       <div class="f3 fw7">Announcements</div>
 
       <v-alert
-        v-for="(announcement, index) in announcements" :key="index"
+        v-for="(announcement, index) in announcements"
+        :key="index"
         :type="announcement.color"
         border="left"
         colored-border
@@ -104,7 +105,8 @@ export default class StandardLayout extends Vue {
       icon: "ion-ios-checkmark-circle"
     },
     {
-      message: "There are no confirmation prompts yet, so becareful when *deleting* posts.",
+      message:
+        "There are no confirmation prompts yet, so becareful when *deleting* posts.",
       color: "warning",
       icon: "ion-ios-information-circle"
     }

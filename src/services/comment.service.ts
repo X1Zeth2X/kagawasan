@@ -56,7 +56,7 @@ const CommentService = {
     } catch (error) {
       throw new CommentError(error.response.data.message);
     }
-  }, // Unlike post
+  }, // Unlike comment
 
   async create(postPublicId: string, data: CreateData) {
     const resource: string = `${backendUrl}/comment/create/${postPublicId}`;
