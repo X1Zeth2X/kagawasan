@@ -98,13 +98,13 @@ export default class CommentMain extends Vue {
   };
 
   private async updateComment(updatedContent: string) {
-    const vuexResp: boolean = this.updateCommentVuex({
+    const isSuccessful: boolean = this.updateCommentVuex({
       content: updatedContent,
       commentId: this.comment.id
     });
 
     // If update was successful (true).
-    if (vuexResp) {
+    if (isSuccessful) {
       this.editing = false;
 
       this.comment.content = updatedContent;
