@@ -9,6 +9,7 @@
         :author="comment.author"
         :date="comment.created"
         :commentId="comment.id"
+        :edited="comment.edited"
         v-on:deleted="$emit('removeComment')"
         v-on:edit="editing = true"
       />
@@ -108,6 +109,7 @@ export default class CommentMain extends Vue {
       this.editing = false;
 
       this.comment.content = updatedContent;
+      this.comment.edited = true;
     }
   }
 }
