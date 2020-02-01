@@ -44,12 +44,13 @@
       <div class="f3 fw7">Announcements</div>
 
       <v-alert
-        type="warning"
+        v-for="(announcement, index) in announcements" :key="index"
+        :type="announcement.color"
         border="left"
         colored-border
-        icon="ion-ios-information-circle"
+        :icon="announcement.icon"
       >
-        There are no confirmation prompts yet, so becareful when deleting posts.
+        {{ announcement.message }}
       </v-alert>
     </v-col>
   </v-row>
@@ -95,6 +96,19 @@ export default class StandardLayout extends Vue {
 
   @Action("getIds", { namespace })
   private getIds!: Function;
+
+  private announcements: object[] = [
+    {
+      message: "Welcome to Konishi's MVP testing",
+      color: "success",
+      icon: "ion-ios-checkmark-circle"
+    },
+    {
+      message: "There are no confirmation prompts yet, so becareful when *deleting* posts.",
+      color: "warning",
+      icon: "ion-ios-information-circle"
+    }
+  ];
 
   private created() {
     this.getIds();
