@@ -8,7 +8,7 @@
       <CommentDetails
         :author="comment.author"
         :date="comment.created"
-        :commentId="comment.id"
+        :commentPublicId="comment.public_id"
         :edited="comment.edited"
         v-on:deleted="$emit('removeComment')"
         v-on:edit="editing = true"
@@ -45,6 +45,11 @@
           :placeholder="'Write a reply...'"
         />
       </v-scroll-x-transition>
+
+      <div>
+        <!-- <Reply />
+        <Reply /> -->
+      </div>
     </v-list-item-content>
   </v-list-item>
 </template>
@@ -65,6 +70,7 @@ import Content from "../Common/Content.vue";
 
 const Composer = () => import("../Common/Composer.vue");
 const Edit = () => import("../Common/Edit.vue");
+const Reply = () => import("../Reply/Main.vue");
 
 import { Getter, Action } from "vuex-class";
 
@@ -77,7 +83,8 @@ const namespace: string = "comment";
     CommentActions,
     Content,
     Composer,
-    Edit
+    Edit,
+    Reply
   }
 })
 export default class CommentMain extends Vue {
@@ -101,7 +108,7 @@ export default class CommentMain extends Vue {
   private async updateComment(updatedContent: string) {
     const isSuccessful: boolean = this.updateCommentVuex({
       content: updatedContent,
-      commentId: this.comment.id
+      commentPublicId: this.comment.public_id
     });
 
     // If update was successful (true).
