@@ -18,7 +18,7 @@
           @keyup.alt.enter.exact="validateFields"
           :disabled="loading"
           :placeholder="placeholder"
-          :error-messages="errors[0]"
+          :error-messages="errors[0] || errorMsg"
           hint="Use `Alt + Enter` to submit the content."
         >
           <template v-slot:append>
@@ -65,6 +65,7 @@ type SubmitData = {
 export default class CommentReplyComposer extends Vue {
   @Prop() loading!: boolean;
   @Prop() placeholder!: string;
+  @Prop() errorMsg!: string;
 
   $refs!: {
     observe: InstanceType<typeof ValidationObserver>;

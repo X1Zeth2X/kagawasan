@@ -12,6 +12,7 @@ import { dialog } from "./modules/dialog/index";
 import { feed } from "./modules/feed/index";
 import { post } from "./modules/post/index";
 import { comment } from "./modules/comment/index";
+import { reply } from "./modules/reply/index";
 
 Vue.use(Vuex);
 
@@ -40,7 +41,8 @@ const store: StoreOptions<RootState> = {
     dialog,
     feed,
     post,
-    comment
+    comment,
+    reply
   },
   plugins: [vuexLocalStorage.plugin]
 };

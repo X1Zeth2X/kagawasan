@@ -15,8 +15,8 @@ interface CreateData {
 }
 
 const ReplyService = {
-  async get(replyId: number) {
-    const resource: string = `${backendUrl}/reply/get/${replyId}`;
+  async get(replyPublicId: string) {
+    const resource: string = `${backendUrl}/reply/get/${replyPublicId}`;
 
     ApiService.setHeader();
 
@@ -28,8 +28,8 @@ const ReplyService = {
     }
   }, // Get specific reply
 
-  async like(replyId: number) {
-    const resource: string = `${backendUrl}/like/reply/${replyId}`;
+  async like(replyPublicId: string) {
+    const resource: string = `${backendUrl}/like/reply/${replyPublicId}`;
 
     ApiService.setHeader();
 
@@ -43,8 +43,8 @@ const ReplyService = {
     }
   }, // Like reply
 
-  async unlike(replyId: number) {
-    const resource: string = `${backendUrl}/like/reply/${replyId}`;
+  async unlike(replyPublicId: string) {
+    const resource: string = `${backendUrl}/like/reply/${replyPublicId}`;
 
     ApiService.setHeader();
 
@@ -58,8 +58,8 @@ const ReplyService = {
     }
   }, // Unlike reply
 
-  async create(commentId: number, data: CreateData) {
-    const resource: string = `${backendUrl}/reply/create/${commentId}`;
+  async create(commentPublicId: string, data: CreateData) {
+    const resource: string = `${backendUrl}/reply/create/${commentPublicId}`;
 
     ApiService.setHeader();
 
@@ -73,8 +73,8 @@ const ReplyService = {
     }
   }, // Reply on a comment
 
-  async update(content: string, replyId: number) {
-    const resource: string = `${backendUrl}/reply/update/${replyId}`;
+  async update(content: string, replyPublicId: string) {
+    const resource: string = `${backendUrl}/reply/update/${replyPublicId}`;
 
     ApiService.setHeader();
 
@@ -90,8 +90,8 @@ const ReplyService = {
     }
   }, // Update reply
 
-  async delete(replyId: number) {
-    const resource: string = `${backendUrl}/reply/delete/${replyId}`;
+  async delete(replyPublicId: string) {
+    const resource: string = `${backendUrl}/reply/delete/${replyPublicId}`;
 
     ApiService.setHeader();
 
