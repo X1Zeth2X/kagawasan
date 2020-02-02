@@ -5,11 +5,11 @@ import { ActionTree } from "vuex";
 import { PostState } from "./types";
 
 export const actions: ActionTree<PostState, RootState> = {
-  async get({ commit }, commentId: number) {
+  async get({ commit }, commentPublicId: string) {
     commit("request");
 
     try {
-      const comment: Comment = await CommentService.get(commentId);
+      const comment: Comment = await CommentService.get(commentPublicId);
       commit("requestSuccess");
 
       // Return requested post.
@@ -75,11 +75,14 @@ export const actions: ActionTree<PostState, RootState> = {
     }
   }, // Comment on a post
 
-  async update({ commit }, { content, commentId }) {
+  async update({ commit }, { content, commentPublicId }) {
     commit("request");
 
     try {
-      const apiResp: boolean = await CommentService.update(content, commentId);
+      const apiResp: boolean = await CommentService.update(
+        content,
+        commentPublicId
+      );
       commit("requestSuccess");
 
       // Return a response that it has been updated.
@@ -93,11 +96,11 @@ export const actions: ActionTree<PostState, RootState> = {
     }
   },
 
-  async delete({ commit }, commentId: number) {
+  async delete({ commit }, commentPublicId: string) {
     commit("request");
 
     try {
-      const isDeleted: boolean = await CommentService.delete(commentId);
+      const isDeleted: boolean = await CommentService.delete(commentPublicId);
       commit("requestSuccess");
 
       // Return true if the comment was deleted.

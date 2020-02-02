@@ -15,8 +15,8 @@ interface CreateData {
 }
 
 const CommentService = {
-  async get(commentId: number) {
-    const resource: string = `${backendUrl}/comment/get/${commentId}`;
+  async get(commentPublicId: string) {
+    const resource: string = `${backendUrl}/comment/get/${commentPublicId}`;
 
     ApiService.setHeader();
 
@@ -73,8 +73,8 @@ const CommentService = {
     }
   }, // Comment on a post
 
-  async update(content: string, commentId: number) {
-    const resource: string = `${backendUrl}/comment/update/${commentId}`;
+  async update(content: string, commentPublicId: string) {
+    const resource: string = `${backendUrl}/comment/update/${commentPublicId}`;
 
     ApiService.setHeader();
 
@@ -90,8 +90,8 @@ const CommentService = {
     }
   }, // Update comment
 
-  async delete(commentId: number) {
-    const resource: string = `${backendUrl}/comment/delete/${commentId}`;
+  async delete(commentPublicId: string) {
+    const resource: string = `${backendUrl}/comment/delete/${commentPublicId}`;
 
     ApiService.setHeader();
 
