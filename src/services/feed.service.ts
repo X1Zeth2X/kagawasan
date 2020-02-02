@@ -11,7 +11,7 @@ class FeedError extends Error {
 
 const FeedService = {
   async getIds() {
-    const resource: string = `${backendUrl}/feed/get`;
+    const resource: string = `${backendUrl}/feed/posts`;
 
     ApiService.setHeader();
 
@@ -24,7 +24,7 @@ const FeedService = {
   }, // Gets Post IDs
 
   async getPostsInfo(postIds: number[]) {
-    const resource: string = `${backendUrl}/feed/get`;
+    const resource: string = `${backendUrl}/feed/posts`;
 
     ApiService.setHeader();
 

@@ -69,6 +69,7 @@
         class="mb-negative-comment ph3 pt2"
         :placeholder="'Write a comment...'"
         :loading="creatingComment"
+        :errorMsg="commentErrorMsg"
         v-if="commenting"
         v-on:submit="createComment"
       />
@@ -121,6 +122,9 @@ export default class PostMain extends Vue {
 
   @Getter("commenting", { namespace: "comment" })
   private creatingComment!: boolean;
+
+  @Getter("commentErrorMsg", { namespace: "comment" })
+  private commentErrorMsg!: string;
 
   @Action("toggleEditDialog", { namespace: "dialog" })
   private toggleEditDialog!: Function;

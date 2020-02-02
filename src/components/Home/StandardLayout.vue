@@ -133,7 +133,7 @@ export default class StandardLayout extends Vue {
       return true;
     }
 
-    const resource: string = `${backendUrl}/feed/get`;
+    const resource: string = `${backendUrl}/feed/posts`;
 
     ApiService.setHeader();
 
