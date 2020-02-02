@@ -15,8 +15,8 @@ interface CreateData {
 }
 
 const CommentService = {
-  async get(commentId: number) {
-    const resource: string = `${backendUrl}/comment/get/${commentId}`;
+  async get(commentPublicId: string) {
+    const resource: string = `${backendUrl}/comment/get/${commentPublicId}`;
 
     ApiService.setHeader();
 
@@ -28,8 +28,8 @@ const CommentService = {
     }
   }, // Get specific comment
 
-  async like(commentId: number) {
-    const resource: string = `${backendUrl}/like/comment/${commentId}`;
+  async like(commentPublicId: string) {
+    const resource: string = `${backendUrl}/like/comment/${commentPublicId}`;
 
     ApiService.setHeader();
 
@@ -43,8 +43,8 @@ const CommentService = {
     }
   }, // Like comment
 
-  async unlike(commentId: number) {
-    const resource: string = `${backendUrl}/like/comment/${commentId}`;
+  async unlike(commentPublicId: string) {
+    const resource: string = `${backendUrl}/like/comment/${commentPublicId}`;
 
     ApiService.setHeader();
 
@@ -56,7 +56,7 @@ const CommentService = {
     } catch (error) {
       throw new CommentError(error.response.data.message);
     }
-  }, // Unlike post
+  }, // Unlike comment
 
   async create(postPublicId: string, data: CreateData) {
     const resource: string = `${backendUrl}/comment/create/${postPublicId}`;
@@ -73,8 +73,8 @@ const CommentService = {
     }
   }, // Comment on a post
 
-  async update(content: string, commentId: number) {
-    const resource: string = `${backendUrl}/comment/update/${commentId}`;
+  async update(content: string, commentPublicId: string) {
+    const resource: string = `${backendUrl}/comment/update/${commentPublicId}`;
 
     ApiService.setHeader();
 
@@ -90,8 +90,8 @@ const CommentService = {
     }
   }, // Update comment
 
-  async delete(commentId: number) {
-    const resource: string = `${backendUrl}/comment/delete/${commentId}`;
+  async delete(commentPublicId: string) {
+    const resource: string = `${backendUrl}/comment/delete/${commentPublicId}`;
 
     ApiService.setHeader();
 

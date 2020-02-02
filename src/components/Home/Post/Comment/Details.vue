@@ -1,5 +1,5 @@
 <template>
-  <div id="commentDetails">
+  <div>
     <a class="b link f6 primary--text">
       {{ author.full_name ? author.full_name : `@${author.username}` }}
     </a>
@@ -53,7 +53,7 @@ const namespace: string = "comment";
 export default class CommentDetails extends Vue {
   @Prop() author!: Author;
   @Prop() date!: string;
-  @Prop() commentId!: number;
+  @Prop() commentPublicId!: string;
   @Prop() edited!: boolean;
 
   @Getter("currentUser", { namespace: "auth" })
@@ -85,7 +85,7 @@ export default class CommentDetails extends Vue {
   }
 
   private async deleteComment() {
-    const isDeleted: boolean = await this.delete(this.commentId);
+    const isDeleted: boolean = await this.delete(this.commentPublicId);
 
     // Self immolate if succeeded.
     if (isDeleted) {
