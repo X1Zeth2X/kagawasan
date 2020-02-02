@@ -35,7 +35,7 @@
       <CommentActions
         v-on:reply="replying = true"
         :action="actionProps"
-        :commentId="comment.id"
+        :commentPublicId="comment.public_id"
       />
 
       <v-scroll-x-transition mode="out-in">

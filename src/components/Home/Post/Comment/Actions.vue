@@ -43,7 +43,7 @@ type ActionProps = {
 @Component
 export default class CommentActions extends Vue {
   @Prop() action!: ActionProps;
-  @Prop() commentId!: number;
+  @Prop() commentPublicId!: string;
 
   @Action("unlike", { namespace })
   private unlikeCommentVuex!: Function;
@@ -58,14 +58,14 @@ export default class CommentActions extends Vue {
     this.kekGiven = true;
     this.keks++;
 
-    this.likeCommentVuex(this.commentId);
+    this.likeCommentVuex(this.commentPublicId);
   }
 
   private unlikeComment() {
     this.kekGiven = false;
     this.keks--;
 
-    this.unlikeCommentVuex(this.commentId);
+    this.unlikeCommentVuex(this.commentPublicId);
   }
 
   private toggleKek() {

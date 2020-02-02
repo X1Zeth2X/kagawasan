@@ -28,8 +28,8 @@ const CommentService = {
     }
   }, // Get specific comment
 
-  async like(commentId: number) {
-    const resource: string = `${backendUrl}/like/comment/${commentId}`;
+  async like(commentPublicId: string) {
+    const resource: string = `${backendUrl}/like/comment/${commentPublicId}`;
 
     ApiService.setHeader();
 
@@ -43,8 +43,8 @@ const CommentService = {
     }
   }, // Like comment
 
-  async unlike(commentId: number) {
-    const resource: string = `${backendUrl}/like/comment/${commentId}`;
+  async unlike(commentPublicId: string) {
+    const resource: string = `${backendUrl}/like/comment/${commentPublicId}`;
 
     ApiService.setHeader();
 

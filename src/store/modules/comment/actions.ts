@@ -23,11 +23,11 @@ export const actions: ActionTree<PostState, RootState> = {
     }
   }, // Get specific comment
 
-  async like({ commit }, commentId: number) {
+  async like({ commit }, commentPublicId: string) {
     commit("request");
 
     try {
-      const liked: boolean = await CommentService.like(commentId);
+      const liked: boolean = await CommentService.like(commentPublicId);
       commit("requestSuccess");
 
       return liked;
@@ -40,11 +40,11 @@ export const actions: ActionTree<PostState, RootState> = {
     }
   }, // Like comment
 
-  async unlike({ commit }, commentId: number) {
+  async unlike({ commit }, commentPublicId: string) {
     commit("request");
 
     try {
-      const unliked: boolean = await CommentService.unlike(commentId);
+      const unliked: boolean = await CommentService.unlike(commentPublicId);
       commit("requestSuccess");
 
       return unliked;
