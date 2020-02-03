@@ -15,6 +15,14 @@ export const getters: GetterTree<FeedState, RootState> = {
     return state.commentsFeedErrorMsg;
   },
 
+  repliesRequest(state): boolean {
+    return state.repliesRequest
+  },
+
+  repliesErrorMsg(state): string | null {
+    return state.repliesFeedErrorMsg
+  },
+
   requesting(state): boolean {
     return state.requesting;
   },
