@@ -37,6 +37,17 @@
           ></v-progress-circular>
         </div>
       </infinite-loading>
+
+      <div v-else class="tc">
+        <div class="f4 b mb2">
+          Waking up the API
+        </div>
+        <v-progress-circular
+          indeterminate
+          color="deep-purple"
+          width="5"
+        ></v-progress-circular>
+      </div>
     </v-col>
 
     <!-- Right aligned items: shown in medium viewpoints and up. -->
