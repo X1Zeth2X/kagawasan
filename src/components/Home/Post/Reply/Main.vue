@@ -77,8 +77,6 @@ export default class Main extends Vue {
   };
 
   private async updateReply(updatedContent: string) {
-    console.log("Called");
-
     const isSuccessful: boolean = await this.updateReplyVuex({
       content: updatedContent,
       replyPublicId: this.reply.public_id
