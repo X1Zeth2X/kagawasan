@@ -9,6 +9,14 @@
       {{ prettyDate }}
     </span>
 
+    <span v-show="edited">
+      &middot;
+
+      <v-chip x-small>
+        Edited
+      </v-chip>
+    </span>
+
     <span class="float-right">
       <v-menu>
         <template v-slot:activator="{ on }">
@@ -34,7 +42,7 @@ import Vue from "vue";
 import moment from "moment";
 import Component from "vue-class-component";
 
-import { Prop } from "vue-property-decorator";
+import { Prop, Emit } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
 
 import { User } from "@/store/modules/auth/types";
@@ -47,6 +55,7 @@ export default class ReplyDetails extends Vue {
   @Prop() author!: Author;
   @Prop() date!: string;
   @Prop() replyPublicId!: string;
+  @Prop() edited!: boolean;
 
   @Getter("currentUser", { namespace: "auth" }) private currentUser!: User;
 
@@ -59,7 +68,7 @@ export default class ReplyDetails extends Vue {
   private menuActions: object[] = [
     {
       label: "Edit",
-      action: () => null
+      action: this.editReply
     },
     {
       label: "Delete",
@@ -70,6 +79,11 @@ export default class ReplyDetails extends Vue {
       action: () => null
     }
   ];
+
+  @Emit("edit")
+  private editReply() {
+    return true;
+  }
 
   private async deleteReply() {
     const isDeleted: boolean = await this.delete(this.replyPublicId);

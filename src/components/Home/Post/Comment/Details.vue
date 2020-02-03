@@ -42,7 +42,7 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 import moment from "moment";
-import { Prop } from "vue-property-decorator";
+import { Prop, Emit } from "vue-property-decorator";
 import { Author } from "@/store/content";
 import { Getter, Action } from "vuex-class";
 import { User } from "@/store/modules/auth/types";
@@ -80,8 +80,9 @@ export default class CommentDetails extends Vue {
     }
   ];
 
+  @Emit("edit")
   private editComment() {
-    this.$emit("edit");
+    return true;
   }
 
   private async deleteComment() {

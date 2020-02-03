@@ -1,6 +1,6 @@
 <template>
   <v-list-item three-line class="comment">
-    <CommentAvatar class="hidden-sm-and-down" />
+    <Avatar :avatarUrl="null" class="hidden-sm-and-down" />
 
     <v-list-item-content
       :class="$vuetify.breakpoint.mdAndUp ? 'ml-negative' : 'ml2'"
@@ -64,7 +64,7 @@ import Component from "vue-class-component";
 import { Prop } from "vue-property-decorator";
 import { Comment, Note } from "@/store/content";
 
-import CommentAvatar from "./Avatar.vue";
+import Avatar from "../Common/Avatar.vue";
 import CommentDetails from "./Details.vue";
 import CommentActions from "./Actions.vue";
 
@@ -82,7 +82,7 @@ const namespace: string = "comment";
 
 @Component({
   components: {
-    CommentAvatar,
+    Avatar,
     CommentDetails,
     CommentActions,
     Content,
