@@ -35,6 +35,20 @@
       />
 
       <div v-if="replies.length !== 0">
+        <v-btn
+          small
+          text
+          tile
+          block
+          color="primary"
+          v-if="showLoadMore"
+          @click="loadMore"
+        >
+          <v-icon class="mr2 mt1" small>ion-ios-arrow-dropup</v-icon>
+          View Previous Replies
+          {{ `(${replies.length}/${comment.replies.length})` }}
+        </v-btn>
+
         <Reply
           v-for="(reply, index) in replies"
           v-on:reply="replying = true"
@@ -102,11 +116,17 @@ export default class CommentMain extends Vue {
   @Action("create", { namespace: "reply" })
   private replyOnComment!: Function;
 
+  @Action("getReplies", { namespace: "feed" })
+  private getReplies!: Function;
+
   public $refs!: {
     replyComposer: any;
   };
 
   private replies: Note[] = [];
+
+  // Reply IDs left to load.
+  private replyIDsLeft: number[] = [];
 
   private replying: boolean = false;
 
@@ -121,6 +141,13 @@ export default class CommentMain extends Vue {
   private mounted() {
     if (this.comment.initial_replies !== null) {
       this.replies = this.comment.initial_replies;
+
+      if (this.comment.replies.length > 2) {
+        this.replyIDsLeft = this.comment.replies.slice(
+          0,
+          this.comment.replies.length - 2
+        );
+      }
     }
   } // Lifecycle
 
@@ -138,7 +165,31 @@ export default class CommentMain extends Vue {
   }
 
   private removeReply(index: number) {
+    this.comment.replies.splice(index, 1);
     this.replies.splice(index, 1);
+  }
+
+  private get showLoadMore(): boolean {
+    if (
+      this.comment.replies.length > 2 &&
+      this.comment.replies.length !== this.replies.length
+    ) {
+      return true;
+    }
+
+    return false;
+  }
+
+  private async loadMore() {
+    if (this.replyIDsLeft.length > 0) {
+      // Load 5 more replies on click
+      const idArray: number[] = this.replyIDsLeft.slice(-5);
+
+      const replies: Note[] = await this.getReplies(idArray);
+
+      this.replies = [...replies, ...this.replies];
+      this.replyIDsLeft.splice(this.replyIDsLeft.length - replies.length);
+    }
   }
 
   private async updateComment(updatedContent: string) {
