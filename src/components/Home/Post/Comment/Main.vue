@@ -59,7 +59,7 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 import { Prop } from "vue-property-decorator";
-import { Comment } from "@/store/content";
+import { Comment, Note } from "@/store/content";
 
 import CommentAvatar from "./Avatar.vue";
 import CommentDetails from "./Details.vue";
@@ -95,6 +95,8 @@ export default class CommentMain extends Vue {
   @Action("update", { namespace })
   private updateCommentVuex!: Function;
 
+  private replies: Note[] = [];
+
   private replying: boolean = false;
 
   private editing: boolean = false;
@@ -104,6 +106,12 @@ export default class CommentMain extends Vue {
     keks: this.comment.likes.length,
     replies: this.comment.replies.length
   };
+
+  private mounted() {
+    if (this.comment.initial_replies !== null) {
+      this.replies = this.comment.initial_replies;
+    }
+  } // Lifecycle
 
   private async updateComment(updatedContent: string) {
     const isSuccessful: boolean = this.updateCommentVuex({
