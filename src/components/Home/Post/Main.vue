@@ -135,12 +135,15 @@ export default class PostMain extends Vue {
   @Action("create", { namespace: "comment" })
   private commentOnPost!: Function;
 
+  @Action("getComments", { namespace: "feed" })
+  private getComments!: Function;
+
   public $refs!: {
     postActions: InstanceType<typeof PostActions>;
     commentComposer: any;
   };
 
-  private comments: object[] = [];
+  private comments: CommentType[] = [];
 
   private commenting: boolean = false;
 
@@ -154,6 +157,13 @@ export default class PostMain extends Vue {
     comments: this.post.comments.length,
     edited: this.post.edited
   };
+
+  private created() {
+    // Reverse the post comments for loading more comments.
+    if (this.post.comments.length > 0) {
+      this.post.comments.reverse();
+    }
+  } // Lifecycle
 
   private mounted() {
     // Load initial comments
@@ -215,16 +225,19 @@ export default class PostMain extends Vue {
     return false;
   }
 
-  private loadMore() {
+  private async loadMore() {
     // Load 10 more comments on click.
     const idArray: number[] = this.post.comments.slice(
       this.loadMoreStart,
       this.loadMoreStart + 10
     );
 
-    // Perform vuexRequest to add more comments.
-    // Add the length of the comments from the API to the `loadMoreStart`
-    // push the comments from the api to `this.comments`
+    const comments: CommentType[] = await this.getComments(idArray);
+
+    // Join the two arrays.
+    // `comments.reverse()` makes sure it is shown chronologically.
+    this.comments = [...comments.reverse(), ...this.comments];
+    this.loadMoreStart = this.loadMoreStart + comments.length;
   } // Load more comments
 }
 </script>

@@ -2,7 +2,7 @@ import { ActionTree } from "vuex";
 import { FeedState } from "./types";
 import { RootState } from "@/store/types";
 import FeedService, { FeedError } from "@/services/feed.service";
-import { Post } from "@/store/content";
+import { Post, Comment } from "@/store/content";
 
 export const actions: ActionTree<FeedState, RootState> = {
   async getIds({ commit }) {
@@ -21,6 +21,23 @@ export const actions: ActionTree<FeedState, RootState> = {
       return false;
     }
   }, // Get Post IDs
+
+  async getComments({ commit }, idArray: number[]) {
+    commit("commentFeedRequest");
+
+    try {
+      const comments: Comment[] = await FeedService.getCommentsData(idArray);
+      commit("commentFeedSuccess");
+
+      return comments;
+    } catch (error) {
+      if (error instanceof FeedError) {
+        commit("commentFeedError", error.message);
+      }
+
+      return false;
+    }
+  }, // Get post comments
 
   setFeedItems({ commit }, items: Post[]) {
     commit("setFeedItems", items);

@@ -5,4 +5,7 @@ export interface FeedState {
   requesting: boolean;
   error: boolean;
   feedErrorMsg: string;
+
+  commentsRequest: boolean;
+  commentsFeedErrorMsg: string | null;
 }

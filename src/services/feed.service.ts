@@ -23,7 +23,7 @@ const FeedService = {
     }
   }, // Gets Post IDs
 
-  async getPostsInfo(postIds: number[]) {
+  async getPostsData(postIds: number[]) {
     const resource: string = `${backendUrl}/feed/posts`;
 
     ApiService.setHeader();
@@ -33,12 +33,30 @@ const FeedService = {
         post_ids: postIds
       });
 
-      // Return information of posts
+      // Return data of posts
       return apiResponse.data.posts;
     } catch (error) {
       throw new FeedError(error.response.data.message);
     }
-  } // Get Posts' information
+  }, // Get Posts' data
+
+  async getCommentsData(commentIds: number[]) {
+    const resource: string = `${backendUrl}/feed/comments`;
+
+    ApiService.setHeader();
+
+    try {
+      const apiResponse = await ApiService.post(resource, {
+        comment_ids: commentIds
+      });
+
+      // Return data of comments
+      return apiResponse.data.comments;
+    } catch (error) {
+      console.log(error);
+      throw new FeedError(error.response.data.message);
+    }
+  } // Get Comments' data
 };
 
 export default FeedService;
