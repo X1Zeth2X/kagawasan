@@ -55,7 +55,24 @@ const FeedService = {
     } catch (error) {
       throw new FeedError(error.response.data.message);
     }
-  } // Get Comments' data
+  }, // Get Comments' data
+
+  async getRepliesData(replyIds: number[]) {
+    const resource: string = `${backendUrl}/feed/replies`;
+
+    ApiService.setHeader();
+
+    try {
+      const apiResponse = await ApiService.post(resource, {
+        reply_ids: replyIds
+      });
+
+      // Return data of comments
+      return apiResponse.data.replies;
+    } catch (error) {
+      throw new FeedError(error.response.data.message);
+    }
+  } // Get Replies' data
 };
 
 export default FeedService;
