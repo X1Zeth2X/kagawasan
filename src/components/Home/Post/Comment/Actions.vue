@@ -17,12 +17,6 @@
         {{ kekGiven ? "ion-ios-heart" : "ion-ios-heart-empty" }}
       </v-icon>
     </v-btn>
-
-    <div>
-      <v-btn x-small rounded depressed block v-show="action.replies > 2">
-        Replies ({{ action.replies }})
-      </v-btn>
-    </div>
   </div>
 </template>
 

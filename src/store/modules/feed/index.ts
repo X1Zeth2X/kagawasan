@@ -15,7 +15,10 @@ const state: FeedState = {
   feedErrorMsg: "",
 
   commentsRequest: false,
-  commentsFeedErrorMsg: null
+  commentsFeedErrorMsg: null,
+
+  repliesRequest: false,
+  repliesFeedErrorMsg: null
 };
 
 const namespaced: boolean = true;

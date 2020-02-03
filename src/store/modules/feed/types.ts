@@ -8,4 +8,7 @@ export interface FeedState {
 
   commentsRequest: boolean;
   commentsFeedErrorMsg: string | null;
+
+  repliesRequest: boolean;
+  repliesFeedErrorMsg: string | null;
 }
