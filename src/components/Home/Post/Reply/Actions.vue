@@ -3,7 +3,7 @@
     <span class="f7">3 likes</span>
     &middot;
 
-    <a class="b f7 text-end">
+    <a @click="$emit('reply')" class="b f7 text-end">
       Reply
     </a>
     &middot;

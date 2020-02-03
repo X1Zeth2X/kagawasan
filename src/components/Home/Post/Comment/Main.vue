@@ -37,6 +37,7 @@
       <div v-if="replies.length !== 0">
         <Reply
           v-for="(reply, index) in replies"
+          v-on:reply="replying = true"
           v-on:removeReply="removeReply(index)"
           :reply="reply"
           :key="reply.public_id"

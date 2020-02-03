@@ -18,13 +18,15 @@
 
       <p class="f6 pt0">
         <v-scroll-x-transition mode="out-in">
-          <Content v-if="!replying" :content="reply.content" />
+          <Content v-if="!editing" :content="reply.content" />
 
           <Edit v-else :content="reply.content" />
         </v-scroll-x-transition>
       </p>
 
-      <ReplyActions />
+      <ReplyActions
+        v-on:reply="$emit('reply')"
+      />
     </v-list-item-content>
   </v-list-item>
 </template>
@@ -53,7 +55,7 @@ const Edit = () => import("../Common/Edit.vue");
 export default class Main extends Vue {
   @Prop() reply!: Note;
 
-  private replying: boolean = false;
+  private editing: boolean = false;
 }
 </script>
 
