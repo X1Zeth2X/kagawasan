@@ -53,7 +53,6 @@ const FeedService = {
       // Return data of comments
       return apiResponse.data.comments;
     } catch (error) {
-      console.log(error);
       throw new FeedError(error.response.data.message);
     }
   } // Get Comments' data
