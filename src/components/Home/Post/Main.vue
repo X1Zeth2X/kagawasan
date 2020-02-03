@@ -145,10 +145,11 @@ export default class PostMain extends Vue {
 
   private comments: CommentType[] = [];
 
+  // Comment IDs left to load.
+  private commentIDsLeft: number[] = [];
+
   private commenting: boolean = false;
 
-  // Slicing starts at 5 by default since there is 5 max initial comments.
-  private loadMoreStart: number = 5;
 
   // Props for the post actions.
   private actionProps: ActionProps = {
@@ -158,17 +159,17 @@ export default class PostMain extends Vue {
     edited: this.post.edited
   };
 
-  private created() {
-    // Reverse the post comments for loading more comments.
-    if (this.post.comments.length > 0) {
-      this.post.comments.reverse();
-    }
-  } // Lifecycle
-
   private mounted() {
     // Load initial comments
     if (this.post.initial_comments !== null) {
       this.comments = this.post.initial_comments;
+
+      if (this.post.comments.length > 5) {
+        this.commentIDsLeft = this.post.comments.slice(
+          0,
+          this.post.comments.length - 5
+        );
+      }
     }
   } // Lifecycle
 
@@ -226,18 +227,15 @@ export default class PostMain extends Vue {
   }
 
   private async loadMore() {
-    // Load 10 more comments on click.
-    const idArray: number[] = this.post.comments.slice(
-      this.loadMoreStart,
-      this.loadMoreStart + 10
-    );
+    if (this.commentIDsLeft.length > 0) {
+      // Load 10 more comments on click.
+      const idArray: number[] = this.commentIDsLeft.slice(-10);
 
-    const comments: CommentType[] = await this.getComments(idArray);
+      const comments: CommentType[] = await this.getComments(idArray);
 
-    // Join the two arrays.
-    // `comments.reverse()` makes sure it is shown chronologically.
-    this.comments = [...comments.reverse(), ...this.comments];
-    this.loadMoreStart = this.loadMoreStart + comments.length;
+      this.comments = [...comments, ...this.comments];
+      this.commentIDsLeft.splice(this.commentIDsLeft.length - comments.length);
+    }
   } // Load more comments
 }
 </script>
