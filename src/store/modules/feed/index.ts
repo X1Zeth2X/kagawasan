@@ -12,7 +12,10 @@ const state: FeedState = {
 
   requesting: false,
   error: false,
-  feedErrorMsg: ""
+  feedErrorMsg: "",
+
+  commentsRequest: false,
+  commentsFeedErrorMsg: null
 };
 
 const namespaced: boolean = true;

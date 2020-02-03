@@ -8,6 +8,15 @@ export const mutations: MutationTree<FeedState> = {
     state.feedErrorMsg = "";
   },
 
+  commentFeedRequest(state) {
+    state.commentsRequest = true;
+    state.commentsFeedErrorMsg = null;
+  },
+
+  commentFeedSuccess(state) {
+    state.commentsRequest = false;
+  },
+
   setFeedItems(state, items: object[]) {
     state.feedItems = items;
   },
@@ -21,6 +30,11 @@ export const mutations: MutationTree<FeedState> = {
     state.requesting = false;
     state.error = true;
     state.feedErrorMsg = errorMsg;
+  },
+
+  commentFeedError(state, errorMsg: string) {
+    state.commentsRequest = false;
+    state.commentsFeedErrorMsg = errorMsg;
   },
 
   updateEditedPost(state, { content, postPublicId }) {

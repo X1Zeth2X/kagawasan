@@ -7,6 +7,14 @@ export const getters: GetterTree<FeedState, RootState> = {
     return state.feedItems;
   },
 
+  commentsRequest(state): boolean {
+    return state.commentsRequest;
+  },
+
+  commentsFeedErrorMsg(state): string | null {
+    return state.commentsFeedErrorMsg;
+  },
+
   requesting(state): boolean {
     return state.requesting;
   },
