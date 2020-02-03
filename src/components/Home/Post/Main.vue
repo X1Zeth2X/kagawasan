@@ -150,7 +150,6 @@ export default class PostMain extends Vue {
 
   private commenting: boolean = false;
 
-
   // Props for the post actions.
   private actionProps: ActionProps = {
     kekGiven: this.post.liked,
