@@ -39,21 +39,19 @@
 
     <div v-if="comments.length !== 0">
       <v-divider></v-divider>
-      <div class="tc fw2">
-        <v-btn
-          block
-          text
-          tile
-          color="primary"
-          class="fw9"
-          v-if="showLoadMore"
-          @click="loadMore"
-        >
-          <v-icon class="mr2 mt1">ion-ios-arrow-dropup</v-icon>
-          View Previous Comments
-          {{ `(${comments.length}/${post.comments.length})` }}
-        </v-btn>
-      </div>
+      <v-btn
+        block
+        text
+        tile
+        color="primary"
+        class="fw9"
+        v-if="showLoadMore"
+        @click="loadMore"
+      >
+        <v-icon class="mr2 mt1">ion-ios-arrow-dropup</v-icon>
+        View Previous Comments
+        {{ `(${comments.length}/${post.comments.length})` }}
+      </v-btn>
 
       <Comment
         v-for="(comment, index) in comments"
@@ -207,6 +205,7 @@ export default class PostMain extends Vue {
   }
 
   private removeComment(index: number) {
+    this.post.comments.splice(index, 1);
     this.comments.splice(index, 1);
   }
 
