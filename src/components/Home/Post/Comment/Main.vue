@@ -16,11 +16,7 @@
 
       <p class="f6 pt0">
         <v-scroll-x-transition mode="out-in">
-          <Content
-            v-if="!editing"
-            :content="comment.content"
-            :highlight="true"
-          />
+          <Content v-if="!editing" :content="comment.content" />
 
           <Edit
             v-else
@@ -38,18 +34,24 @@
         :commentPublicId="comment.public_id"
       />
 
+      <div v-if="replies.length !== 0">
+        <Reply
+          v-for="(reply, index) in replies"
+          v-on:removeReply="removeReply(index)"
+          :reply="reply"
+          :key="reply.public_id"
+        />
+      </div>
+
       <v-scroll-x-transition mode="out-in">
         <Composer
           class="mb-negative-reply pt2"
-          v-if="replying"
+          ref="replyComposer"
           :placeholder="'Write a reply...'"
+          v-if="replying"
+          v-on:submit="createReply"
         />
       </v-scroll-x-transition>
-
-      <div>
-        <!-- <Reply />
-        <Reply /> -->
-      </div>
     </v-list-item-content>
   </v-list-item>
 </template>
@@ -73,6 +75,7 @@ const Edit = () => import("../Common/Edit.vue");
 const Reply = () => import("../Reply/Main.vue");
 
 import { Getter, Action } from "vuex-class";
+import { CreateData } from "@/services/post.service";
 
 const namespace: string = "comment";
 
@@ -95,6 +98,13 @@ export default class CommentMain extends Vue {
   @Action("update", { namespace })
   private updateCommentVuex!: Function;
 
+  @Action("create", { namespace: "reply" })
+  private replyOnComment!: Function;
+
+  public $refs!: {
+    replyComposer: any;
+  };
+
   private replies: Note[] = [];
 
   private replying: boolean = false;
@@ -112,6 +122,23 @@ export default class CommentMain extends Vue {
       this.replies = this.comment.initial_replies;
     }
   } // Lifecycle
+
+  private async createReply(createData: CreateData) {
+    const vuexResp: Note = await this.replyOnComment({
+      commentPublicId: this.comment.public_id,
+      data: createData
+    });
+
+    if (vuexResp) {
+      // Add newly created reply to replies.
+      this.replies = [...this.replies, vuexResp];
+      this.$refs.replyComposer.resetFields();
+    }
+  }
+
+  private removeReply(index: number) {
+    this.replies.splice(index, 1);
+  }
 
   private async updateComment(updatedContent: string) {
     const isSuccessful: boolean = this.updateCommentVuex({
