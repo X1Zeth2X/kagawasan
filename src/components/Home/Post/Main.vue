@@ -1,5 +1,5 @@
 <template>
-  <v-card id="post" class="mb4 b-card" outlined>
+  <v-card id="post" class="mb4 b-card" :outlined="$vuetify.theme.dark">
     <PostTop
       :author="post.author"
       :date="post.created"
