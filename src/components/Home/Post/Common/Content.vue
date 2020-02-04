@@ -3,7 +3,7 @@
     <vue-markdown
       v-if="markdown"
       :source="content"
-      :html="false"
+      :prerender="sanitize"
       :class="[
         $vuetify.theme.dark ? 'white--text' : 'grey--text text--darken-4'
       ]"
@@ -33,6 +33,7 @@ import { Prop } from "vue-property-decorator";
 */
 const VueMarkdown = () => import("vue-markdown-konishi");
 const truncate = () => import("vue-truncate-collapsed");
+const DOMPurify = require("dompurify");
 
 @Component({
   components: {
@@ -45,6 +46,11 @@ export default class Content extends Vue {
   @Prop() highlight!: boolean;
 
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
+
+  private sanitize(content: string) {
+    const sanitizedContent: string = DOMPurify.sanitize(content);
+    return sanitizedContent;
+  }
 }
 </script>
 
