@@ -16,11 +16,11 @@ export const getters: GetterTree<FeedState, RootState> = {
   },
 
   repliesRequest(state): boolean {
-    return state.repliesRequest
+    return state.repliesRequest;
   },
 
   repliesErrorMsg(state): string | null {
-    return state.repliesFeedErrorMsg
+    return state.repliesFeedErrorMsg;
   },
 
   requesting(state): boolean {
