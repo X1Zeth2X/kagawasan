@@ -3,6 +3,7 @@
     <vue-markdown
       v-if="markdown"
       :source="content"
+      :html="false"
       :class="[
         $vuetify.theme.dark ? 'white--text' : 'grey--text text--darken-4'
       ]"
