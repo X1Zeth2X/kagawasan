@@ -2,7 +2,7 @@
   <v-app>
     <Navbar />
 
-    <v-content>
+    <v-content :class="{ 'blue-grey lighten-5': !$vuetify.theme.dark }">
       <v-slide-y-reverse-transition mode="out-in">
         <keep-alive max="2">
           <router-view :key="$route.fullPath"></router-view>
