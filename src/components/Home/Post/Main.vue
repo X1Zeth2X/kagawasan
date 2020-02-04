@@ -68,9 +68,16 @@
         :placeholder="'Write a comment...'"
         :loading="creatingComment"
         :errorMsg="commentErrorMsg"
-        v-if="commenting"
+        v-if="commenting && post.status === 'normal'"
         v-on:submit="createComment"
       />
+
+      <div v-else-if="post.status === 'locked'" class="pa2">
+        <v-btn block disabled class="b-card" v-on="on">
+          Post is locked.
+        </v-btn>
+      </div>
+      <!-- Locked indicator -->
 
       <div v-else class="pa2">
         <v-btn block class="b-card" @click="commenting = true">Comment</v-btn>
