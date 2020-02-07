@@ -104,10 +104,7 @@ export default class PostTop extends Vue {
   }
 
   private get prettyDate(): string {
-    const prettyDate: string = moment
-      .utc(this.date)
-      .local()
-      .format("MMM Do YYYY, h:mm A");
+    const prettyDate: string = moment.utc(this.date).local().fromNow();
     return prettyDate;
   }
 
