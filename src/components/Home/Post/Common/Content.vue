@@ -1,11 +1,14 @@
 <template>
-  <div>
+  <div ref="postContent">
     <vue-markdown
+      ref="markdownContent"
       v-if="markdown"
       :source="content"
       :prerender="sanitize"
       :class="[
-        $vuetify.theme.dark ? 'white--text' : 'grey--text text--darken-4'
+        $vuetify.theme.dark ? 'white--text' : 'grey--text text--darken-4',
+        'content',
+        { more: showMore }
       ]"
     />
 
@@ -18,6 +21,18 @@
       :length="500"
       v-else
     />
+
+    <v-btn
+      block
+      outlined
+      small
+      v-show="showMoreIndicator && markdown"
+      color="primary"
+      @click="toggleMoreContent"
+      class="mt2"
+    >
+      Show More
+    </v-btn>
   </div>
 </template>
 
@@ -47,6 +62,26 @@ export default class Content extends Vue {
 
   @Getter("markdown", { namespace: "settings" }) private markdown!: boolean;
 
+  private showMore: boolean = false;
+  private showMoreIndicator: boolean = false;
+
+  $refs!: {
+    postContent: HTMLDivElement;
+  };
+
+  private mounted() {
+    setTimeout(() => {
+      if (this.$refs.postContent.offsetHeight >= 140) {
+        this.showMoreIndicator = true;
+      }
+    }, 250);
+  }
+
+  private toggleMoreContent() {
+    this.showMore = true;
+    this.showMoreIndicator = false;
+  }
+
   private sanitize(content: string) {
     const sanitizedContent: string = DOMPurify.sanitize(content);
     return sanitizedContent;
@@ -56,4 +91,13 @@ export default class Content extends Vue {
 
 <style lang="scss" scoped>
 @import url(https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css);
+
+.content {
+  &.more {
+    max-height: 100%;
+  }
+
+  max-height: 10em;
+  overflow: hidden;
+}
 </style>
