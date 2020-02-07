@@ -3,6 +3,7 @@ export interface SettingState {
   darkMode: boolean;
   showDrawer: boolean;
   miniDrawer: boolean;
+  rightContent: boolean;
 
   // Content
   markdown: boolean;

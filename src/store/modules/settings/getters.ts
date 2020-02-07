@@ -15,6 +15,10 @@ export const getters: GetterTree<SettingState, RootState> = {
     return state.markdown;
   },
 
+  rightContent(state): boolean {
+    return state.rightContent;
+  },
+
   darkMode(state): boolean {
     return state.darkMode;
   }
