@@ -51,6 +51,9 @@ export default class Layout extends Vue {
   @Action("toggleDarkMode", { namespace })
   private toggleDarkModeVuex!: Function;
 
+  @Action("toggleRightContent", { namespace })
+  private toggleRightContent!: Function;
+
   private items: Option[] = [
     {
       title: "Dark Mode",
@@ -63,6 +66,12 @@ export default class Layout extends Vue {
       subtitle: "Use mini navigation drawers.",
       value: this.$store.getters["settings/miniDrawer"],
       onChange: this.toggleMiniDrawer
+    },
+    {
+      title: "Right content",
+      subtitle: "Show right column on home page.",
+      value: this.$store.getters["settings/rightContent"],
+      onChange: this.toggleRightContent
     }
   ];
 

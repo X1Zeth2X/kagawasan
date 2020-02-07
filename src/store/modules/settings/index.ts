@@ -10,6 +10,7 @@ export const state: SettingState = {
   darkMode: true,
   showDrawer: true,
   miniDrawer: true,
+  rightContent: true,
 
   markdown: false
 };

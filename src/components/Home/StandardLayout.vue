@@ -51,7 +51,7 @@
     </v-col>
 
     <!-- Right aligned items: shown in medium viewpoints and up. -->
-    <v-col md="4" v-if="$vuetify.breakpoint.mdAndUp">
+    <v-col md="4" v-if="$vuetify.breakpoint.mdAndUp && rightContent">
       <div class="f3 fw7">Announcements</div>
 
       <v-alert
@@ -102,6 +102,9 @@ export default class StandardLayout extends Vue {
 
   @Getter("postIds", { namespace })
   private postIds!: number[];
+
+  @Getter("rightContent", { namespace: "settings" })
+  private rightContent!: boolean;
 
   @Action("setFeedItems", { namespace })
   private setFeedItems!: Function;

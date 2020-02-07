@@ -113,7 +113,10 @@ export default class ReplyDetails extends Vue {
   }
 
   private get prettyDate(): string {
-    const prettyDate: string = moment.utc(this.date).local().fromNow();
+    const prettyDate: string = moment
+      .utc(this.date)
+      .local()
+      .fromNow();
 
     return prettyDate;
   }
