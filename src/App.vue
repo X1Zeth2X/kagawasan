@@ -47,5 +47,8 @@ export default class App extends Vue {}
       margin-bottom: -0.5em;
     }
   }
+
+  scrollbar-color: #848484 #424242;
+  scrollbar-width: thin;
 }
 </style>
