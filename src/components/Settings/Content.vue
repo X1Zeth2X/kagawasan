@@ -14,10 +14,6 @@
       >
         Note that using Markdown will import and load the required plugins which
         may slow down performance.
-
-        <br />
-
-        There is no height limit at the moment so posts might get long.
       </v-alert>
 
       <v-list>
