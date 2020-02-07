@@ -28,7 +28,7 @@
 
             <v-btn
               icon
-              class="teal mb3 ml1 hidden-md-and-up"
+              class="teal mb3 ml1"
               elevation="2"
               dark
               small
