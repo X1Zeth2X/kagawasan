@@ -24,7 +24,7 @@
 
     <v-btn
       block
-      outlined
+      text
       small
       v-show="showMoreIndicator && markdown"
       color="primary"
@@ -32,6 +32,7 @@
       class="mt2"
     >
       Show More
+      <v-icon class="ml2" small>ion-ios-arrow-dropdown</v-icon>
     </v-btn>
   </div>
 </template>
@@ -93,11 +94,11 @@ export default class Content extends Vue {
 @import url(https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css);
 
 .content {
+  max-height: 10em;
+  overflow: hidden;
+
   &.more {
     max-height: 100%;
   }
-
-  max-height: 10em;
-  overflow: hidden;
 }
 </style>
