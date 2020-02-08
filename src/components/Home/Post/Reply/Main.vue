@@ -1,6 +1,6 @@
 <template>
   <v-list-item three-line class="reply-margin">
-    <Avatar :avatarUrl="null" />
+    <Avatar :avatarUrl="`https://api.adorable.io/avatars/40/${reply.author.email}.png`" />
 
     <v-list-item-content
       :class="$vuetify.breakpoint.mdAndUp ? 'ml-negative' : 'ml2'"

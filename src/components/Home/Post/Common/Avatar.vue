@@ -3,7 +3,7 @@
     <a>
       <v-avatar size="40">
         <v-img
-          src="https://api.adorable.io/avatars/50/abott@adorable.png"
+          :src="avatarUrl"
           v-if="avatarUrl"
         ></v-img>
         <v-icon dark class="primary" v-else>ion-ios-person</v-icon>
