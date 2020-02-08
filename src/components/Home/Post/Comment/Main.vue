@@ -171,7 +171,7 @@ export default class CommentMain extends Vue {
 
   private get showLoadMore(): boolean {
     if (
-      this.comment.replies.length > 2 ||
+      this.comment.replies.length > 2 &&
       this.comment.replies.length !== this.replies.length
     ) {
       return true;
