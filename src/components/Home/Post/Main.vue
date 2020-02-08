@@ -222,7 +222,7 @@ export default class PostMain extends Vue {
       and that the 'this.comments' length is not the same (less) than the post comments length.
     */
     if (
-      this.post.comments.length > 5 &&
+      this.post.comments.length > 5 ||
       this.post.comments.length !== this.comments.length
     ) {
       return true;
