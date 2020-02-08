@@ -1,6 +1,6 @@
 <template>
   <v-row align="stretch" class="vh-100" id="LoginWindow">
-    <v-col md="5" cols="12">
+    <v-col sm="12" md="5" cols="12">
       <v-container class="ph4">
         <div class="ph4-ns">
           <h1 class="f-subheadline fw8 mb0">
@@ -74,7 +74,7 @@
       </v-container>
     </v-col>
 
-    <v-col md="7" cols="12" class="right"></v-col>
+    <v-col md="7" cols="12" class="right hidden-sm-and-down"></v-col>
   </v-row>
 </template>
 
