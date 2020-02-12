@@ -1,6 +1,11 @@
 <template>
   <v-list-item three-line class="comment">
-    <Avatar :avatarUrl="`https://api.adorable.io/avatars/40/${comment.author.email}.png`" class="hidden-sm-and-down" />
+    <Avatar
+      :avatarUrl="
+        `https://api.adorable.io/avatars/40/${comment.author.email}.png`
+      "
+      class="hidden-sm-and-down"
+    />
 
     <v-list-item-content
       :class="$vuetify.breakpoint.mdAndUp ? 'ml-negative' : 'ml2'"
