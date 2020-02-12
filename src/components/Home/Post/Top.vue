@@ -3,7 +3,9 @@
     <v-list-item-avatar>
       <a>
         <v-avatar size="40" class="primary">
-          <v-img :src="`https://api.adorable.io/avatars/40/${author.email}.png`"></v-img>
+          <v-img
+            :src="`https://api.adorable.io/avatars/40/${author.email}.png`"
+          ></v-img>
         </v-avatar>
       </a>
     </v-list-item-avatar>

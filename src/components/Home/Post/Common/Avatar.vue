@@ -2,10 +2,7 @@
   <v-list-item-avatar class="pb1 ml2">
     <a>
       <v-avatar size="40">
-        <v-img
-          :src="avatarUrl"
-          v-if="avatarUrl"
-        ></v-img>
+        <v-img :src="avatarUrl" v-if="avatarUrl"></v-img>
         <v-icon dark class="primary" v-else>ion-ios-person</v-icon>
       </v-avatar>
     </a>
