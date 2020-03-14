@@ -68,8 +68,8 @@ export default class Layout extends Vue {
       onChange: this.toggleMiniDrawer
     },
     {
-      title: "Minimal",
-      subtitle: "Hide right column on home page.",
+      title: "Full Mode",
+      subtitle: "Show right column on home page.",
       value: this.$store.getters["settings/rightContent"],
       onChange: this.toggleRightContent
     }
