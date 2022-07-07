@@ -13,7 +13,7 @@
     "core-js": "^3.4.4",
     "dompurify": "^2.0.8",
     "filepond": "^4.10.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "prismjs": "^1.24.0",
     "register-service-worker": "^1.6.2",
     "vee-validate": "^3.2.1",
